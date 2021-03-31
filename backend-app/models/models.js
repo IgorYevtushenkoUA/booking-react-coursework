@@ -97,7 +97,7 @@ const FlatHasImage = sequelize.define('flat_has_images', {
 
 const Role = sequelize.define('roles', {
     role_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
-    name: {type: DataTypes.STRING, allowNull: false}
+    name: {type: DataTypes.STRING,unique: true, allowNull: false}
 })
 
 const User = sequelize.define('users', {
