@@ -1,107 +1,107 @@
 const sequelize = require("../database")
 const {DataTypes} = require("sequelize")
 
-const City = sequelize.define('city', {
-    city_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const City = sequelize.define('cities', {
+    city_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const Region = sequelize.define('region', {
-    region_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const Region = sequelize.define('regions', {
+    region_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const Area = sequelize.define('area', {
-    area_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
-    crime: {type: DataTypes.INT, allowNull: false},
-    pollution: {type: DataTypes.INT, allowNull: false},
+const Area = sequelize.define('areas', {
+    area_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    crime: {type: DataTypes.INTEGER, allowNull: false},
+    pollution: {type: DataTypes.INTEGER, allowNull: false},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const Street = sequelize.define('street', {
-    city_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const Street = sequelize.define('streets', {
+    street_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const HouseType = sequelize.define('house_type', {
-    house_type_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const HouseType = sequelize.define('house_types', {
+    house_type_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const House = sequelize.define('house', {
-    house_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
-    house_num: {type: DataTypes.INT, allowNull:false},
-    house_year: {type: DataTypes.INT, allowNull:false},
-    floors_num: {type: DataTypes.INT, allowNull:false}
+const House = sequelize.define('houses', {
+    house_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    house_num: {type: DataTypes.INTEGER, allowNull:false},
+    house_year: {type: DataTypes.INTEGER, allowNull:false},
+    floors_num: {type: DataTypes.INTEGER, allowNull:false}
 })
 
-const Advantage = sequelize.define('advantage', {
-    advantage_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const Advantage = sequelize.define('advantages', {
+    advantage_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const HouseAdvantage = sequelize.define('house_advantage', {
+const HouseHasAdvantage = sequelize.define('house_has_advantages', {
 
 })
 
-const MetroStation = sequelize.define('metro_station_id', {
-    metro_station_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const MetroStation = sequelize.define('metro_stations', {
+    metro_station_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false},
     line_color: {type: DataTypes.STRING, allowNull: false}
 })
 
-const HouseNearMetroStation = sequelize.define('house_near_metro_station', {
+const HouseNearMetroStation = sequelize.define('house_near_metro_stations', {
     distance: {type: DataTypes.DOUBLE, allowNull: false}
 })
 
-const Flat = sequelize.define('flat', {
-    flat_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
-    flat_floor: {type: DataTypes.INT, allowNull: false},
-    square_all: {type: DataTypes.INT, allowNull: false},
-    square_living: {type: DataTypes.INT, allowNull: false},
-    price_month: {type: DataTypes.INT, allowNull: false},
-    rooms_num: {type: DataTypes.INT, allowNull: false},
-    balconies_num: {type: DataTypes.INT, allowNull: false},
+const Flat = sequelize.define('flats', {
+    flat_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    flat_floor: {type: DataTypes.INTEGER, allowNull: false},
+    square_all: {type: DataTypes.INTEGER, allowNull: false},
+    square_living: {type: DataTypes.INTEGER, allowNull: false},
+    price_month: {type: DataTypes.INTEGER, allowNull: false},
+    rooms_num: {type: DataTypes.INTEGER, allowNull: false},
+    balconies_num: {type: DataTypes.INTEGER, allowNull: false},
     short_description: {type: DataTypes.STRING, allowNull: false},
     main_description: {type: DataTypes.STRING, allowNull: false},
     commission: {type: DataTypes.STRING, allowNull: false}
 })
 
-const RentType = sequelize.define('rent_type', {
-    rent_type_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const RentType = sequelize.define('rent_types', {
+    rent_type_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const FlatHasRentType = sequelize.define('flat_has_rent_type', {
+const FlatHasRentType = sequelize.define('flat_has_rent_types', {
 
 })
 
 const FlatElements = sequelize.define('flat_elements', {
-    flat_element_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+    flat_element_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const FlatHasElement = sequelize.define('flat_has_element', {
+const FlatHasElement = sequelize.define('flat_has_elements', {
 
 })
 
 // change type for image
-const FlatImage = sequelize.define('flat_image', {
-    image_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const FlatImage = sequelize.define('flat_images', {
+    image_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     image: {type: DataTypes.STRING, allowNull: false}
 })
 
-const FlatHasImage = sequelize.define('flat_has_image', {
+const FlatHasImage = sequelize.define('flat_has_images', {
 
 })
 
-const Role = sequelize.define('role', {
-    role_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const Role = sequelize.define('roles', {
+    role_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const User = sequelize.define('user', {
-    user_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const User = sequelize.define('users', {
+    user_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
     birth: {type: DataTypes.DATE, allowNull: false},
@@ -115,31 +115,35 @@ const User = sequelize.define('user', {
     last_name: {type: DataTypes.STRING, allowNull: false},
 })
 
-const Admin = sequelize.define('admin', {
+const Admin = sequelize.define('admins', {
 })
 
-const Client = sequelize.define('client', {
+const Client = sequelize.define('clients', {
 })
 
-const Owner = sequelize.define('owner', {
+const Owner = sequelize.define('owners', {
 })
 
-const BadHabit = sequelize.define('bad_habit', {
-    bad_habit_id: {type: DataTypes.INT, primaryKey:true, autoIncrement:true},
+const BadHabit = sequelize.define('bad_habits', {
+    bad_habit_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const ClientHasBadHabit = sequelize.define('client_has_bad_habit', {
+const ClientHasBadHabit = sequelize.define('client_has_bad_habits', {
 
 })
 
-const ClientLikedFlat = sequelize.define('client_liked_flat', {
+const ClientLikedFlat = sequelize.define('client_liked_flats', {
 
 })
 
-const OwnerHasFlat = sequelize.define('city', {
+const OwnerHasFlat = sequelize.define('owner_has_flats', {
 
 })
+
+// city - metro_station
+City.hasMany(MetroStation);
+MetroStation.belongsTo(City);
 
 // city - region
 City.hasMany(Region);
@@ -158,8 +162,8 @@ Street.hasMany(House);
 House.belongsTo(Street);
 
 // house -> {house_advantage} <- advantage
-House.belongsToMany(Advantage, {through: HouseAdvantage})
-Advantage.belongsToMany(House, {through: HouseAdvantage})
+House.belongsToMany(Advantage, {through: HouseHasAdvantage})
+Advantage.belongsToMany(House, {through: HouseHasAdvantage})
 
 // house - type
 HouseType.hasMany(House);
@@ -214,7 +218,7 @@ Client.belongsToMany(BadHabit, {through: ClientHasBadHabit});
 BadHabit.belongsToMany(Client, {through: ClientHasBadHabit});
 
 module.exports = {
-    Admin, 
+    Admin,
     Advantage,
     Area,
     BadHabit,
@@ -229,7 +233,7 @@ module.exports = {
     FlatHasRentType,
     FlatImage,
     House,
-    HouseAdvantage,
+    HouseHasAdvantage,
     HouseNearMetroStation,
     HouseType,
     MetroStation,
