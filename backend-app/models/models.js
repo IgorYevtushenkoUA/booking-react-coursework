@@ -30,7 +30,7 @@ const HouseType = sequelize.define('house_types', {
 
 const House = sequelize.define('houses', {
     house_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
-    house_num: {type: DataTypes.INTEGER, allowNull:false},
+    house_num: {type: DataTypes.STRING, allowNull:false},
     house_year: {type: DataTypes.INTEGER, allowNull:false},
     floors_num: {type: DataTypes.INTEGER, allowNull:false}
 })
@@ -64,7 +64,7 @@ const Flat = sequelize.define('flats', {
     balconies_num: {type: DataTypes.INTEGER, allowNull: false},
     short_description: {type: DataTypes.STRING, allowNull: false},
     main_description: {type: DataTypes.STRING, allowNull: false},
-    commission: {type: DataTypes.STRING, allowNull: false}
+    pledge: {type: DataTypes.INTEGER, allowNull: false}
 })
 
 const RentType = sequelize.define('rent_types', {

@@ -1,0 +1,490 @@
+-- -- --1 into cities
+-- insert into cities(name, createdAt, updatedAt)
+-- values ('Київ', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- --
+-- -- --2 into region
+-- insert into regions(name, createdAt, updatedAt, cityCityId)
+-- values ('Київська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- --
+-- -- --3 into area
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Голосiївський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Дарницький', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Деснянський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Днiпровський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Оболонський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Печерський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Подiльський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Святошинський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Соломянський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
+-- values (1, 1, 'Шевченківський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- --
+-- -- -- into
+-- -- -- Голосіївський район вулиці
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Амурська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Антоновича', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Армійська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+--
+-- -- -- вулиці Дарницького району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Автопаркова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Анни Ахматової', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Батуринська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+-- --
+-- -- -- Вулиці Деснянського району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Метеюка', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Биківнянська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
+-- --
+-- -- -- Вулиці Днiпровський району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Азербайджанська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Алматинська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Івана Багряного', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
+-- --
+-- -- -- Вулиці Оболонського району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Абрикосова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 5);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Агрегатна', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 5);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Аркасівська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 5);
+-- --
+-- -- -- Вулиці Печерський району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Арсенальна', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 6);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Банкова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 6);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Баришівська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 6);
+-- --
+-- -- -- Вулиці Подiльський району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Ананасна', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 7);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Андріївська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 7);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Баклажанна', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 7);
+-- --
+-- -- -- Вулиці Святошинський району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Астрономічна', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 8);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Бахмацька', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 8);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Бетховена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 8);
+-- --
+-- -- -- Вулиці Солом\'янський району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Богдановська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 9);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Агітаторська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 9);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Архітекторська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 9);
+-- --
+-- -- -- Вулиці Шевченківський району
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Бакинська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 10);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Перемоги', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 10);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Гоголівська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 10);
+-- insert into streets(name, createdAt, updatedAt, areaAreaId)
+-- values ('Мельникова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 10);
+-- --
+-- -- house type
+-- insert into house_types(name, createdAt, updatedAt)
+-- values ('бетонний', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into house_types(name, createdAt, updatedAt)
+-- values ('цегляний', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+--
+-- -- -- houses
+-- insert into houses(house_num, house_year, floors_num, createdAt, updatedAt, streetStreetId, houseTypeHouseTypeId)
+-- values (37, 2, 20, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 27, 1);
+-- insert into houses(house_num, house_year, floors_num, createdAt, updatedAt, streetStreetId, houseTypeHouseTypeId)
+-- values (5, 3, 11, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 28, 1);
+-- insert into houses(house_num, house_year, floors_num, createdAt, updatedAt, streetStreetId, houseTypeHouseTypeId)
+-- values (7, 8, 16, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 29, 1);
+-- insert into houses(house_num, house_year, floors_num, createdAt, updatedAt, streetStreetId, houseTypeHouseTypeId)
+-- values (44, 12, 12, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 30, 1);
+-- insert into houses(house_num, house_year, floors_num, createdAt, updatedAt, streetStreetId, houseTypeHouseTypeId)
+-- values (1, 10, 10, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 7, 1);
+-- insert into houses(house_num, house_year, floors_num, createdAt, updatedAt, streetStreetId, houseTypeHouseTypeId)
+-- values (3, 2, 25, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 24, 1);
+-- -- -- insert into houses(house_num, house_year,  floors_num, createdAt, updatedAt) values(1,10,10,'2021-03-31 20:47:23','2021-03-31 20:47:23');
+--
+-- --
+-- -- -- advantage
+-- insert into advantages (name, createdAt, updatedAt)
+-- values ('Парковочне місце для автомобіля', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into advantages (name, createdAt, updatedAt)
+-- values ('Гральний майданчик для дітей', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into advantages (name, createdAt, updatedAt)
+-- values ('Вахтер', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into advantages (name, createdAt, updatedAt)
+-- values ('Закрита будинкова територія', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into advantages (name, createdAt, updatedAt)
+-- values ('Охорона прибудинкової території', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- -- -- insert into advantages (name) values('');
+-- --
+-- -- -- houses_has_advantages
+-- insert into house_has_advantages(createdAt, updatedAt, houseHouseId, advantageAdvantageId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 1);
+-- insert into house_has_advantages(createdAt, updatedAt, houseHouseId, advantageAdvantageId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 2);
+-- insert into house_has_advantages(createdAt, updatedAt, houseHouseId, advantageAdvantageId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 3);
+-- insert into house_has_advantages(createdAt, updatedAt, houseHouseId, advantageAdvantageId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 4);
+--
+-- -- metro_station
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Червоний Хутір', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Бориспільська', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Вирлиця', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Харківська', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Позняки', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Осокорки', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Славутич', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Видубичі', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Дружби народів', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Печерська', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Кловська', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Палац спорту', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Театральна', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Лук''янівська', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Дорогожичі', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Сирець', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Теремки', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Іподром', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Виставковий центр', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Васильківська', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Голосійвська', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Деміївська', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Либідська', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Палац ''України''', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Олімпійська', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Площа Льва Толстого', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Хрещатик', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Поштова площа', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Контрактова площа', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Тараса Шевченка', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Почайна', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Оболонь', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Мінська', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Героїв Дніпра', 'синя', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Лісова', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Чернігівська', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Дарниця', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Лівобережна', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Гідропарк', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Дніпро', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Арсенальна', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Хрещатик', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Театральна', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Університет', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Вокзальна', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Політехнічний інститут', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Шулявська', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Берестейська', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Нивки', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Святощин', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Житомирська', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Академмістечко', 'червона', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- insert into metro_stations(name, line_color, createdAt, updatedAt, cityCityId)
+-- values ('Золоті Ворота', 'зелена', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- --
+--
+-- -- -- house_near_metro_stations
+-- insert into house_near_metro_stations(distance, createdAt, updatedAt, houseHouseId, metroStationMetroStationId)
+-- values (1, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 15);
+-- insert into house_near_metro_stations(distance, createdAt, updatedAt, houseHouseId, metroStationMetroStationId)
+-- values (1, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 44);
+-- insert into house_near_metro_stations(distance, createdAt, updatedAt, houseHouseId, metroStationMetroStationId)
+-- values (1, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 53);
+-- insert into house_near_metro_stations(distance, createdAt, updatedAt, houseHouseId, metroStationMetroStationId)
+-- values (1, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 14);
+-- insert into house_near_metro_stations(distance, createdAt, updatedAt, houseHouseId, metroStationMetroStationId)
+-- values (1, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 35);
+-- insert into house_near_metro_stations(distance, createdAt, updatedAt, houseHouseId, metroStationMetroStationId)
+-- values (1, '2021-03-31 20:47:23', '2021-03-31 20:47:23', 6, 45);
+--
+-- -- -- rent_types
+-- insert into rent_types(name, createdAt, updatedAt)
+-- values ('місячна', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into rent_types(name, createdAt, updatedAt)
+-- values ('денна', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+--
+-- -- -- flat_elements
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('телевізор', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('проектор', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('гардеробна', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('пральна машинка', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('кондиціонер', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('wifi', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('кавомашина', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into flat_elements(name, createdAt, updatedAt)
+-- values ('шкаф', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+--
+-- -- -- flats
+-- -- -- 1
+-- insert into flats(flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description,
+--                   main_description, pledge, createdAt, updatedAt, houseHouseId)
+-- values (5, 62, 20, 15900, 1, 1, 'short_description', 'main_description', 20000, '2021-03-31 20:47:23',
+--         '2021-03-31 20:47:23', 1);
+-- -- -- 2
+-- insert into flats(flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description,
+--                   main_description, pledge, createdAt, updatedAt, houseHouseId)
+-- values (4, 68, 20, 17500, 1, 1, 'short_description', 'main_description', 20000, '2021-03-31 20:47:23',
+--         '2021-03-31 20:47:23', 2);
+-- -- -- 3
+-- insert into flats(flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description,
+--                   main_description, pledge, createdAt, updatedAt, houseHouseId)
+-- values (3, 110, 52, 50000, 3, 2, 'short_description', 'main_description', 50000, '2021-03-31 20:47:23',
+--         '2021-03-31 20:47:23', 3);
+-- -- -- 4
+-- insert into flats(flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description,
+--                   main_description, pledge, createdAt, updatedAt, houseHouseId)
+-- values (6, 110, 74, 43000, 3, 2, 'short_description', 'main_description', 0, '2021-03-31 20:47:23',
+--         '2021-03-31 20:47:23', 4);
+-- -- -- 5
+-- insert into flats(flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description,
+--                   main_description, pledge, createdAt, updatedAt, houseHouseId)
+-- values (8, 40, 28, 7500, 1, 1, 'short_description', 'main_description', 20000, '2021-03-31 20:47:23',
+--         '2021-03-31 20:47:23', 5);
+-- -- -- 6
+-- insert into flats(flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description,
+--                   main_description, pledge, createdAt, updatedAt, houseHouseId)
+-- values (10, 47, 22, 18500, 1, 2, 'short_description', 'main_description', 20000, '2021-03-31 20:47:23',
+--         '2021-03-31 20:47:23', 6);
+--
+-- -- -- flat_has_rent_types
+-- insert into flat_has_rent_types(createdAt, updatedAt, flatFlatId, rentTypeRentTypeId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 1);
+-- insert into flat_has_rent_types(createdAt, updatedAt, flatFlatId, rentTypeRentTypeId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 1);
+-- insert into flat_has_rent_types(createdAt, updatedAt, flatFlatId, rentTypeRentTypeId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 1);
+-- insert into flat_has_rent_types(createdAt, updatedAt, flatFlatId, rentTypeRentTypeId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 1);
+-- insert into flat_has_rent_types(createdAt, updatedAt, flatFlatId, rentTypeRentTypeId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 1);
+-- insert into flat_has_rent_types(createdAt, updatedAt, flatFlatId, rentTypeRentTypeId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 6, 1);
+--
+-- -- -- flat_has_elements
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 1);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 2);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 3);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 4);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 5);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 6);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 7);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 8);
+-- --
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 1);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 2);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 3);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 5);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 6);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 7);
+-- --
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 1);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 2);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 4);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 5);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 6);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3, 8);
+-- --
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 1);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 4);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 5);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 6);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 4, 8);
+-- --
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 1);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 4);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 5);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 6);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 5, 7);
+-- --
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 6, 1);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 6, 6);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 6, 7);
+-- insert into flat_has_elements(createdAt, updatedAt, flatFlatId, flatElementFlatElementId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 6, 8);
+--
+-- -- -- roles
+-- insert into roles(name, createdAt, updatedAt)
+-- values ('admin', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into roles(name, createdAt, updatedAt)
+-- values ('owner', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into roles(name, createdAt, updatedAt)
+-- values ('client', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+--
+-- -- -- users
+-- -- -- 1 admin
+-- insert into users(first_name, second_name, last_name, birth, gender, email, password, phone_num1,
+--                   passport_ID, createdAt, updatedAt, roleRoleId)
+-- values ('admin', 'admin', 'admin', '1990-03-31', 'm', 'email@gmail.com', 'password', '111-11-11',
+--         '12345678', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+-- -- -- 2 owner
+-- insert into users(first_name, second_name, last_name, birth, gender, email, password, phone_num1, phone_num2,
+--                   passport_ID, createdAt, updatedAt, roleRoleId)
+-- values ('owner', 'owner', 'owner', '1990-03-31', 'm', 'email@gmail.com', 'password', '222-22-21', '222-22-22',
+--         '87654321', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+-- --
+-- -- -- 3 client
+-- insert into users(first_name, second_name, last_name, birth, gender, email, password, phone_num1, phone_num2,
+--                   passport_ID, createdAt, updatedAt, roleRoleId)
+-- values ('client', 'client', 'client', '1990-03-31', 'm', 'email@gmail.com', 'password', '333-33-31', '333-33-32',
+--         '12345648', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
+--
+-- -- -- admins
+-- insert into admins(createdAt, updatedAt, userUserId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+--
+-- -- -- owners
+-- insert into owners(createdAt, updatedAt, userUserId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+--
+-- -- -- clients
+-- insert into clients(createdAt, updatedAt, userUserId)
+-- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
+--
+-- -- -- bad_habits
+-- insert into bad_habits(name, createdAt, updatedAt)
+-- values ('Куріння', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+-- insert into bad_habits(name, createdAt, updatedAt)
+-- values ('Алкоголь', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
+
+
+-- -- client_has_bad_habits
+-- -- insert into client_has_bad_habits(createdAt, updatedAt, clientId, badHabitBadHabitId) values('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1,1);
+
+
+-- -- client_liked_flats
+-- -- insert into client_liked_flats(createdAt, updatedAt,clientId, flatFlatId) values('2021-03-31 20:47:23', '2021-03-31 20:47:23',1,1);
+
+-- -- owner_has_flats
+insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
+values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 1);
+insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
+values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 2);
+insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
+values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 3);
+insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
+values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 4);
+insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
+values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 5);
+insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
+values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 6);
+--

@@ -14,13 +14,14 @@ create table regions
     name       varchar(255) not null,
     createdAt  datetime     not null,
     updatedAt  datetime     not null,
-    cityCityId int          null,
+    cityCityId int null,
     constraint regions_ibfk_1
         foreign key (cityCityId) references cities (city_id)
             on update cascade on delete set null
 );
 
-create index cityCityId
+create
+index cityCityId
     on regions (cityCityId);
 
 create table areas
@@ -32,13 +33,14 @@ create table areas
     name           varchar(255) not null,
     createdAt      datetime     not null,
     updatedAt      datetime     not null,
-    regionRegionId int          null,
+    regionRegionId int null,
     constraint areas_ibfk_1
         foreign key (regionRegionId) references regions (region_id)
             on update cascade on delete set null
 );
 
-create index regionRegionId
+create
+index regionRegionId
     on areas (regionRegionId);
 
 create table streets
@@ -48,13 +50,14 @@ create table streets
     name       varchar(255) not null,
     createdAt  datetime     not null,
     updatedAt  datetime     not null,
-    areaAreaId int          null,
+    areaAreaId int null,
     constraint streets_ibfk_1
         foreign key (areaAreaId) references areas (area_id)
             on update cascade on delete set null
 );
 
-create index areaAreaId
+create
+index areaAreaId
     on streets (areaAreaId);
 
 create table house_types
@@ -70,13 +73,13 @@ create table houses
 (
     house_id             int auto_increment
         primary key,
-    house_num            int      not null,
-    house_year           int      not null,
-    floors_num           int      not null,
-    createdAt            datetime not null,
-    updatedAt            datetime not null,
-    streetStreetId       int      null,
-    houseTypeHouseTypeId int      null,
+    house_num            varchar(8) not null,
+    house_year           int        not null,
+    floors_num           int        not null,
+    createdAt            datetime   not null,
+    updatedAt            datetime   not null,
+    streetStreetId       int null,
+    houseTypeHouseTypeId int null,
     constraint houses_ibfk_1
         foreign key (streetStreetId) references streets (street_id)
             on update cascade on delete set null,
@@ -85,10 +88,12 @@ create table houses
             on update cascade on delete set null
 );
 
-create index houseTypeHouseTypeId
+create
+index houseTypeHouseTypeId
     on houses (houseTypeHouseTypeId);
 
-create index streetStreetId
+create
+index streetStreetId
     on houses (streetStreetId);
 
 create table advantages
@@ -115,7 +120,8 @@ create table house_has_advantages
             on update cascade on delete cascade
 );
 
-create index advantageAdvantageId
+create
+index advantageAdvantageId
     on house_has_advantages (advantageAdvantageId);
 
 create table metro_station
@@ -123,7 +129,7 @@ create table metro_station
     metro_station_id int auto_increment
         primary key,
     city_id          int         not null,
-    name             int         null,
+    name             int null,
     line_color       varchar(32) not null,
     constraint fk_city_metro
         foreign key (city_id) references city (city_id)
@@ -146,7 +152,8 @@ create table house_near_metro_stations
             on update cascade on delete cascade
 );
 
-create index metroStationMetroStationId
+create
+index metroStationMetroStationId
     on house_near_metro_stations (metroStationMetroStationId);
 
 create table flats
@@ -161,16 +168,17 @@ create table flats
     balconies_num     int          not null,
     short_description varchar(255) not null,
     main_description  varchar(255) not null,
-    commission        varchar(255) not null,
+    pledge            int          not null,
     createdAt         datetime     not null,
     updatedAt         datetime     not null,
-    houseHouseId      int          null,
+    houseHouseId      int null,
     constraint flats_ibfk_1
         foreign key (houseHouseId) references houses (house_id)
             on update cascade on delete set null
 );
 
-create index houseHouseId
+create
+index houseHouseId
     on flats (houseHouseId);
 
 create table rent_types
@@ -197,7 +205,8 @@ create table flat_has_rent_types
             on update cascade on delete cascade
 );
 
-create index rentTypeRentTypeId
+create
+index rentTypeRentTypeId
     on flat_has_rent_types (rentTypeRentTypeId);
 
 create table flat_elements
@@ -224,7 +233,8 @@ create table flat_has_elements
             on update cascade on delete cascade
 );
 
-create index flatElementFlatElementId
+create
+index flatElementFlatElementId
     on flat_has_elements (flatElementFlatElementId);
 
 create table flat_images
@@ -251,7 +261,8 @@ create table flat_has_images
             on update cascade on delete cascade
 );
 
-create index flatImageImageId
+create
+index flatImageImageId
     on flat_has_images (flatImageImageId);
 
 create table roles
@@ -280,13 +291,14 @@ create table users
     last_name   varchar(255) not null,
     createdAt   datetime     not null,
     updatedAt   datetime     not null,
-    roleRoleId  int          null,
+    roleRoleId  int null,
     constraint users_ibfk_1
         foreign key (roleRoleId) references roles (role_id)
             on update cascade on delete set null
 );
 
-create index roleRoleId
+create
+index roleRoleId
     on users (roleRoleId);
 
 create table admins
@@ -295,13 +307,14 @@ create table admins
         primary key,
     createdAt  datetime not null,
     updatedAt  datetime not null,
-    userUserId int      null,
+    userUserId int null,
     constraint admins_ibfk_1
         foreign key (userUserId) references users (user_id)
             on update cascade on delete set null
 );
 
-create index userUserId
+create
+index userUserId
     on admins (userUserId);
 
 create table clients
@@ -310,13 +323,14 @@ create table clients
         primary key,
     createdAt  datetime not null,
     updatedAt  datetime not null,
-    userUserId int      null,
+    userUserId int null,
     constraint clients_ibfk_1
         foreign key (userUserId) references users (user_id)
             on update cascade on delete set null
 );
 
-create index userUserId
+create
+index userUserId
     on clients (userUserId);
 
 
@@ -326,13 +340,14 @@ create table owners
         primary key,
     createdAt  datetime not null,
     updatedAt  datetime not null,
-    userUserId int      null,
+    userUserId int null,
     constraint owners_ibfk_1
         foreign key (userUserId) references users (user_id)
             on update cascade on delete set null
 );
 
-create index userUserId
+create
+index userUserId
     on owners (userUserId);
 
 create table bad_habits
@@ -359,7 +374,8 @@ create table client_has_bad_habits
             on update cascade on delete cascade
 );
 
-create index badHabitBadHabitId
+create
+index badHabitBadHabitId
     on client_has_bad_habits (badHabitBadHabitId);
 
 create table client_liked_flats
@@ -377,7 +393,8 @@ create table client_liked_flats
             on update cascade on delete cascade
 );
 
-create index flatFlatId
+create
+index flatFlatId
     on client_liked_flats (flatFlatId);
 
 create table owner_has_flats
@@ -395,5 +412,6 @@ create table owner_has_flats
             on update cascade on delete cascade
 );
 
-create index flatFlatId
+create
+index flatFlatId
     on owner_has_flats (flatFlatId);
