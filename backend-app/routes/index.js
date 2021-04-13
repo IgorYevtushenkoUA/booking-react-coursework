@@ -1,8 +1,8 @@
 const Router = require('express');
 const router= new Router();
-const flatRouter = require('./flatRouter');
-const userRouter = require('./userRouter');
-const typeRouter = require('./typeRouter');
+const flatRouter = require('./route/flatRouter');
+const userRouter = require('./route/userRouter');
+const typeRouter = require('./route/typeRouter');
 
 
 router.use('/flats', flatRouter);
@@ -12,19 +12,19 @@ router.use('/type', typeRouter);
 module.exports = router;
 
 
-// router.use('/login')
-// router.use('/registration')
-// router.use('/flats')
-// router.use('/flats/:id')
-// router.use('/client/:id')
-// router.use('/client/:id/edit')
-// router.use('/client/:id/liked-flats')
+// route.use('/login')
+// route.use('/registration')
+// route.use('/flats')
+// route.use('/flats/:id')
+// route.use('/client/:id')
+// route.use('/client/:id/edit')
+// route.use('/client/:id/liked-flats')
 //
-// router.use('/admin/:id')
+// route.use('/admin/:id')
 //
-// router.use('/owner/:id')
-// router.use('/owner/:id/edit')
-// router.use('/owner/:id/flats')
-// router.use('/owner/:id/flats/:id')
-// router.use('/owner/:id/flats/:id/edit')
+// route.use('/owner/:id')
+// route.use('/owner/:id/edit')
+// route.use('/owner/:id/flats')
+// route.use('/owner/:id/flats/:id')
+// route.use('/owner/:id/flats/:id/edit')
 

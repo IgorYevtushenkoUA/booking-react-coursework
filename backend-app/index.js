@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-const sequelize = require("./database")
+const {connection} = require("./database/dbConnector.js")
+// const sequelize = require("./database")
 const models = require("./models/models.js")
 const cors = require("cors");
 const router = require("./routes/index")
@@ -17,18 +18,34 @@ app.use('/api', router);
 // Обрабробка помилок
 app.use(errorHandler);
 
+function connect2DB() {
+    connection.connect(function (err) {
+        if (err) {
+            return console.error("Ошибка: " + err.message);
+        } else {
+            console.log("Подключение к серверу MySQL успешно установлено");
+        }
+    });
+}
 
 
 const start = async () => {
     try {
-        await sequelize.authenticate()
-        await sequelize.sync()
+        // await sequelize.authenticate()
+        // await sequelize.sync()
+
         app.listen(PORT, () => {
+            connect2DB();
             console.log(`Server started on port ${PORT}`)
         })
+
+
     } catch (e) {
         console.log(e);
     }
 }
 
+
 start();
+
+

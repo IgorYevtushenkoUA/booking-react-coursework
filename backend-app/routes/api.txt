@@ -1,0 +1,22 @@
+USER
+/flats      -> getAll()
+/flats/:id  -> getByID(id)
+
+
+ADMIN
+/admin
+/admin/flats        (get, post, deleteById)
+/admin/flats/:id    (get, post, edit, delete)
+
+
+OWNER
+/owner/:id              (get, edit)
+/owner/:id/flats        (get, post, deleteById)
+/owner/:id/flats/:id    (get, edit, post)
+
+
+
+CLIENT
+/client/:id (get, edit)
+/client/:id/liked_flats (get, delete)
+
