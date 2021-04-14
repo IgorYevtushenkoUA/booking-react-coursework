@@ -6,8 +6,8 @@ import './AboutUs.css';
 const AboutUs = () => {
     return (
         <Container>
-            <Card>
-                <div className="about-us">
+            <div >
+                <div className="about-us" style={{display:"grid", gridTemplateColumns:"5fr 5fr"}}>
                     <div className="info-img">
 
                     </div>
@@ -37,7 +37,7 @@ const AboutUs = () => {
                         </div>
                     </div>
                 </div>
-            </Card>
+            </div>
         </Container>
     );
 };

@@ -1,14 +1,14 @@
-.about-us {
-    display: grid;
-    grid-template-columns: 5fr 5fr;
-    grid-gap: 15px;
-}
+/*.about-us {*/
+/*    display: grid;*/
+/*    grid-template-columns: 5fr 5fr;*/
+/*    grid-gap: 15px;*/
+/*}*/
 
-.info-img {
+/*.info-img {*/
 
-}
+/*}*/
 
-.card {
-    display: flex;
-    flex-direction: row
-}
+/*.card {*/
+/*    display: flex;*/
+/*    flex-direction: row*/
+/*}*/

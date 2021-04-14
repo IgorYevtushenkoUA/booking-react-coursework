@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {REGISTRATION_ROUTE} from "../../../utils/consts";
 
 const LoginPage = () => {
+
     return (
         <Container
             className="d-flex justify-content-center align-items-center"

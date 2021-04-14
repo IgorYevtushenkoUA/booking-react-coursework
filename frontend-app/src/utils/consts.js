@@ -4,3 +4,4 @@ export const SELL_FLATS_ROUTE = "/sell/flats";
 export const LOGIN_ROUTE = "/login";
 export const REGISTRATION_ROUTE = "/registration";
 export const ABOUT_US_ROUTE = "/about-us";
+export const CREATE_FLAT_ROUTE = "/create";
