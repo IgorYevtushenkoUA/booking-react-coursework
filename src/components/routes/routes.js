@@ -1,7 +1,8 @@
-import {ADMIN_ROUTE, FLAT_ROUTE, FLATS_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {ADMIN_ROUTE, FLAT_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
 import Flats from "../../pages/flatsPage/Flats";
 import Auth from "../../pages/authPage/Auth";
 import Flat from "../../pages/flatsPage/flatPage/Flat";
+import {RENT_FLATS_ROUTE} from "../../../frontend-app/src/utils/consts";
 
 export const publicRoutes = [
     {
@@ -13,11 +14,11 @@ export const publicRoutes = [
         Component: Auth
     },
     {
-        path: FLATS_ROUTE,
+        path: RENT_FLATS_ROUTE,
         Component: Flats
     },
     {
-        path: FLAT_ROUTE + '/:id',
+        path: RENT_FLATS_ROUTE + '/:id',
         Component: Flat
     }
 ];

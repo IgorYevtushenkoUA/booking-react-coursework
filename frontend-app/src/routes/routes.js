@@ -1,8 +1,9 @@
-import {FLATS_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {RENT_FLATS_ROUTE, LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE, ABOUT_US_ROUTE} from "../utils/consts";
 import Main from "../pages/mainPage/Main";
-import Flats from "../pages/flatsPage/Flats";
+import Flats from "../pages/flatsPage/rentFlats/Flats";
 import Flat from "../pages/flatsPage/flatPage/Flat";
 import Auth from "../pages/authPage/Auth";
+import AboutUs from "../pages/aboutUsPage/AboutUs";
 
 export const authRoutes = [
     {
@@ -10,11 +11,11 @@ export const authRoutes = [
         "Component": Main
     },
     {
-        "path": FLATS_ROUTE,
+        "path": RENT_FLATS_ROUTE,
         "Component": Flats
     },
     {
-        "path": FLATS_ROUTE + "/:id",
+        "path": RENT_FLATS_ROUTE + "/:id",
         "Component": Flat
     },
     {
@@ -25,6 +26,10 @@ export const authRoutes = [
         "path": REGISTRATION_ROUTE,
         "Component": Auth
     },
+    {
+        "path": ABOUT_US_ROUTE,
+        "Component": AboutUs
+    }
 ];
 export const publicRoutes = [
     {
@@ -32,11 +37,11 @@ export const publicRoutes = [
         "Component": Main
     },
     {
-        "path": FLATS_ROUTE,
+        "path": RENT_FLATS_ROUTE,
         "Component": Flats
     },
     {
-        "path": FLATS_ROUTE + "/:id",
+        "path": RENT_FLATS_ROUTE + "/:id",
         "Component": Flat
     },
     {
@@ -47,4 +52,8 @@ export const publicRoutes = [
         "path": REGISTRATION_ROUTE,
         "Component": Auth
     },
+    {
+        "path": ABOUT_US_ROUTE,
+        "Component": AboutUs
+    }
 ];
