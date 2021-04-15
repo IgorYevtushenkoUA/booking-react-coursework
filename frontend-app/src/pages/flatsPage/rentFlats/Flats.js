@@ -20,7 +20,7 @@ const Flats = observer(() => {
                     <TypeBar/>
                 </Col>
                 <Col md={9}>
-                    <FlatsList/>
+                    <FlatsList />
 
                 </Col>
             </Row>

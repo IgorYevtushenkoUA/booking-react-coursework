@@ -7,10 +7,11 @@ export const createFlats = async (flats) => {
 
 export const fetchFlats = async () => {
     const {data} = await $host.get('api/flats/');
-    console.log("::::::: DATA :::::::")
-    console.log(data)
     return data;
 }
 
-
+export const fetchFlatById = async (id) => {
+    const {data} = await $host.get("/api/flats/" + id);
+    return data;
+}
 
