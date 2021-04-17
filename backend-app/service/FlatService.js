@@ -13,7 +13,7 @@ class FlatService {
         if (!id) {
             throw new Error('е указан ID')
         }
-        const flat = Flat.findByPk(1);
+        const flat = Flat.findByPk(id);
         return flat;
     }
 
@@ -28,10 +28,11 @@ class FlatService {
     }
 
     async update(flat) {
-        if (!flat.id) {
-            throw new Error('не указан ID')
-
+        if (!flat.flat_id) {
+            throw new Error('не указан ID');
         }
+        const updatedFlat = await Flat.update(flat.flat_id, flat);
+        return updatedFlat;
     }
 
     async create(flat) {

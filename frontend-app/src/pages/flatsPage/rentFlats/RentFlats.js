@@ -6,12 +6,14 @@ import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
 import {fetchFlats} from "../../../http/flatsApi";
 
-const Flats = observer(() => {
+const RentFlats = observer(() => {
     const {flats} = useContext(Context);
 
     useEffect(() => {
         fetchFlats().then(data => flats.setFlats(data))
     }, [])
+
+    console.log(flats.getFlats);
 
     return (
         <Container>
@@ -29,4 +31,4 @@ const Flats = observer(() => {
     );
 });
 
-export default Flats;
+export default RentFlats;

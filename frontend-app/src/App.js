@@ -1,14 +1,27 @@
 import {BrowserRouter} from "react-router-dom";
 import AppRouter from "./components/AppRouter";
 import NavBar from "./components/navbar/NavBar";
+import {observer} from "mobx-react-lite";
+import {useContext, useEffect} from "react";
+import {Context} from "./index";
+import {check} from "./http/userApi";
 
-function App() {
+const App = observer(() => {
+
+    const {user} = useContext(Context);
+
+    useEffect(() => {
+        check().then(data => {
+            user.setUser(data);
+        })
+    }, []);
+
     return (
         <BrowserRouter>
-            <NavBar />
+            <NavBar/>
             <AppRouter/>
         </BrowserRouter>
     );
-}
+});
 
 export default App;

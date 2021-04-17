@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import {Context} from "../../../index";
-import {Row} from "react-bootstrap";
+import {Card, Row} from "react-bootstrap";
 import FlatItem from "./FlatItem";
 import {observer} from "mobx-react-lite";
 
@@ -10,11 +10,11 @@ const FlatsList = observer(() => {
     console.log(flats)
 
     return (
-        <Row className="d-flex">
+        <Row className="d-flex flex-column ">
             {flats.getFlats.map(flat =>
                 <FlatItem
                     key={flat.flat_id}
-                    flat={flat} />
+                    flat={flat}/>
             )}
         </Row>
     );

@@ -13,6 +13,17 @@ export default class UserStore {
         this._isAuth = user;
     }
 
+    setUser(user) {
+        console.log("USE METHOD TO SETUSER")
+        this._user = user;
+        console.log(user)
+    }
+
+    get getUser() {
+        console.log(this._user)
+        return this._user;
+    }
+
     get isAuth() {
         return this._isAuth;
     }
