@@ -9,7 +9,6 @@ const FlatPage = () => {
 
     const [flat, setFlat] = useState({info: []});
     const params = useParams();
-    console.log(params.id);
     useEffect(() => {
         fetchFlatById(params.id).then(f => setFlat(f));
     }, []);

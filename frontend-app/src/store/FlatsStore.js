@@ -12,8 +12,6 @@ export default class FlatsStore {
 
     setFlats(flats) {
         this._flats = flats;
-        console.log("set flats")
-        console.log(flats)
     }
 
 }

@@ -3,15 +3,16 @@ import {Context} from "../../../index";
 import {Card, Row} from "react-bootstrap";
 import FlatItem from "./FlatItem";
 import {observer} from "mobx-react-lite";
+import {fetchFlats} from "../../../http/flatsApi";
 
-const FlatsList = observer(() => {
-    const {flats} = useContext(Context);
-
-    console.log(flats)
-
+const FlatsList = observer((props) => {
+    // const flats = fetchFlats();
+    // console.log(flats)
+    let flats = props.flats;
+    debugger
     return (
         <Row className="d-flex flex-column ">
-            {flats.getFlats.map(flat =>
+            {flats.map(flat =>
                 <FlatItem
                     key={flat.flat_id}
                     flat={flat}/>

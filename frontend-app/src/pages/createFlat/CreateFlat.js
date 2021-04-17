@@ -20,16 +20,6 @@ const CreateFlat = () => {
 
     const click = async () => {
         try {
-            console.log(flatFloor)
-            // console.log(squareAll)
-            // console.log(squareLiving)
-            // console.log(priceMonth)
-            // console.log(roomsNum)
-            // console.log(balconiesNum)
-            // console.log(shortDescription)
-            // console.log(mainDescription)
-            // console.log(pledge)
-
             await createFlats(flatFloor, squareAll, squareLiving,
                 priceMonth, roomsNum, balconiesNum, shortDescription, mainDescription, pledge, 1)
         } catch (e) {

@@ -3,7 +3,8 @@ import {Card, Col, Container, Row} from "react-bootstrap";
 import VariantBlock from "./variantBlock/VariantBlock";
 import {RENT_FLATS_ROUTE, SELL_FLATS_ROUTE} from "../../utils/consts";
 
-const Main = () => {
+const Main = (props) => {
+
     return (
         <Container>
             <div className="variantBlock d-flex">

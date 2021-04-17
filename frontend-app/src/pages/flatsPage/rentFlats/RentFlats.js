@@ -7,13 +7,16 @@ import {Context} from "../../../index";
 import {fetchFlats} from "../../../http/flatsApi";
 
 const RentFlats = observer(() => {
-    const {flats} = useContext(Context);
+    // const {flats} = useContext(Context);
 
     useEffect(() => {
-        fetchFlats().then(data => flats.setFlats(data))
+        fetchFlats().then(data => {
+            // flats.setFlats(data)
+            console.log(data);
+        })
     }, [])
 
-    console.log(flats.getFlats);
+    let flats = [];
 
     return (
         <Container>
@@ -22,7 +25,7 @@ const RentFlats = observer(() => {
                     <TypeBar/>
                 </Col>
                 <Col md={9}>
-                    <FlatsList />
+                    <FlatsList flats={flats}/>
 
                 </Col>
             </Row>

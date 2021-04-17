@@ -1,21 +1,14 @@
 import React, {createContext} from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import UserStore from "./store/UserStore";
-import FlatsStore from "./store/FlatsStore";
+import state, {addUser} from "./redux/state";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-export const Context = createContext(null);
+export let rerenderEntireTree = (state) => {
 
-console.log(process.env.REACT_APP_API_URL)
+    ReactDOM.render(
+        <App state={state} addUser={addUser}/>,
+        document.getElementById('root')
+    );
+}
 
-ReactDOM.render(
-    <Context.Provider value={{
-        user: new UserStore(),
-        flats: new FlatsStore()
-    }}>
-        <App />
-    </Context.Provider>,
-    document.getElementById('root')
-)
-;
-
+rerenderEntireTree(state);
