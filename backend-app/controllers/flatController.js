@@ -1,4 +1,5 @@
 const flatService = require("../service/FlatService.js");
+const {Flat} = require('../models/models')
 
 class FlatController {
 
@@ -30,9 +31,32 @@ class FlatController {
         }
     }
 
-    async create(req, res) {
+    async create(req, res, next) {
         try {
-            const flat = await flatService.create(req.body);
+            const {
+                flat_floor,
+                square_all,
+                square_living,
+                price_month,
+                rooms_num,
+                balconies_num,
+                short_description,
+                main_description,
+                pledge,
+                houseHouseId
+            } = req.body;
+            const flat = await Flat.create({
+                flat_floor,
+                square_all,
+                square_living,
+                price_month,
+                rooms_num,
+                balconies_num,
+                short_description,
+                main_description,
+                pledge,
+                houseHouseId
+            });
             res.json(flat);
         } catch (e) {
             res.status.json(e);

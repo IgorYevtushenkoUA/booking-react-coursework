@@ -4,7 +4,6 @@ import './AboutUs.css';
 import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
 
-
 const AboutUs = observer(() => {
 
     const [readMore, setReadMore] = useState(false);

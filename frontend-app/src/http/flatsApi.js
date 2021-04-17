@@ -1,7 +1,11 @@
 import {$authHost, $host} from "./index";
 
-export const createFlats = async (flats) => {
-    const {data} = await $host.post('api/flats', flats);
+export const createFlats = async (flat_floor, square_all, square_living,
+                                  price_month, rooms_num, balconies_num, short_description, main_description, pledge, houseHouseId) => {
+    const {data} = await $host.post('api/flats/create', {
+        flat_floor, square_all, square_living,
+        price_month, rooms_num, balconies_num, short_description, main_description, pledge, houseHouseId
+    });
     return data;
 }
 

@@ -18,6 +18,7 @@ const NavBar = observer(() => {
                 <Nav className="mr-auto">
                     <Nav.Link href="/">Main</Nav.Link>
                     <Nav.Link href="/about-us">About US</Nav.Link>
+                    <Nav.Link href="/create">Create</Nav.Link>
                 </Nav>
 
                 {user.isAuth
