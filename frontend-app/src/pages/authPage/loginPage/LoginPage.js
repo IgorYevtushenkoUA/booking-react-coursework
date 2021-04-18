@@ -3,15 +3,13 @@ import {Button, Card, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useHistory} from "react-router-dom";
 import {MAIN_ROUTE, OWNER_PERSONAL_PAGE, REGISTRATION_ROUTE} from "../../../utils/consts";
 import {login} from "../../../http/userApi";
-import {Context} from "../../../index";
 import {observer} from "mobx-react-lite";
-import Counter from "../../../store/Counter.js"
-// todo -> якось такий формат змінити, бо концептуально він неправильний
-import {addUser} from "../../../redux/state";
+import {useTranslation} from "react-i18next";
 
 
 const LoginPage = observer(() => {
 
+    const { t } = useTranslation();
     const [email, setEmail] = useState('email@gmail.com');
     const [password, setPassword] = useState('password');
     const [emailDirty, setEmailDirty] = useState(false)
@@ -89,11 +87,11 @@ const LoginPage = observer(() => {
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-5">
-                <h2 className="m-auth">Authorization</h2>
+                <h2 className="m-auth">{t("login.title")}</h2>
                 <Form className="d-flx flex-column">
                     <Form.Control
                         className="mt-3"
-                        placeholder="Enter your Email"
+                        placeholder={t("login.enter_email")}
                         value={email}
                         onChange={e => emailHandler(e)}
                         name='email'
@@ -102,7 +100,7 @@ const LoginPage = observer(() => {
                     {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
                     <Form.Control
                         className="mt-3"
-                        placeholder="Enter your password"
+                        placeholder={t("login.enter_password")}
                         value={password}
                         onChange={e => passwordHandler(e)}
                         name='password'
@@ -112,13 +110,13 @@ const LoginPage = observer(() => {
 
                     <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
                         <div>
-                            Немає акаунту? <NavLink to={REGISTRATION_ROUTE}>Зареєструватися</NavLink>
+                            {t("login.account")} <NavLink to={REGISTRATION_ROUTE}>{t("login.register")}</NavLink>
                         </div>
                         <Button
                             variant={"outline-success"}
                             disabled={!formValid}
                             onClick={click}>
-                            Ввійти
+                            {t("login.sign_in")}
                         </Button>
                     </Row>
                 </Form>

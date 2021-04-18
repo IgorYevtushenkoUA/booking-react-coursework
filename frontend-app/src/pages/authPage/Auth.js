@@ -5,7 +5,6 @@ import {NavLink, useLocation} from "react-router-dom";
 import LoginPage from "./loginPage/LoginPage";
 import RegistrationPage from "./registrationPage/RegistrationPage";
 import {registration} from "../../http/userApi";
-
 const Auth = () => {
 
     const location = useLocation();

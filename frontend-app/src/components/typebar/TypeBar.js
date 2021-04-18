@@ -1,6 +1,7 @@
 import React from 'react';
 import {observer} from "mobx-react-lite";
 import {Col, ListGroup, ListGroupItem} from "react-bootstrap";
+import "../../i18n.js"
 
 const TypeBar = observer(() => {
 

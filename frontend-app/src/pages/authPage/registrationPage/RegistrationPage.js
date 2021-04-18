@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useHistory} from "react-router-dom";
-import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../../utils/consts";
+import {LOGIN_ROUTE, MAIN_ROUTE, REGISTRATION_ROUTE} from "../../../utils/consts";
 import {createUser, registrate} from "../../../http/userApi";
 import {createFlats} from "../../../http/flatsApi";
+import {useTranslation} from "react-i18next";
 
 const RegistrationPage = () => {
-
+    const {t} = useTranslation();
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [fatherName, setFatherName] = useState('')
@@ -75,7 +76,6 @@ const RegistrationPage = () => {
         }
     }
 
-
     const emailHandler = (e) => {
         setEmail(e.target.value);
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -140,7 +140,7 @@ const RegistrationPage = () => {
     const createUser = async () => {
         try {
             await registrate(
-                 name,
+                name,
                 fatherName,
                 "1990-03-31 00:00:00",
                 "woman",
@@ -153,6 +153,7 @@ const RegistrationPage = () => {
                 surname,
                 1);
             console.log("registrate")
+            history.push(MAIN_ROUTE);
         } catch (e) {
             alert(e.response.data.message)
         }
@@ -165,12 +166,12 @@ const RegistrationPage = () => {
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-4">
-                <h2 className="m-auth">Реєстрація</h2>
+                <h2 className="m-auth">{t("register.title")}</h2>
                 <Form className="d-flex flex-column">
                     <div className="d-flex flex-row">
                         <Form.Control
                             className="mt-3"
-                            placeholder="Enter surname"
+                            placeholder={t("register.enter_name")}
                             value={name}
                             onChange={e => nameHandler(e, 'name')}
                             name='name'
@@ -178,7 +179,7 @@ const RegistrationPage = () => {
                         />
                         <Form.Control
                             className="mt-3 ml-1"
-                            placeholder="Enter name"
+                            placeholder={t("register.enter_surname")}
                             value={surname}
                             name='surname'
                             onChange={e => nameHandler(e, 'surname')}
@@ -186,7 +187,7 @@ const RegistrationPage = () => {
                         />
                         <Form.Control
                             className="mt-3 ml-1"
-                            placeholder="Enter father Name"
+                            placeholder={t("register.enter_father_name")}
                             value={fatherName}
                             name='fatherName'
                             onChange={e => nameHandler(e, 'fatherName')}
@@ -198,7 +199,7 @@ const RegistrationPage = () => {
                     {(fatherNameDirty && fatherNameError) && <div style={{color: 'red'}}>{fatherNameError}</div>}
                     <Form.Control
                         className="mt-3"
-                        placeholder="Enter email"
+                        placeholder={t("register.enter_email")}
                         value={email}
                         onChange={e => emailHandler(e)}
                         name='email'
@@ -207,7 +208,7 @@ const RegistrationPage = () => {
                     {(emailDirty && emailError) && <div style={{color: 'red'}}>{emailError}</div>}
                     <Form.Control
                         className="mt-3"
-                        placeholder="Enter phone number"
+                        placeholder={t("register.enter_phone")}
                         value={phoneNumber}
                         onChange={e => phoneHandler(e)}
                         name='phoneNumber'
@@ -216,7 +217,7 @@ const RegistrationPage = () => {
                     {(phoneNumberDirty && phoneNumberError) && <div style={{color: 'red'}}>{phoneNumberError}</div>}
                     <Form.Control
                         className="mt-3"
-                        placeholder="Enter your password"
+                        placeholder={t("register.enter_password")}
                         value={password}
                         onChange={e => passwordHandler(e)}
                         name='password'
@@ -225,7 +226,7 @@ const RegistrationPage = () => {
                     {(passwordDirty && passwordError) && <div style={{color: 'red'}}>{passwordError}</div>}
                     <Form.Control
                         className="mt-3"
-                        placeholder="Confirmed your password"
+                        placeholder={t("register.enter_confirmed_password")}
                         value={confirmedPassword}
                         onChange={e => confirmedPasswordHandler(e)}
                         name='confirmedPassword'
@@ -235,13 +236,13 @@ const RegistrationPage = () => {
                     <div style={{color: 'red'}}>{confirmedPasswordError}</div>}
                     <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
                         <div>
-                            Вже є акаунт ? <NavLink to={LOGIN_ROUTE}>Увійти</NavLink>
+                            {t("register.account")} <NavLink to={LOGIN_ROUTE}>{t("register.login")}</NavLink>
                         </div>
                         <Button variant={"outline-success"}
                                 disabled={!formValid}
                                 onClick={createUser}
                         >
-                            Зареєструвати мене
+                            {t("register.register")}
                         </Button>
                     </Row>
                 </Form>

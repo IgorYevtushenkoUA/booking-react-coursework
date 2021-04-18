@@ -5,7 +5,6 @@ import FlatsList from "./FlatsList";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
 import {fetchFlats} from "../../../http/flatsApi";
-
 const RentFlats = observer(() => {
 
     const {flats} = useContext(Context);

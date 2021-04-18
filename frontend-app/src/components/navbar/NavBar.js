@@ -3,15 +3,22 @@ import {Context} from "../../index";
 import {Button, Container, Nav, Navbar, NavLink} from "react-bootstrap";
 import {observer} from "mobx-react-lite";
 import {Link} from "react-router-dom";
-import Counter from "../../store/Counter.js"
 import {LOGIN_ROUTE} from "../../utils/consts";
-
+import {useTranslation} from "react-i18next";
+import AuthMenu from "../menu/authMenu/AuthMenu";
+import UserMenu from "../menu/UserMenu";
 
 // observer -> для відслудковування змін у реальному  часі
 const NavBar = observer((props) => {
 
+    const {t, i18n} = useTranslation();
+
+    const changeLanguage = (language) => {
+        i18n.changeLanguage(language);
+        localStorage.setItem('lang', language);
+    };
+
     // залежно від коирстувачів, різний Navbar
-    const {user} = useContext(Context);
     let role = localStorage.getItem('role');
 
     return (
@@ -19,39 +26,17 @@ const NavBar = observer((props) => {
             <Container>
                 <NavLink style={{color: 'white'}} href="/">Flatty</NavLink>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/">Main</Nav.Link>
-                    <Nav.Link href="/about-us">About US</Nav.Link>
-                    <Nav.Link href="/create">Create</Nav.Link>
-                    <Nav.Link href="/">{Counter.getCounter()}</Nav.Link>
-
+                    <Nav.Link href="/">{t("navbar.main")}</Nav.Link>
+                    <Nav.Link href="/about-us">{t("navbar.about")}</Nav.Link>
+                    <Nav.Link href="/create">{t("navbar.create")}</Nav.Link>
                 </Nav>
 
-                {role == 1
-                    ?
-                    <Nav className="ml-auto">
-                        <Button variant={"outline-light"}>Адмін панель</Button>
-                        <Link to={"/"}>
-                            <Button
-                                onClick={() => {
-                                    localStorage.setItem('role', 0);
-                                    localStorage.setItem('user', {});
-                                    window.location.reload();
+                <Button className="mr-2" variant={"outline-light"} onClick={() => changeLanguage("en")}>EN</Button>
+                <Button variant={"outline-light"} onClick={() => changeLanguage("ua")}>UA</Button>
 
-                                }}
-                                variant={"outline-light"}
-                                className={"ml-1"}>Вийти</Button>
-                        </Link>
+                <UserMenu role={role}/>
+                <AuthMenu/>
 
-                    </Nav>
-                    :
-                    <Nav className="ml-auto">
-                        <Link to={LOGIN_ROUTE}>
-                            <Button variant={"outline-light"}
-                                // onClick={() => user.setIsAuth(!user.isAuth)}
-                            >Авторизація</Button>
-                        </Link>
-                    </Nav>
-                }
             </Container>
         </Navbar>
     );

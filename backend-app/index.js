@@ -6,6 +6,7 @@ const models = require("./models/models.js")
 const cors = require("cors");
 const router = require("./routes/index")
 const errorHandler = require("./middleware/ErrorHandingMiddleware")
+const nodemailer = require("nodemailer");
 
 const PORT = process.env.PORT || 5000;
 
@@ -17,6 +18,7 @@ app.use('/api', router);
 
 // Обрабробка помилок
 app.use(errorHandler);
+
 
 function connect2DB() {
     connection.connect(function (err) {
@@ -33,7 +35,6 @@ const start = async () => {
     try {
         // await sequelize.authenticate()
         // await sequelize.sync()
-
         app.listen(PORT, () => {
             connect2DB();
             console.log(`Server started on port ${PORT}`)

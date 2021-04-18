@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import UserStore from "./store/UserStore";
 import FlatsStore from "./store/FlatsStore";
+import "./i18n.js";
 
 export const Context = createContext(null)
 

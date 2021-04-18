@@ -1,15 +1,14 @@
 import React, {useContext, useState} from 'react';
 import {Card, Col, Container, FormLabel, Row} from "react-bootstrap";
 import './AboutUs.css';
-import {Context} from "../../index";
 import {observer} from "mobx-react-lite";
+import {useTranslation} from "react-i18next";
 
 const AboutUs = observer(() => {
-
+    const { t } = useTranslation();
     const [readMore, setReadMore] = useState(false);
 
-    let info = " Flatty — це пошуковик нерухомості на вторинному ринку. Ми збираємо всі актуальні оголошення, групуємо дублікати та пропонуємо нашим користувачам у 29 країнах зручний інтерфейс для перегляду всіх пропозицій в одному місці.";
-
+    let info = t("about_page.text1_2");
     return (
         <Container>
             <div>
@@ -18,7 +17,8 @@ const AboutUs = observer(() => {
 
                     </div>
                     <div className="info-text">
-                        <h2>Чим ми займаємося</h2>
+
+                        <h2>{t("about_page.text1_1")}</h2>
                         <p>
                             {readMore ? info : `${info.substring(0, 120)}...`}
                             <FormLabel style={{color:'red'}} onClick={() => setReadMore(!readMore)}>
@@ -28,19 +28,19 @@ const AboutUs = observer(() => {
                         <div className="card">
                             <Card>
                                 <img src="" alt=""/>
-                                <p>усі оголошення на ринку</p>
+                                <p>{t("about_page.text1_3_1")}</p>
                             </Card>
                             <Card>
                                 <img src="" alt=""/>
-                                <p>дублікати оголошень згруповані</p>
+                                <p>{t("about_page.text1_3_2")}</p>
                             </Card>
                             <Card>
                                 <img src="" alt=""/>
-                                <p>контроль якості оголошень</p>
+                                <p>{t("about_page.text1_3_3")}</p>
                             </Card>
                             <Card>
                                 <img src="" alt=""/>
-                                <p>комфортний пошук</p>
+                                <p>{t("about_page.text1_3_4")}</p>
                             </Card>
                         </div>
                     </div>

@@ -1,0 +1,47 @@
+{
+  "navbar": {
+    "main": "Main",
+    "about": "About US",
+    "create": "Create",
+    "sign_in": "Sign in",
+    "sign_out": "Sign out",
+    "quick_love": "Quick Love",
+    "liked": "Liked Flats",
+    "person": "Person Page"
+  },
+  "main": {
+    "rent": "Rent Flat",
+    "sell_flat": "Sell Flat",
+    "open": "Open"
+  },
+  "about_page": {
+    "text1_1": "What we do",
+    "text1_2": "Flatty is a real estate search engine on the secondary market. We collect all relevant ads, group duplicates and offer our users in 29 countries a user-friendly interface to view all offers in one place.",
+    "text1_3_1": "all ads on the market",
+    "text1_3_2": "duplicate ads are grouped",
+    "text1_3_3": "ad quality control",
+    "text1_3_4": "comfortable search "
+  },
+  "login": {
+    "title": "Login",
+    "account": "Don't have account ?",
+    "register": "Register",
+    "sign_in": "Sign in",
+    "enter_email": "Enter your email",
+    "enter_password": "Enter your password"
+  },
+  "register": {
+    "title": "Register",
+    "enter_name": "Enter your name",
+    "enter_surname": "Enter your surname",
+    "enter_father_name": "Enter your father name",
+    "enter_email": "Enter your email",
+    "enter_phone": "Enter your email",
+    "enter_password": "Enter your password",
+    "enter_confirmed_password": "Confirmed your password",
+    "account": "Have account ? ",
+    "login": "Login",
+    "register": "Register"
+  }
+
+}

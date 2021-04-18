@@ -1,6 +1,5 @@
 import React from 'react';
 import {Button, Card, Container, Form, Row} from "react-bootstrap";
-
 const SellFlats = () => {
     return (
         <Container
