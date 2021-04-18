@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useHistory} from "react-router-dom";
 import {LOGIN_ROUTE, REGISTRATION_ROUTE} from "../../../utils/consts";
+import {createUser, registrate} from "../../../http/userApi";
+import {createFlats} from "../../../http/flatsApi";
 
 const RegistrationPage = () => {
 
@@ -135,6 +137,27 @@ const RegistrationPage = () => {
         }
     })
 
+    const createUser = async () => {
+        try {
+            await registrate(
+                 name,
+                fatherName,
+                "1990-03-31 00:00:00",
+                "woman",
+                email,
+                password,
+                phoneNumber,
+                "123456789",
+                "123456789",
+                '123456789',
+                surname,
+                1);
+            console.log("registrate")
+        } catch (e) {
+            alert(e.response.data.message)
+        }
+    }
+
 
     return (
         <Container
@@ -215,8 +238,9 @@ const RegistrationPage = () => {
                             Вже є акаунт ? <NavLink to={LOGIN_ROUTE}>Увійти</NavLink>
                         </div>
                         <Button variant={"outline-success"}
-                                disabled={!formValid}>
-
+                                disabled={!formValid}
+                                onClick={createUser}
+                        >
                             Зареєструвати мене
                         </Button>
                     </Row>

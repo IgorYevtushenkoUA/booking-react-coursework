@@ -18,3 +18,20 @@ export const check = async () => {
     return data;
 }
 
+export const registrate = async (first_name, second_name, birth, gender, email, password, phone_num1, phone_num2, phone_num3, passport_ID, last_name, roleRoleId) => {
+    const {data} = await $host.post('api/user/create', {
+        first_name,
+        second_name,
+        birth,
+        gender,
+        email,
+        password,
+        phone_num1,
+        phone_num2,
+        phone_num3,
+        passport_ID,
+        last_name,
+        roleRoleId
+    })
+    return data;
+}

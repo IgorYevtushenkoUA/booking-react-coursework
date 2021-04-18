@@ -1,5 +1,7 @@
 const ApiError = require("../error/apiError");
 const userService = require("../service/UserService.js");
+const {Role} = require("../models/models");
+const {User} = require("../models/models");
 
 class UserController {
 
@@ -11,6 +13,42 @@ class UserController {
         try {
             const {email, password} = req.body;
             const user = await userService.authByEmailAndPassword(email, password);
+            return res.json(user);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async create(req, res) {
+        try {
+            const {
+                first_name,
+                second_name,
+                birth,
+                gender,
+                email,
+                password,
+                phone_num1,
+                phone_num2,
+                phone_num3,
+                passport_ID,
+                last_name,
+                roleRoleId
+            } = req.body;
+            const user = await User.create({
+                first_name,
+                second_name,
+                birth,
+                gender,
+                email,
+                password,
+                phone_num1,
+                phone_num2,
+                phone_num3,
+                passport_ID,
+                last_name,
+                roleRoleId
+            });
             return res.json(user);
         } catch (e) {
             res.status(500).json(e);

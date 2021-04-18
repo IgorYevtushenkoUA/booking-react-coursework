@@ -3,8 +3,11 @@ import {Switch, Route, Redirect, BrowserRouter} from 'react-router-dom'
 import {authRoutes, publicRoutes} from "../routes/routes";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
+import {MAIN_ROUTE} from "../utils/consts";
 
 const AppRouter = observer((props) => {
+
+    const {user} = useContext(Context);
 
     return (
         <Switch>
@@ -15,6 +18,7 @@ const AppRouter = observer((props) => {
                     component={Component}
                     exact/>
             )}
+            <Redirect to={MAIN_ROUTE} />
         </Switch>
     )
 })

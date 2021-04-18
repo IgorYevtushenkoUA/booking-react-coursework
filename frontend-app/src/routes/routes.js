@@ -45,7 +45,7 @@ export const authRoutes = [
         "Component": CreateFlat
     },
     {
-        "path": OWNER_PERSONAL_PAGE,
+        "path": OWNER_PERSONAL_PAGE + "/:id",
         "Component": Owner
     },
 ];
@@ -83,7 +83,7 @@ export const publicRoutes = [
         "Component": CreateFlat
     },
     {
-        "path": OWNER_PERSONAL_PAGE,
+        "path": OWNER_PERSONAL_PAGE + "/:id",
         "Component": Owner
     },
 

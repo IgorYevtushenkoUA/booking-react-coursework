@@ -6,7 +6,7 @@ export default class FlatsStore {
         makeAutoObservable(this)
     }
 
-    get getFlats() {
+    get flats() {
         return this._flats;
     }
 

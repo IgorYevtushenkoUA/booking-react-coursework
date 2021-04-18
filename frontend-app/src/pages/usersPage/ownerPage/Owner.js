@@ -4,10 +4,15 @@ import {observer} from "mobx-react-lite";
 
 const Owner = observer(() => {
 
+    let user = JSON.parse(localStorage.getItem('user'));
+
+    console.log(user)
+    console.log(user.user_id)
+    console.log(user.email)
 
     return (
         <div>
-            ownerPage
+            {user.user_id}
         </div>
     );
 });

@@ -57,7 +57,7 @@ class FlatController {
                 pledge,
                 houseHouseId
             });
-            res.json(flat);
+            return res.json(flat);
         } catch (e) {
             res.status.json(e);
         }

@@ -1,18 +1,19 @@
 import React, {useContext, useEffect} from 'react';
 import {Context} from "../../../index";
-import {Card, Row} from "react-bootstrap";
+import {Button, Card, Row} from "react-bootstrap";
 import FlatItem from "./FlatItem";
 import {observer} from "mobx-react-lite";
-import {fetchFlats} from "../../../http/flatsApi";
+import {login} from "../../../http/userApi";
+import {deleteFlatByPk} from "../../../http/flatsApi";
 
-const FlatsList = observer((props) => {
-    // const flats = fetchFlats();
-    // console.log(flats)
-    let flats = props.flats;
-    debugger
+const FlatsList = observer(() => {
+
+    const {flats} = useContext(Context);
+    const {user} = useContext(Context);
+
     return (
         <Row className="d-flex flex-column ">
-            {flats.map(flat =>
+            {flats.flats.map(flat =>
                 <FlatItem
                     key={flat.flat_id}
                     flat={flat}/>

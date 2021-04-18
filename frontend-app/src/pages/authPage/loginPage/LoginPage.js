@@ -12,8 +12,8 @@ import {addUser} from "../../../redux/state";
 
 const LoginPage = observer(() => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('email@gmail.com');
+    const [password, setPassword] = useState('password');
     const [emailDirty, setEmailDirty] = useState(false)
     const [passwordDirty, setPasswordDirty] = useState(false)
     const [emailError, setEmailError] = useState('Email can not be empty')
@@ -26,11 +26,18 @@ const LoginPage = observer(() => {
         try {
             let data;
             data = await login(email, password);
-            console.log(data)
-            console.log(data[0])
-            addUser(data[0]);
-            Counter.increase();
-            history.push(OWNER_PERSONAL_PAGE)
+            if (data.length !== 0) {
+                let user = {
+                    "user_id": data[0].user_id,
+                    "email": data[0].email
+                }
+                localStorage.setItem('role', data[0].roleRoleId);
+                localStorage.setItem('user', JSON.stringify(data[0]));
+                history.push(MAIN_ROUTE);
+                // history.push(OWNER_PERSONAL_PAGE + "/" + data[0].user_id);
+                // updating pages
+                window.location.reload();
+            }
         } catch (e) {
             alert(e.response.data.message)
         }
