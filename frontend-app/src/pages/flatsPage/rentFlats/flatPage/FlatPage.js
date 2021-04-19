@@ -1,14 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {Card, Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
 import "./FlatPage.css"
 import {observer} from "mobx-react-lite";
 import {useParams} from "react-router";
 import {fetchFlatById} from "../../../../http/flatApi";
+import {RENT_FLATS_ROUTE} from "../../../../utils/consts";
+import {useHistory} from "react-router-dom";
 
 const FlatPage = () => {
 
+
+    const history = useHistory();
     const [flat, setFlat] = useState({info: []});
     const params = useParams();
+    const role = localStorage.getItem('role');
+
     useEffect(() => {
         fetchFlatById(params.id).then(f => setFlat(f));
     }, []);
@@ -64,6 +70,13 @@ const FlatPage = () => {
                         </div>
                     </div>
                 </div>
+                {role == 1 &&
+                <Button onClick={() => {
+                    console.log("delete by ID")
+                    // deleteFlatByPk(flat.flat_id);
+                    history.push(RENT_FLATS_ROUTE);
+                }}>delete
+                </Button>}
             </Card>
         </Container>
     );

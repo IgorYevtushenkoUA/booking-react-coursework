@@ -1,10 +1,12 @@
 import React, {useContext, useEffect} from 'react';
-import {Col, Container, Row} from "react-bootstrap";
-import TypeBar from "../../../components/typebar/TypeBar";
+import {Col, Container, Image, Row} from "react-bootstrap";
 import FlatsList from "./FlatsList";
 import {observer} from "mobx-react-lite";
 import {Context} from "../../../index";
 import {fetchFlats} from "../../../http/flatsApi";
+import MapBlock from "./mapBlock/MapBlock";
+import "./RentFlats.css"
+
 const RentFlats = observer(() => {
 
     const {flats} = useContext(Context);
@@ -14,16 +16,16 @@ const RentFlats = observer(() => {
     }, [])
 
     return (
-        <Container>
-            <Row className="mt-2">d
-                <Col md={3}>
-                    <TypeBar/>
-                </Col>
-                <Col md={9}>
+        <div className="mt-3 ml-3">
+            <Row>
+                <Col md={7}>
                     <FlatsList/>
                 </Col>
+                <Col md={5}>
+                    <MapBlock/>
+                </Col>
             </Row>
-        </Container>
+        </div>
     );
 });
 

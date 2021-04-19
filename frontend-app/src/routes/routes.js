@@ -2,9 +2,9 @@ import {
     RENT_FLATS_ROUTE,
     LOGIN_ROUTE,
     MAIN_ROUTE,
-    REGISTRATION_ROUTE,
+    REGISTRATION_CLIENT_ROUTE,
     ABOUT_US_ROUTE,
-    CREATE_FLAT_ROUTE, OWNER_PERSONAL_PAGE, SELL_FLATS_ROUTE
+    CREATE_FLAT_ROUTE, OWNER_PERSONAL_PAGE, SELL_FLATS_ROUTE, REGISTRATION_OWNER_ROUTE
 } from "../utils/consts";
 import Main from "../pages/mainPage/Main";
 import RentFlats from "../pages/flatsPage/rentFlats/RentFlats";
@@ -29,11 +29,15 @@ export const authRoutes = [
         "Component": FlatPage
     },
     {
+        "path": SELL_FLATS_ROUTE,
+        "Component": SellFlats
+    },
+    {
         "path": LOGIN_ROUTE,
         "Component": Auth
     },
     {
-        "path": REGISTRATION_ROUTE,
+        "path": REGISTRATION_CLIENT_ROUTE,
         "Component": Auth
     },
     {
@@ -47,6 +51,10 @@ export const authRoutes = [
     {
         "path": OWNER_PERSONAL_PAGE + "/:id",
         "Component": Owner
+    },
+    {
+        "path": REGISTRATION_OWNER_ROUTE,
+        "Component": Auth
     },
 ];
 export const publicRoutes = [
@@ -71,7 +79,7 @@ export const publicRoutes = [
         "Component": Auth
     },
     {
-        "path": REGISTRATION_ROUTE,
+        "path": REGISTRATION_CLIENT_ROUTE,
         "Component": Auth
     },
     {
@@ -85,6 +93,10 @@ export const publicRoutes = [
     {
         "path": OWNER_PERSONAL_PAGE + "/:id",
         "Component": Owner
+    },
+    {
+        "path": REGISTRATION_OWNER_ROUTE,
+        "Component": Auth
     },
 
 ];

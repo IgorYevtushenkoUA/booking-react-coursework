@@ -1,11 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Button, Card, Container, Form, Row} from "react-bootstrap";
 import {NavLink, useHistory} from "react-router-dom";
-import {MAIN_ROUTE, OWNER_PERSONAL_PAGE, REGISTRATION_ROUTE} from "../../../utils/consts";
+import {MAIN_ROUTE, OWNER_PERSONAL_PAGE, REGISTRATION_CLIENT_ROUTE} from "../../../utils/consts";
 import {login} from "../../../http/userApi";
 import {observer} from "mobx-react-lite";
 import {useTranslation} from "react-i18next";
-
+import "./LoginPage.css"
 
 const LoginPage = observer(() => {
 
@@ -82,8 +82,8 @@ const LoginPage = observer(() => {
     }, [emailError, passwordError]);
 
     return (
-        <Container
-            className="d-flex justify-content-center align-items-center"
+        <div
+            className="d-flex justify-content-center align-items-center login"
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-5">
@@ -110,7 +110,7 @@ const LoginPage = observer(() => {
 
                     <Row className="d-flex justify-content-between mt-3 pl-3 pr-3">
                         <div>
-                            {t("login.account")} <NavLink to={REGISTRATION_ROUTE}>{t("login.register")}</NavLink>
+                            {t("login.account")} <NavLink to={REGISTRATION_CLIENT_ROUTE}>{t("login.register")}</NavLink>
                         </div>
                         <Button
                             variant={"outline-success"}
@@ -121,7 +121,7 @@ const LoginPage = observer(() => {
                     </Row>
                 </Form>
             </Card>
-        </Container>
+        </div>
     );
 });
 

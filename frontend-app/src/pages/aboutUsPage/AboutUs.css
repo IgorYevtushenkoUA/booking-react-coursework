@@ -1,14 +1,9 @@
-/*.about-us {*/
-/*    display: grid;*/
-/*    grid-template-columns: 5fr 5fr;*/
-/*    grid-gap: 15px;*/
-/*}*/
+.classicformpage {
+    height: 92vh;
+    background-image: url("https://i.pinimg.com/564x/47/16/76/4716769c168617c2d85fee41e6108168.jpg");
+}
 
-/*.info-img {*/
-
-/*}*/
-
-/*.card {*/
-/*    display: flex;*/
-/*    flex-direction: row*/
-/*}*/
+.small-block {
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr;
+}

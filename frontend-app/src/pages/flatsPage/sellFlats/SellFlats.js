@@ -1,15 +1,17 @@
 import React from 'react';
-import {Button, Card, Container, Form, Row} from "react-bootstrap";
+import {Card, Container, Form, Row} from "react-bootstrap";
+import "./SellFlats.css"
+
 const SellFlats = () => {
     return (
-        <Container
+        <div id="classicformpage"
             className="d-flex justify-content-center align-items-center"
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-5">
-                <h2 className="m-auth">This page will working soon</h2>
+                <h2 style={{color:"black"}}>This page will working soon</h2>
             </Card>
-        </Container>
+        </div>
     );
 };
 

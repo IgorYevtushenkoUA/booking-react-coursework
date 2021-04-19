@@ -1,4 +1,4 @@
-import {ADMIN_ROUTE, FLAT_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE} from "../utils/consts";
+import {ADMIN_ROUTE, FLAT_ROUTE, LOGIN_ROUTE, REGISTRATION_CLIENT_ROUTE} from "../utils/consts";
 import Flats from "../../pages/flatsPage/Flats";
 import Auth from "../../pages/authPage/Auth";
 import Flat from "../../pages/flatsPage/flatPage/Flat";
@@ -10,7 +10,7 @@ export const publicRoutes = [
         Component: Auth
     },
     {
-        path: REGISTRATION_ROUTE,
+        path: REGISTRATION_CLIENT_ROUTE,
         Component: Auth
     },
     {

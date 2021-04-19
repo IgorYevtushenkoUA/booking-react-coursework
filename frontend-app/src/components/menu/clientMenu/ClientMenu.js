@@ -1,5 +1,5 @@
-import React from 'react';
-import {Container, Nav} from "react-bootstrap";
+import React, {useState} from 'react';
+import {Container, Dropdown, Nav} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 
 // quick love
@@ -8,13 +8,26 @@ import {useTranslation} from "react-i18next";
 
 
 const ClientMenu = () => {
+    const [mes, setMessage] = useState('режим');
     const {t} = useTranslation();
     return (
-        <Nav className="mr-auto">
-            <Nav.Link href="/">{t("navbar.quick_love")}</Nav.Link>
-            <Nav.Link href="/about-us">{t("navbar.liked")}</Nav.Link>
-            <Nav.Link href="/create">{t("navbar.person")}</Nav.Link>
-        </Nav>
+        <Dropdown>
+            <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+                {mes}
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+
+                <Dropdown.Item onClick={() => {
+                    setMessage(`${t("menu.client.quick_love")}`)
+                }} href="#/action-1">{t("menu.client.quick_love")}</Dropdown.Item>
+
+                <Dropdown.Item href="/create"
+                               onClick={() => {
+                                   setMessage(`${t("menu.client.liked")}`)
+                               }}>{t("menu.client.liked")}</Dropdown.Item>
+            </Dropdown.Menu>
+        </Dropdown>
     );
 };
 
