@@ -53,5 +53,11 @@
     "account": "Have account ? ",
     "login": "Login",
     "register": "Register"
+  },
+  "sell_flat": {
+    "not_work": "This page will working soon"
+  },
+  "rent_flat": {
+
   }
 }

@@ -83,7 +83,7 @@ const sendEmail = () => {
         service: 'gmail',
         auth: {
             user: 'igor.yevtushenko.ua@gmail.com',
-            pass: 'RDroadtothedream11222000'
+            pass: 'password'
         }
     });
 

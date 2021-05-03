@@ -1,16 +1,19 @@
-import {BrowserRouter, Route} from "react-router-dom";
-import AppRouter from "./components/AppRouter";
-import NavBar from "./components/navbar/NavBar";
 import {observer} from "mobx-react-lite";
 import React from "react";
 import "./i18n.js"
+import {useSelector} from "react-redux";
 const App = observer((props) => {
 
+    const user = useSelector(store => store.user);
+
+    console.log(user);
+
     return (
-        <BrowserRouter>
-            <NavBar/>
-            <AppRouter/>
-        </BrowserRouter>
+        <div>Hello</div>
+        // <BrowserRouter>
+        //     <NavBar/>
+        //     <AppRouter/>
+        // </BrowserRouter>
     );
 });
 
