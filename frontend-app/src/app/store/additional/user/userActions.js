@@ -38,7 +38,7 @@ export const clientRegister = (client) => {
 export const ownerRegister = (owner) => {
     return async dispatch => {
         try {
-            const res = await $host.post("api/owner/create", client);
+            const res = await $host.post("api/owner/create", owner);
             const data = await res.data.token;
             dispatch({
                 type: REGISTER_CLIENT,
@@ -106,14 +106,16 @@ export const deleteClient = () => {
 
 export const updateOwner = () => {
 }
+
 export const deleteOwner = () => {
 }
+
 export const likeFlat = () => {
 }
+
 export const watchFlat = () => {
 }
+
 export const deleteLikedFlat = () => {
-}
-export const deleteOwner = () => {
 }
 

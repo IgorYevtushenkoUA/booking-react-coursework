@@ -30,5 +30,7 @@ export const userReducer = (state = initState, action) => {
             return {...state, userCredentials: action.payload}
         case LOAD_ALL_FLATS:
             return {...state, allFlats: action.payload}
+        default:
+            return state;
     }
 }
