@@ -1,22 +1,26 @@
 import {observer} from "mobx-react-lite";
-import React from "react";
+import React, {useEffect} from "react";
 import "./i18n.js"
 import {useSelector} from "react-redux";
 import {usePreload} from "./app/hooks/usePreload";
 import {loadAllFlats} from "./app/store/additional/user/userActions";
+import {BrowserRouter} from "react-router-dom";
+import NavBar from "./app/component/navbar/NavBar";
+
 const App = observer((props) => {
 
     const user = useSelector(store => store.user);
 
     console.log(user);
+    let count = 0;
 
+    // usePreload(loadAllFlats)
 
     return (
-        <div>Hello</div>
-        // <BrowserRouter>
-        //     <NavBar/>
-        //     <AppRouter/>
-        // </BrowserRouter>
+        <BrowserRouter>
+            <NavBar/>
+            {/*<AppRouter/>*/}
+        </BrowserRouter>
     );
 });
 
