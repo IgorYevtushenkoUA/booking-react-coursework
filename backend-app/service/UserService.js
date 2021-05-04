@@ -1,10 +1,10 @@
-const {User} = require("../models/models.js")
+const {Account} = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
 
 class UserService {
 
     async getAll() {
-        const users = await User.findAll();
+        const users = await Account.findAll();
         return users;
     }
 
@@ -27,7 +27,7 @@ class UserService {
     }
 
     async authByEmailAndPassword(email, password) {
-        const user = User.findAll({
+        const user = Account.findAll({
             where: {
                 email: email,
                 password: password
@@ -42,7 +42,7 @@ class UserService {
     }
 
     async update(user) {
-        if (!user.user_id) {
+        if (!user.account_id) {
             throw new Error('не указан ID')
         }
         const updatedUser = await User.update(user.user_id, user);

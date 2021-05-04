@@ -3,6 +3,8 @@ import {useTranslation} from "react-i18next";
 import {NavLink, useHistory} from "react-router-dom";
 import {REGISTRATION_CLIENT_ROUTE} from "../../../utils/consts";
 import {Button, Card, Form, Row} from "react-bootstrap";
+import {useDispatch} from "react-redux";
+import {login} from "../../../store/additional/user/userActions";
 
 const LoginPage = () => {
     const {t} = useTranslation();
@@ -15,27 +17,18 @@ const LoginPage = () => {
     const [formValid, setFormValid] = useState(false);
     const history = useHistory();
 
+    const dispatch = useDispatch();
 
-    const click = async () => {
+    const loginAccount = async () => {
         console.log("click")
-        //     try {
-        //         let data;
-        //         data = await login(email, password);
-        //         if (data.length !== 0) {
-        //             let user = {
-        //                 "user_id": data[0].user_id,
-        //                 "email": data[0].email
-        //             }
-        //             localStorage.setItem('role', data[0].roleRoleId);
-        //             localStorage.setItem('user', JSON.stringify(data[0]));
-        //             history.push(MAIN_ROUTE);
-        //             history.push(OWNER_PERSONAL_PAGE + "/" + data[0].user_id);
-        //             updating pages
-        // window.location.reload();
-        // }
-        // } catch (e) {
-        //     alert(e.response.data.message)
-        // }
+        try {
+
+            dispatch(login(email, password));
+            // data = await login(email, password);
+
+        } catch (e) {
+            alert(e.response.data.message)
+        }
     }
 
     const bluerHandler = (e) => {
@@ -115,7 +108,7 @@ const LoginPage = () => {
                         <Button
                             variant={"outline-success"}
                             disabled={!formValid}
-                            onClick={click}>
+                            onClick={loginAccount}>
                             {t("login.sign_in")}
                         </Button>
                     </Row>

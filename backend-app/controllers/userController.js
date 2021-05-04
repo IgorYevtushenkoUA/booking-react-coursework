@@ -6,13 +6,11 @@ const nodemailer = require("nodemailer");
 
 class UserController {
 
-    async registration(req, res) {
-
-    }
-
     async login(req, res) {
         try {
             const {email, password} = req.body;
+            console.log("email : '" + email + "'")
+            console.log("password : '" + password + "'");
             const user = await userService.authByEmailAndPassword(email, password);
             return res.json(user);
         } catch (e) {

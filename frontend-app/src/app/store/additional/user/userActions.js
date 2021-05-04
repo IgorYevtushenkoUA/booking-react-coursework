@@ -59,18 +59,23 @@ export const register = (account) => {
     }
 }
 
-export const login = (user) => {
+export const login = (email, password) => {
     return async dispatch => {
         try {
-            const res = await $host.post("/api/user/login", user);
+            debugger
+            const res = await $host.post("/api/user/login", {email, password});
+            debugger
             const data = await res.data;
-            localStorage.setItem("token", data.token);
+            debugger
+            console.log("we do login ")
+            // localStorage.setItem("token", data.token);
+            let account = {email: email, password: password};
             dispatch({
                 type: LOGIN,
-                payload: user
+                payload: account
             });
         } catch (e) {
-            alert("User not found");
+            alert("Something went wrong : login [User not found]");
         }
     }
 }
