@@ -18,7 +18,8 @@ import {
 
 const initState = {
     userCredentials: null,
-    allFlats: []
+    allFlats: [],
+    flat: null
 }
 export const userReducer = (state = initState, action) => {
     switch (action.type) {
@@ -31,6 +32,9 @@ export const userReducer = (state = initState, action) => {
         case REGISTER_ACCOUNT:
             console.log("we are in useReducer : register")
             return {...state, userCredentials: action.payload}
+        case LOAD_FLAT:
+            debugger
+            return {...state, flat: action.payload}
         default:
             return state;
     }

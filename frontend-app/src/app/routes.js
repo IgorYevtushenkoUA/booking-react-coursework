@@ -8,6 +8,9 @@ import {
 import MainPage from "./pages/main/MainPage";
 import AuthPage from "./pages/auth/AuthPage";
 import AboutUsPage from "./pages/aboutUs/AboutUsPage";
+import FlatsRentPage from "./pages/flats/flats/rent/FlatsRentPage";
+import FlatsSellPage from "./pages/flats/flats/sell/FlatsSellPage";
+import FlatPage from "./pages/flat/FlatPage";
 
 export const authRoutes = [
     {
@@ -30,20 +33,18 @@ export const authRoutes = [
         "path": REGISTRATION_CLIENT_ROUTE,
         "Component": AuthPage
     },
-
-
-    // {
-    //     "path": RENT_FLATS_ROUTE,
-    //     "Component": RentFlatsPage
-    // },
-    // {
-    //     "path": RENT_FLATS_ROUTE + "/:id",
-    //     "Component": FlatPage
-    // },
-    // {
-    //     "path": SELL_FLATS_ROUTE,
-    //     "Component": SellFlatsPage
-    // },
+    {
+        "path": RENT_FLATS_ROUTE,
+        "Component": FlatsRentPage
+    },
+    {
+        "path": RENT_FLATS_ROUTE + "/:id",
+        "Component": FlatPage
+    },
+    {
+        "path": SELL_FLATS_ROUTE,
+        "Component": FlatsSellPage
+    },
     // {
     //     "path": OWNER_ADD_FLAT,
     //     "Component": CreateFlat

@@ -12,7 +12,7 @@ class UserService {
         if (!id) {
             throw new Error('е указан ID')
         }
-        const users = await User.findByPk(id);
+        const users = await Account.findByPk(id);
         return users;
     }
 
@@ -37,15 +37,15 @@ class UserService {
     }
 
     async registerUser(user) {
-        const createdUser = await User.create({...user});
+        const createdUser = await Account.create({...user});
         return createdUser;
     }
 
-    async update(user) {
-        if (!user.account_id) {
+    async update(account) {
+        if (!account.account_id) {
             throw new Error('не указан ID')
         }
-        const updatedUser = await User.update(user.user_id, user);
+        const updatedUser = await Account.update(account.account_id, account);
         return updatedUser;
     }
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const InfoBlock = () => {
+const Filter = () => {
     return (
         <div>
-            InfoBlock
+            Filter
         </div>
     );
 };
 
-export default InfoBlock;
+export default Filter;

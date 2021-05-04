@@ -100,7 +100,22 @@ export const loadAllFlats = () => {
     }
 }
 
-export const loadFlat = () => {
+export const loadFlat = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/" + id);
+            const data = await res.data;
+            debugger
+            console.log(data)
+            dispatch({
+                type: LOAD_FLAT,
+                payload: data
+            })
+
+        } catch (e) {
+            alert("something went wrong : loadFlat")
+        }
+    }
 }
 
 export const addFlat = () => {
