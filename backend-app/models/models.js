@@ -100,8 +100,8 @@ const Role = sequelize.define('roles', {
     name: {type: DataTypes.STRING,unique: true, allowNull: false}
 })
 
-const User = sequelize.define('users', {
-    user_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+const Account = sequelize.define('accounts', {
+    account_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
     birth: {type: DataTypes.DATE, allowNull: false},
@@ -111,17 +111,7 @@ const User = sequelize.define('users', {
     phone_num1: {type: DataTypes.STRING, allowNull: false},
     phone_num2: {type: DataTypes.STRING, allowNull: true},
     phone_num3: {type: DataTypes.STRING, allowNull: true},
-    passport_ID: {type: DataTypes.STRING, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false},
-})
-
-const Admin = sequelize.define('admins', {
-})
-
-const Client = sequelize.define('clients', {
-})
-
-const Owner = sequelize.define('owners', {
 })
 
 const BadHabit = sequelize.define('bad_habits', {
@@ -134,6 +124,10 @@ const ClientHasBadHabit = sequelize.define('client_has_bad_habits', {
 })
 
 const ClientLikedFlat = sequelize.define('client_liked_flats', {
+
+})
+
+const ClientWatchedFlat = sequelize.define('client_has_seen_flat', {
 
 })
 
@@ -190,40 +184,31 @@ Flat.belongsToMany(FlatImage, {through: FlatHasImage});
 FlatImage.belongsToMany(Flat, {through: FlatHasImage});
 
 // owner - flat
-Owner.belongsToMany(Flat, {through: OwnerHasFlat});
-Flat.belongsToMany(Owner, {through: OwnerHasFlat});
+Account.belongsToMany(Flat, {through: OwnerHasFlat});
+Flat.belongsToMany(Account, {through: OwnerHasFlat});
 
-// client liked flat
-Client.belongsToMany(Flat, {through: ClientLikedFlat});
-Flat.belongsToMany(Client, {through: ClientLikedFlat});
+// account liked flat
+Account.belongsToMany(Flat, {through: ClientLikedFlat});
+Flat.belongsToMany(Account, {through: ClientLikedFlat});
 
-// role - user
-Role.hasMany(User);
-User.belongsTo(Role);
+// account see flat
+Account.belongsToMany(Flat, {through: ClientWatchedFlat});
+Flat.belongsToMany(Account, {through: ClientWatchedFlat});
 
-// user - owner
-User.hasMany(Owner);
-Owner.belongsTo(User);
 
-// user - admin
-User.hasMany(Admin);
-Admin.belongsTo(User);
+// role - account
+Role.hasMany(Account);
+Account.belongsTo(Role);
 
-// user - client
-User.hasMany(Client);
-Client.belongsTo(User);
-
-// client -> {client_has_bad_habit} <- bad_habit
-Client.belongsToMany(BadHabit, {through: ClientHasBadHabit});
-BadHabit.belongsToMany(Client, {through: ClientHasBadHabit});
+// account -> {client_has_bad_habit} <- bad_habit
+Account.belongsToMany(BadHabit, {through: ClientHasBadHabit});
+BadHabit.belongsToMany(Account, {through: ClientHasBadHabit});
 
 module.exports = {
-    Admin,
     Advantage,
     Area,
     BadHabit,
     City,
-    Client,
     ClientHasBadHabit,
     ClientLikedFlat,
     Flat,
@@ -237,11 +222,10 @@ module.exports = {
     HouseNearMetroStation,
     HouseType,
     MetroStation,
-    Owner,
     OwnerHasFlat,
     Region,
     RentType,
     Role,
     Street,
-    User
+    Account
 }

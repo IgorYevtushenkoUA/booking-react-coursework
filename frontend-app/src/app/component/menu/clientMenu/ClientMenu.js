@@ -19,13 +19,13 @@ const ClientMenu = () => {
             <Dropdown.Menu>
 
                 <Dropdown.Item onClick={() => {
-                    setMessage(`${t("menu.client.quick_love")}`)
-                }} href="#/action-1">{t("menu.client.quick_love")}</Dropdown.Item>
+                    setMessage(`${t("menu.account.quick_love")}`)
+                }} href="#/action-1">{t("menu.account.quick_love")}</Dropdown.Item>
 
                 <Dropdown.Item href="/create"
                                onClick={() => {
-                                   setMessage(`${t("menu.client.liked")}`)
-                               }}>{t("menu.client.liked")}</Dropdown.Item>
+                                   setMessage(`${t("menu.account.liked")}`)
+                               }}>{t("menu.account.liked")}</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );

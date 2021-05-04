@@ -7,5 +7,5 @@ export const usePreload = (dispatchFunction) => {
     useEffect(() => {
         console.log("useEffect")
         dispatch(dispatchFunction());
-    })
+    }, []);
 }

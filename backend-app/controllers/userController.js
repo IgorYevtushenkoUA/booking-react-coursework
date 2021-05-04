@@ -1,7 +1,7 @@
 const ApiError = require("../error/apiError");
 const userService = require("../service/UserService.js");
 const {Role} = require("../models/models");
-const {User} = require("../models/models");
+const {Account} = require("../models/models");
 const nodemailer = require("nodemailer");
 
 class UserController {
@@ -20,8 +20,10 @@ class UserController {
         }
     }
 
-    async create(req, res) {
+    async register(req, res) {
         try {
+            debugger
+            console.log("we are here to register :: 1")
             const {
                 first_name,
                 second_name,
@@ -32,13 +34,11 @@ class UserController {
                 phone_num1,
                 phone_num2,
                 phone_num3,
-                passport_ID,
                 last_name,
                 roleRoleId
             } = req.body;
-
-            debugger
-            const user = await User.create({
+            console.log("we are here to register :: 2")
+            const user = await Account.create({
                 first_name,
                 second_name,
                 birth,
@@ -48,13 +48,12 @@ class UserController {
                 phone_num1,
                 phone_num2,
                 phone_num3,
-                passport_ID,
                 last_name,
                 roleRoleId
             });
-            await sendEmail();
-            console.log("send email")
-            debugger
+            // await sendEmail();
+            console.log(user);
+            console.log("send email");
             return res.json(user);
         } catch (e) {
             res.status(500).json(e);

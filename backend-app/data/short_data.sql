@@ -27,38 +27,37 @@
 -- values (1, 1, 'Соломянський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
 -- insert into areas(crime, pollution, name, createdAt, updatedAt, regionRegionId)
 -- values (1, 1, 'Шевченківський', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
--- --
--- -- -- into
--- -- -- Голосіївський район вулиці
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Амурська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Антоновича', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Армійська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
 --
--- -- -- вулиці Дарницького району
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Автопаркова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Анни Ахматової', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Батуринська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
--- --
--- -- -- Вулиці Деснянського району
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Метеюка', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Биківнянська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
--- --
--- -- -- Вулиці Днiпровський району
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Азербайджанська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Алматинська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
--- insert into streets(name, createdAt, updatedAt, areaAreaId)
--- values ('Івана Багряного', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
--- --
+-- -- into
+-- -- Голосіївський район вулиці
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Амурська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Антоновича', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Армійська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+---- -- вулиці Дарницького району
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Автопаркова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Анни Ахматової', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Батуринська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+----
+---- -- Вулиці Деснянського району
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Метеюка', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Биківнянська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
+----
+---- -- Вулиці Днiпровський району
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Азербайджанська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Алматинська', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
+--insert into streets(name, createdAt, updatedAt, areaAreaId)
+--values ('Івана Багряного', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 4);
+----
 -- -- -- Вулиці Оболонського району
 -- insert into streets(name, createdAt, updatedAt, areaAreaId)
 -- values ('Абрикосова', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 5);
@@ -429,37 +428,25 @@
 -- values ('owner', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
 -- insert into roles(name, createdAt, updatedAt)
 -- values ('client', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
---
--- -- -- users
--- -- -- 1 admin
--- insert into users(first_name, second_name, last_name, birth, gender, email, password, phone_num1,
---                   passport_ID, createdAt, updatedAt, roleRoleId)
+
+ -- -- accounts
+ -- -- 1 admin
+-- insert into accounts(first_name, second_name, last_name, birth, gender, email, password, phone_num1,
+--                  createdAt, updatedAt, roleRoleId)
 -- values ('admin', 'admin', 'admin', '1990-03-31', 'm', 'email@gmail.com', 'password', '111-11-11',
---         '12345678', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
+--        '2021-05-03 23:05:18', '2021-05-03 23:05:18', 1);
 -- -- -- 2 owner
--- insert into users(first_name, second_name, last_name, birth, gender, email, password, phone_num1, phone_num2,
---                   passport_ID, createdAt, updatedAt, roleRoleId)
+-- insert into accounts(first_name, second_name, last_name, birth, gender, email, password, phone_num1, phone_num2,
+--                   createdAt, updatedAt, roleRoleId)
 -- values ('owner', 'owner', 'owner', '1990-03-31', 'm', 'email@gmail.com', 'password', '222-22-21', '222-22-22',
---         '87654321', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
+--         '2021-05-03 23:05:18', '2021-05-03 23:05:18', 2);
 -- --
 -- -- -- 3 client
--- insert into users(first_name, second_name, last_name, birth, gender, email, password, phone_num1, phone_num2,
---                   passport_ID, createdAt, updatedAt, roleRoleId)
+-- insert into accounts(first_name, second_name, last_name, birth, gender, email, password, phone_num1, phone_num2,
+--                  createdAt, updatedAt, roleRoleId)
 -- values ('client', 'client', 'client', '1990-03-31', 'm', 'email@gmail.com', 'password', '333-33-31', '333-33-32',
---         '12345648', '2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
---
--- -- -- admins
--- insert into admins(createdAt, updatedAt, userUserId)
--- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1);
---
--- -- -- owners
--- insert into owners(createdAt, updatedAt, userUserId)
--- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2);
---
--- -- -- clients
--- insert into clients(createdAt, updatedAt, userUserId)
--- values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 3);
---
+--        '2021-05-03 23:05:18', '2021-05-03 23:05:18', 3);
+
 -- -- -- bad_habits
 -- insert into bad_habits(name, createdAt, updatedAt)
 -- values ('Куріння', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
@@ -467,24 +454,24 @@
 -- values ('Алкоголь', '2021-03-31 20:47:23', '2021-03-31 20:47:23');
 
 
--- -- client_has_bad_habits
--- -- insert into client_has_bad_habits(createdAt, updatedAt, clientId, badHabitBadHabitId) values('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1,1);
+ -- client_has_bad_habits
+ -- insert into client_has_bad_habits(createdAt, updatedAt, clientId, badHabitBadHabitId) values('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1,1);
 
 
--- -- client_liked_flats
--- -- insert into client_liked_flats(createdAt, updatedAt,clientId, flatFlatId) values('2021-03-31 20:47:23', '2021-03-31 20:47:23',1,1);
+ -- client_liked_flats
+ -- insert into client_liked_flats(createdAt, updatedAt,clientId, flatFlatId) values('2021-03-31 20:47:23', '2021-03-31 20:47:23',1,1);
 
 -- -- owner_has_flats
-insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
-values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 1);
-insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
-values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 2);
-insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
-values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 3);
-insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
-values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 4);
-insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
-values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 5);
-insert into owner_has_flats(createdAt, updatedAt, ownerId, flatFlatId)
-values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 1, 6);
---
+--insert into owner_has_flats(createdAt, updatedAt, accountAccountId, flatFlatId)
+--values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 1);
+--insert into owner_has_flats(createdAt, updatedAt, accountAccountId, flatFlatId)
+--values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 2);
+--insert into owner_has_flats(createdAt, updatedAt, accountAccountId, flatFlatId)
+--values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 3);
+--insert into owner_has_flats(createdAt, updatedAt, accountAccountId, flatFlatId)
+--values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 4);
+--insert into owner_has_flats(createdAt, updatedAt, accountAccountId, flatFlatId)
+--values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 5);
+--insert into owner_has_flats(createdAt, updatedAt, accountAccountId, flatFlatId)
+--values ('2021-03-31 20:47:23', '2021-03-31 20:47:23', 2, 6);
+

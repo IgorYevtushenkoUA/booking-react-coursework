@@ -1,6 +1,6 @@
 import axios, {$host} from "../../../axios/axios";
 
-export const REGISTER_CLIENT = 'REGISTER_CLIENT';
+export const REGISTER_ACCOUNT = 'REGISTER_ACCOUNT';
 export const REGISTER_OWNER = 'REGISTER_OWNER';
 export const LOGIN = 'LOGIN';
 export const SIGN_OUT = 'SIGN_OUT';
@@ -20,32 +20,41 @@ export const DELETE_LIKED_FLAT = 'DELETE_LIKED_FLAT';
 // todo подумати стосовно ddFlatToOwner | addSponsorFlat | and others
 
 
-export const clientRegister = (client) => {
+export const register = (account) => {
     return async dispatch => {
         try {
-            const res = await $host.post("api/user/create", client);
-            const data = await res.data.token;
+            let first_name = account.first_name;
+            let second_name = account.second_name;
+            let birth = account.birth;
+            let gender = account.gender;
+            let email = account.email;
+            let password = account.password;
+            let phone_num1 = account.phone_num1;
+            let phone_num2 = account.phone_num2;
+            let phone_num3 = account.phone_num3;
+            let last_name = account.last_name;
+            let roleRoleId = account.roleRoleId;
+            debugger
+            const res = await $host.post("api/user/register", {
+                first_name,
+                second_name,
+                birth,
+                gender,
+                email,
+                password,
+                phone_num1,
+                phone_num2,
+                phone_num3,
+                last_name,
+                roleRoleId
+            });
+            debugger
             dispatch({
-                type: REGISTER_CLIENT,
-                payload: client // todo check, в паші інакше
+                type: REGISTER_ACCOUNT,
+                payload: account // todo check, в паші інакше, у нього ще токен
             })
         } catch (e) {
-            alert("Something went wrong : clientRegister")
-        }
-    }
-}
-
-export const ownerRegister = (owner) => {
-    return async dispatch => {
-        try {
-            const res = await $host.post("api/owner/create", owner);
-            const data = await res.data.token;
-            dispatch({
-                type: REGISTER_CLIENT,
-                payload: owner // todo check, в паші інакше
-            })
-        } catch (e) {
-            alert("Something went wrong : ownerRegister")
+            alert("Something went wrong : register")
         }
     }
 }
@@ -72,18 +81,18 @@ export const sighOut = () => {
 }
 
 export const loadAllFlats = () => {
-return async dispatch => {
-    try{
-        const res = await $host.get("api/flats/")
-        const data = await res.data;
-        dispatch({
-            type: LOAD_ALL_FLATS,
-            payload: data
-        })
-    }catch(e){
-        alert("Something went wrong : loadAllFlats")
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/")
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_FLATS,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : loadAllFlats")
+        }
     }
-}
 }
 
 export const loadFlat = () => {

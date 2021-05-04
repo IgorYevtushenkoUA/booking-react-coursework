@@ -47,12 +47,15 @@
     "enter_surname": "Enter your surname",
     "enter_father_name": "Enter your father name",
     "enter_email": "Enter your email",
-    "enter_phone": "Enter your email",
+    "enter_phone": "Enter your phone",
     "enter_password": "Enter your password",
     "enter_confirmed_password": "Confirmed your password",
     "account": "Have account ? ",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "gender": "Gender",
+    "gender-woman": "Woman",
+    "gender-man": "Man"
   },
   "sell_flat": {
     "not_work": "This page will working soon"

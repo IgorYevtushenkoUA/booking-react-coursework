@@ -6,6 +6,7 @@ import {usePreload} from "./app/hooks/usePreload";
 import {loadAllFlats} from "./app/store/additional/user/userActions";
 import {BrowserRouter} from "react-router-dom";
 import NavBar from "./app/component/navbar/NavBar";
+import AppRouter from "./app/component/router/AppRouter";
 
 const App = observer((props) => {
 
@@ -19,7 +20,7 @@ const App = observer((props) => {
     return (
         <BrowserRouter>
             <NavBar/>
-            {/*<AppRouter/>*/}
+            <AppRouter/>
         </BrowserRouter>
     );
 });

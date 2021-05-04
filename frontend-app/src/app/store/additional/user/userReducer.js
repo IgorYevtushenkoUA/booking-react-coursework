@@ -1,6 +1,4 @@
 import {
-    REGISTER_CLIENT,
-    REGISTER_OWNER,
     LOGIN,
     SIGN_OUT,
     LOAD_ALL_FLATS,
@@ -15,7 +13,7 @@ import {
     DELETE_OWNER,
     LIKE_FLAT,
     WATCH_FLAT,
-    DELETE_LIKED_FLAT
+    DELETE_LIKED_FLAT, REGISTER_ACCOUNT
 } from "./userActions"
 
 const initState = {
@@ -30,6 +28,9 @@ export const userReducer = (state = initState, action) => {
             return {...state, userCredentials: action.payload}
         case LOAD_ALL_FLATS:
             return {...state, allFlats: action.payload}
+        case REGISTER_ACCOUNT:
+            console.log("we are in useReducer : register")
+            return {...state, userCredentials: action.payload}
         default:
             return state;
     }
