@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const {connection} = require("./database/dbConnector.js")
-const sequelize = require("./database")
+// const sequelize = require("./database")
 const models = require("./models/models.js")
 const cors = require("cors");
 const router = require("./routes/index")
@@ -33,8 +33,8 @@ function connect2DB() {
 
 const start = async () => {
     try {
-        await sequelize.authenticate()
-        await sequelize.sync()
+        // await sequelize.authenticate()
+        // await sequelize.sync()
         app.listen(PORT, () => {
             connect2DB();
             console.log(`Server started on port ${PORT}`)

@@ -17,9 +17,6 @@ const NavBar = () => {
 
     let account = useSelector(store => store.user.userCredentials);
 
-    console.log("+++ A C C O U N T +++")
-    console.log(account)
-
     return (
         <Navbar bg="dark" variant="dark" className="header">
             <Container>

@@ -1,5 +1,19 @@
-const {Street} = require("../models/models.js");
-const {Flat} = require("../models/models.js")
+const {
+    Flat,
+    Street,
+    Area,
+    City,
+    Comfort,
+    FlatImage,
+    FlatHasImage,
+    Heating,
+    Infrastructure,
+    PeopleType,
+    Multimedia,
+    Region,
+    Rule,
+    WallType
+} = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
 
 
@@ -48,7 +62,6 @@ class FlatService {
         return createdFlat;
     }
 
-
     async getStreetsByArea(area) {
         let sql = `SELECT * FROM streets AS s INNER JOIN areas AS a`
         // let sql = `SELECT * FROM streets AS s INNER JOIN areas AS a ON a.area_id=s.areaAreaId WHERE a.name='Голосіївський'`
@@ -57,6 +70,50 @@ class FlatService {
             console.log(result);
             return result;
         })
+    }
+
+    async getAllAreas() {
+        return await Area.findAll();
+    }
+
+    async getAllCities() {
+        return await City.findAll();
+    }
+
+    async getAllComforts() {
+        return await Comfort.findAll();
+    }
+
+    async getAllImages() {
+        // return await .findAll();
+    }
+
+    async getAllHeatings() {
+        return await Heating.findAll();
+    }
+
+    async getAllInfrastructures() {
+        return await Infrastructure.findAll();
+    }
+
+    async getAllPeopleTypes() {
+        return await PeopleType.findAll();
+    }
+
+    async getAllMultimedias() {
+        return await Multimedia.findAll();
+    }
+
+    async getAllRegions() {
+        return await Region.findAll();
+    }
+
+    async getAllRules() {
+        return await Rule.findAll();
+    }
+
+    async getAllWallTypes() {
+        return await WallType.findAll();
     }
 
 }

@@ -64,7 +64,6 @@ class FlatController {
     }
 
     async getAllStreets(req, res) {
-        console.log("streets");
         try {
             let streets;
             if (req.query.area == null) {
@@ -84,6 +83,105 @@ class FlatController {
         try {
             const streets = await flatService.getStreetsByArea(req.params.area);
             return res.json(streets)
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllAreas(req, res){
+        try {
+            const flats = await flatService.getAllAreas();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllCities(req, res){
+        try {
+            const flats = await flatService.getAllCities();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllComforts(req, res){
+        try {
+            const flats = await flatService.getAllComforts();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllImages(req, res){
+        try {
+            const flats = await flatService.getAllImages();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllHeatings(req, res){
+        try {
+            const flats = await flatService.getAllHeatings();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllInfrastructures(req, res){
+        try {
+            const flats = await flatService.getAllInfrastructures();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllPeopleTypes(req, res){
+        try {
+            const flats = await flatService.getAllPeopleTypes();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllMultimedias(req, res){
+        try {
+            const flats = await flatService.getAllMultimedias();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllRegions(req, res){
+        try {
+            const flats = await flatService.getAllRegions();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllRules(req, res){
+        try {
+            const flats = await flatService.getAllRules();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAllWallTypes(req, res){
+        try {
+            const flats = await flatService.getAllWallTypes();
+            return res.json(flats);
         } catch (e) {
             res.status(500).json(e);
         }
