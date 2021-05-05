@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {Container, Dropdown, Nav} from "react-bootstrap";
+import {Col, Container, Dropdown, Nav, Row} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
+import {CLIENT_LIKED_FLATS, CLIENT_QUICK_LOVE, OWNER_FLATS} from "../../../utils/consts";
 
 // quick love
 // favourite flats
@@ -11,23 +13,20 @@ const ClientMenu = () => {
     const [mes, setMessage] = useState('режим');
     const {t} = useTranslation();
     return (
-        <Dropdown>
-            <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
-                {mes}
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-
-                <Dropdown.Item onClick={() => {
-                    setMessage(`${t("menu.account.quick_love")}`)
-                }} href="#/action-1">{t("menu.account.quick_love")}</Dropdown.Item>
-
-                <Dropdown.Item href="/create"
-                               onClick={() => {
-                                   setMessage(`${t("menu.account.liked")}`)
-                               }}>{t("menu.account.liked")}</Dropdown.Item>
-            </Dropdown.Menu>
-        </Dropdown>
+            <Row>
+                <Col>
+                    <Nav>
+                        <Link to={CLIENT_LIKED_FLATS}>
+                            {t("menu.client.liked")}
+                        </Link>
+                    </Nav>
+                    <Nav>
+                        <Link to={CLIENT_QUICK_LOVE}>
+                            {t("menu.client.quick_love")}
+                        </Link>
+                    </Nav>
+                </Col>
+            </Row>
     );
 };
 

@@ -6,8 +6,6 @@ import {MAIN_ROUTE} from "../../utils/consts";
 
 const AppRouter = () => {
 
-    const user = useSelector(store => store.user);
-
     return (
         <Switch>
             {authRoutes.map(({path, Component}) =>

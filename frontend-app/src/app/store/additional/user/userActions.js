@@ -19,7 +19,6 @@ export const WATCH_FLAT = 'WATCH_FLAT';
 export const DELETE_LIKED_FLAT = 'DELETE_LIKED_FLAT';
 // todo подумати стосовно ddFlatToOwner | addSponsorFlat | and others
 
-
 export const register = (account) => {
     return async dispatch => {
         try {
@@ -62,14 +61,11 @@ export const register = (account) => {
 export const login = (email, password) => {
     return async dispatch => {
         try {
-            debugger
             const res = await $host.post("/api/user/login", {email, password});
-            debugger
             const data = await res.data;
-            debugger
-            console.log("we do login ")
             // localStorage.setItem("token", data.token);
-            let account = {email: email, password: password};
+            let account = data[0];
+            localStorage.setItem("role", account.roleRoleId);
             dispatch({
                 type: LOGIN,
                 payload: account

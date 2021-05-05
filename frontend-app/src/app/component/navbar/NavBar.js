@@ -1,9 +1,11 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
-import {Button, Container, Nav, Navbar, NavLink} from "react-bootstrap";
+import {Button, Container, Nav, Navbar, NavLink, Row} from "react-bootstrap";
 import {useSelector} from "react-redux";
 import AuthMenu from "../menu/authMenu/AuthMenu";
 import UserMenu from "../menu/UserMenu";
+import {Link} from "react-router-dom";
+import {ABOUT_US_ROUTE, MAIN_ROUTE} from "../../utils/consts";
 
 const NavBar = () => {
 
@@ -13,21 +15,31 @@ const NavBar = () => {
         localStorage.setItem('lang', language);
     };
 
-    let user = useSelector(store => store.user);
+    let account = useSelector(store => store.user.userCredentials);
+
+    console.log("+++ A C C O U N T +++")
+    console.log(account)
 
     return (
         <Navbar bg="dark" variant="dark" className="header">
             <Container>
-                <NavLink style={{color: 'white'}} href="/">Flatty</NavLink>
-                <Nav className="mr-auto">
-                    <Nav.Link href="/about-us">{t("navbar.about")}</Nav.Link>
+
+                <Nav>
+                    <Link to={MAIN_ROUTE}>
+                        Flatty
+                    </Link>
+                </Nav>
+                <Nav>
+                    <Link to={ABOUT_US_ROUTE}>
+                        {t("navbar.about")}
+                    </Link>
                 </Nav>
 
                 <Button className="mr-2" variant={"outline-light"} onClick={() => changeLanguage("en")}>EN</Button>
                 <Button variant={"outline-light"} onClick={() => changeLanguage("ua")}>UA</Button>
 
-                <UserMenu role={user.role}/>
-                <AuthMenu/>
+                <UserMenu account={account}/>
+                <AuthMenu account={account}/>
             </Container>
         </Navbar>
     );

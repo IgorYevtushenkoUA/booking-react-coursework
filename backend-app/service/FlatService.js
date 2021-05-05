@@ -1,13 +1,21 @@
+const {Street} = require("../models/models.js");
 const {Flat} = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
 
 
 class FlatService {
 
-    async getAll() {
-        const flats = await Flat.findAll();
-        return flats;
+    async getAllStreets() {
+        console.log("getAllStreets");
+        let streets = await Street.findAll();
+        console.log(streets);
+        return streets;
     }
+
+    async getAll() {
+        return await Flat.findAll();
+    }
+
 
     async getById(id) {
         if (!id) {
@@ -40,6 +48,16 @@ class FlatService {
         return createdFlat;
     }
 
+
+    async getStreetsByArea(area) {
+        let sql = `SELECT * FROM streets AS s INNER JOIN areas AS a`
+        // let sql = `SELECT * FROM streets AS s INNER JOIN areas AS a ON a.area_id=s.areaAreaId WHERE a.name='Голосіївський'`
+        // let sql = `SELECT * FROM streets AS s INNER JOIN areas AS a ON a.area_id=s.areaAreaId WHERE a.name='${area}'`
+        connection.query(sql, (e, result) => {
+            console.log(result);
+            return result;
+        })
+    }
 
 }
 

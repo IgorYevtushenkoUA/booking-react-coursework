@@ -63,6 +63,32 @@ class FlatController {
         }
     }
 
+    async getAllStreets(req, res) {
+        console.log("streets");
+        try {
+            let streets;
+            if (req.query.area == null) {
+                streets = await flatService.getAllStreets();
+            } else {
+                console.log("getStreetsByArea")
+                streets = await flatService.getStreetsByArea(req.query.area);
+            }
+            return res.json(streets)
+
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getStreetsByArea(req, res) {
+        try {
+            const streets = await flatService.getStreetsByArea(req.params.area);
+            return res.json(streets)
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
 }
 
 module.exports = new FlatController();

@@ -16,10 +16,6 @@ const FlatPage = () => {
     const history = useHistory();
     const role = 1;
 
-    console.log("flat")
-    console.log(flat)
-    console.log("user")
-    console.log(user)
     if (!flat) {
         return (
             <div> Loading</div>

@@ -1,33 +1,37 @@
 import React, {useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {NavLink, useHistory} from "react-router-dom";
-import {REGISTRATION_CLIENT_ROUTE} from "../../../utils/consts";
+import {
+    CLIENT_PERSONAL_PAGE, MAIN_ROUTE,
+    OWNER_PERSONAL_PAGE,
+    REGISTRATION_CLIENT_ROUTE,
+    RENT_FLATS_ROUTE
+} from "../../../utils/consts";
 import {Button, Card, Form, Row} from "react-bootstrap";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../../store/additional/user/userActions";
 
 const LoginPage = () => {
     const {t} = useTranslation();
-    const [email, setEmail] = useState('email@gmail.com');
+    const [email, setEmail] = useState('owner@gmail.com');
     const [password, setPassword] = useState('password');
     const [emailDirty, setEmailDirty] = useState(false)
     const [passwordDirty, setPasswordDirty] = useState(false)
     const [emailError, setEmailError] = useState('Email can not be empty')
     const [passwordError, setPasswordError] = useState('Password can not be empty')
     const [formValid, setFormValid] = useState(false);
-    const history = useHistory();
 
+    const account = useSelector(store => store.user);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const loginAccount = async () => {
         console.log("click")
         try {
-
             dispatch(login(email, password));
-            // data = await login(email, password);
-
+            history.push(MAIN_ROUTE)
         } catch (e) {
-            alert(e.response.data.message)
+            alert("e.response.data.message")
         }
     }
 
