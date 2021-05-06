@@ -20,7 +20,6 @@ class UserController {
 
     async register(req, res) {
         try {
-            debugger
             console.log("we are here to register :: 1")
             const {
                 first_name,

@@ -168,7 +168,6 @@ const RegistrationAccountPage = (props) => {
                 last_name: surname,
                 roleRoleId: props.role
             }
-            debugger
             dispatch(register(account));
             history.push(MAIN_ROUTE);
         } catch (e) {

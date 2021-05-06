@@ -15,6 +15,7 @@ router.get('/multimedias', flatController.getAllMultimedias)
 router.get('/regions', flatController.getAllRegions)
 router.get('/rules', flatController.getAllRules)
 router.get('/wallTypes', flatController.getAllWallTypes)
+router.get('/metro', flatController.getAllMetroStations)
 
 router.get("/:id", flatController.getById)
 router.delete("/:id", flatController.deleteById)

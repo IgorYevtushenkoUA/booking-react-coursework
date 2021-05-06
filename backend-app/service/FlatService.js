@@ -1,3 +1,4 @@
+const {MetroStation} = require("../models/models");
 const {
     Flat,
     Street,
@@ -114,6 +115,10 @@ class FlatService {
 
     async getAllWallTypes() {
         return await WallType.findAll();
+    }
+
+    async getAllMetroStations() {
+        return await MetroStation.findAll();
     }
 
 }

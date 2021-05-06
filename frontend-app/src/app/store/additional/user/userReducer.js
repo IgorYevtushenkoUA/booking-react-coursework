@@ -33,7 +33,6 @@ export const userReducer = (state = initState, action) => {
             console.log("we are in useReducer : register")
             return {...state, userCredentials: action.payload}
         case LOAD_FLAT:
-            debugger
             return {...state, flat: action.payload}
         default:
             return state;

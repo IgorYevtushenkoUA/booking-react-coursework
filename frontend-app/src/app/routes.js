@@ -19,6 +19,7 @@ import FlatPage from "./pages/flat/FlatPage";
 import OwnerPage from "./pages/users/owner/OwnerPage";
 import ClientPage from "./pages/users/client/clientPage";
 import CreateFlatPage from "./pages/flats/createFlat/CreateFlatPage";
+import CreateFlatPageUpdate from "./pages/flats/createFlatUpdated/CreateFlatPageUpdate";
 
 export const authRoutes = [
     {
@@ -64,6 +65,10 @@ export const authRoutes = [
     {
         "path": OWNER_ADD_FLAT,
         "Component": CreateFlatPage
+    },
+    {
+        "path": OWNER_ADD_FLAT+"/2",
+        "Component": CreateFlatPageUpdate
     },
     // {
     //     "path": OWNER_PERSONAL_PAGE + "/:id",

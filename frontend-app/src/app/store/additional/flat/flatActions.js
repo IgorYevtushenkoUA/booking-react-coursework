@@ -13,6 +13,7 @@ export const LOAD_ALL_MULTIMEDIAS = 'LOAD_ALL_MULTIMEDIAS';
 export const LOAD_ALL_REGIONS = 'LOAD_ALL_REGIONS';
 export const LOAD_ALL_RULES = 'LOAD_ALL_RULES';
 export const LOAD_ALL_WALL_TYPES = 'LOAD_ALL_WALL_TYPES';
+export const LOAD_ALL_METRO_STATION = 'LOAD_ALL_METRO_STATION';
 
 export const loadAllStreets = () => {
     return async dispatch => {
@@ -186,6 +187,20 @@ export const loadAllWallTypes = () => {
             const data = await res.data;
             dispatch({
                 type: LOAD_ALL_WALL_TYPES,
+                payload: data
+            })
+        }catch(e){
+            alert("Something went wrong : ")
+        }
+    }
+}
+export const loadAllMetroStations = () => {
+    return async dispatch => {
+        try{
+            const res = await $host.get("api/flats/metro");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_METRO_STATION,
                 payload: data
             })
         }catch(e){

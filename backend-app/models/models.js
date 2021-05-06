@@ -2,53 +2,53 @@ const sequelize = require("../database")
 const {DataTypes} = require("sequelize")
 
 const City = sequelize.define('cities', {
-    city_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Region = sequelize.define('regions', {
-    region_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Area = sequelize.define('areas', {
-    area_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     crime: {type: DataTypes.INTEGER, allowNull: false},
     pollution: {type: DataTypes.INTEGER, allowNull: false},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Street = sequelize.define('streets', {
-    street_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const WallType = sequelize.define('wall_types', {
-    wall_type_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Heating = sequelize.define('heating', {
-    heating_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const House = sequelize.define('houses', {
-    house_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     house_num: {type: DataTypes.STRING, allowNull: false},
     house_year: {type: DataTypes.INTEGER, allowNull: false},
     floors_num: {type: DataTypes.INTEGER, allowNull: false}
 })
 // infrastructure
 const Infrastructure = sequelize.define('infrastructure', {
-    infrastructure_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const HouseHasInfrastructure = sequelize.define('house_has_infrastructure', {})
 
 const MetroStation = sequelize.define('metro_stations', {
-    metro_station_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false},
     line_color: {type: DataTypes.STRING, allowNull: false}
 })
@@ -59,12 +59,12 @@ const HouseNearMetroStation = sequelize.define('house_near_metro_stations', {
 
 // bathroom_types
 const BathroomType = sequelize.define('bathroom_types', {
-    rent_type_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Flat = sequelize.define('flats', {
-    flat_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     flat_floor: {type: DataTypes.INTEGER, allowNull: false},
     square_all: {type: DataTypes.INTEGER, allowNull: false},
     square_living: {type: DataTypes.INTEGER, allowNull: false},
@@ -77,7 +77,7 @@ const Flat = sequelize.define('flats', {
 })
 
 const RentType = sequelize.define('rent_types', {
-    rent_type_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
@@ -86,7 +86,7 @@ const FlatHasRentType = sequelize.define('flat_has_rent_types', {})
 
 // household_appliances
 const HouseholdAppliances = sequelize.define('household_appliances', {
-    household_appliances_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 const FlatHasHouseholdAppliances = sequelize.define('flat_has_household_appliances', {})
@@ -94,7 +94,7 @@ const FlatHasHouseholdAppliances = sequelize.define('flat_has_household_applianc
 
 // multimedias
 const Multimedia = sequelize.define('multimedias', {
-    multimedia_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
@@ -103,7 +103,7 @@ const FlatHasMultimedia = sequelize.define('flat_has_multimedias', {})
 
 // comforts
 const Comfort = sequelize.define('comforts', {
-    comfort_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 const FlatHasComfort = sequelize.define('flat_has_comforts', {})
@@ -111,7 +111,7 @@ const FlatHasComfort = sequelize.define('flat_has_comforts', {})
 
 // people_types
 const PeopleType = sequelize.define('people_types', {
-    people_type_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 const FlatHasPeopleType = sequelize.define('flat_has_people_types', {})
@@ -119,26 +119,26 @@ const FlatHasPeopleType = sequelize.define('flat_has_people_types', {})
 
 // rules
 const Rule = sequelize.define('rules', {
-    rule_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 const FlatHasRule = sequelize.define('flat_has_rules', {})
 
 // change type for image
 const FlatImage = sequelize.define('flat_images', {
-    image_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     image: {type: DataTypes.STRING, allowNull: false}
 })
 
 const FlatHasImage = sequelize.define('flat_has_images', {})
 
 const Role = sequelize.define('roles', {
-    role_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, unique: true, allowNull: false}
 })
 
 const Account = sequelize.define('accounts', {
-    account_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
     birth: {type: DataTypes.DATE, allowNull: false},
@@ -152,7 +152,7 @@ const Account = sequelize.define('accounts', {
 })
 
 const BadHabit = sequelize.define('bad_habits', {
-    bad_habit_id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 

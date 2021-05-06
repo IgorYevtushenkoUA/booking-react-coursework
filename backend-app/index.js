@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const {connection} = require("./database/dbConnector.js")
-// const sequelize = require("./database")
+const sequelize = require("./database")
 const models = require("./models/models.js")
 const cors = require("cors");
 const router = require("./routes/index")

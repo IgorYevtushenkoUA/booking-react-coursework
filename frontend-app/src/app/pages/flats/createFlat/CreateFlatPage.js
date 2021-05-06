@@ -14,6 +14,7 @@ import {
     loadAllStreets,
     loadAllWallTypes
 } from "../../../store/additional/flat/flatActions";
+import CreateFlatPageUpdate from "../createFlatUpdated/CreateFlatPageUpdate";
 
 const CreateFlatPage = () => {
 
@@ -63,6 +64,7 @@ const CreateFlatPage = () => {
 
     const createFlat = () => {
         console.log("create flat man")
+        console.log(streets);
     }
 
     const changeWallType = (id) => {
@@ -131,6 +133,7 @@ const CreateFlatPage = () => {
         e.preventDefault();
         setDrag(true);
     }
+
     const dragLeaveHandler = (e) => {
         e.preventDefault();
         setDrag(false);
@@ -146,6 +149,7 @@ const CreateFlatPage = () => {
     return (
         <Container
             className="d-flex justify-content-center align-items-center">
+
             <Card style={{width: 760}}>
                 <h2>Створити квартиру</h2>
                 <Form>
@@ -296,8 +300,8 @@ const CreateFlatPage = () => {
                                 <label>Кількість кімнат</label>
                                 <Form.Control className="mt-3" placeholder="Enter rooms_num" value={roomsNum}
                                               onChange={e => setRoomsNum(e.target.value)}/>
-                                {/*<Form.Control className="mt-3" placeholder="Enter elements"/>*/}
-                                {/*<Form.Control className="mt-3" placeholder="Enter rent type"/>*/}
+                                {/*<AttributeForm.Control className="mt-3" placeholder="Enter elements"/>*/}
+                                {/*<AttributeForm.Control className="mt-3" placeholder="Enter rent type"/>*/}
                             </div>
 
                             <div className="block">
@@ -318,6 +322,7 @@ const CreateFlatPage = () => {
                 </Form>
                 <Button onClick={createFlat}>Створити</Button>
             </Card>
+
 
         </Container>
     );

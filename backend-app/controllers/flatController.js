@@ -186,6 +186,15 @@ class FlatController {
             res.status(500).json(e);
         }
     }
+    async getAllMetroStations(req, res){
+        try {
+            const flats = await flatService.getAllMetroStations();
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
 
 }
 

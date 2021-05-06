@@ -4,7 +4,7 @@ import {
     LOAD_ALL_COMFORTS,
     LOAD_ALL_HEATINGS,
     LOAD_ALL_IMAGES,
-    LOAD_ALL_INFRASTRUCTURES,
+    LOAD_ALL_INFRASTRUCTURES, LOAD_ALL_METRO_STATION,
     LOAD_ALL_MULTIMEDIAS,
     LOAD_ALL_PEOPLE_TYPES,
     LOAD_ALL_REGIONS,
@@ -24,7 +24,8 @@ const initState = {
     multimedias: [],
     regions: [],
     rules: [],
-    wallTypes: []
+    wallTypes: [],
+    metroStations: []
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -53,6 +54,8 @@ export const flatReducer = (state = initState, action) => {
             return {...state, rules: action.payload}
         case LOAD_ALL_WALL_TYPES:
             return {...state, wallTypes: action.payload}
+        case LOAD_ALL_METRO_STATION:
+            return {...state, metroStations: action.payload}
         default:
             return state;
     }

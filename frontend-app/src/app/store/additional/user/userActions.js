@@ -33,7 +33,6 @@ export const register = (account) => {
             let phone_num3 = account.phone_num3;
             let last_name = account.last_name;
             let roleRoleId = account.roleRoleId;
-            debugger
             const res = await $host.post("api/user/register", {
                 first_name,
                 second_name,
@@ -47,7 +46,6 @@ export const register = (account) => {
                 last_name,
                 roleRoleId
             });
-            debugger
             dispatch({
                 type: REGISTER_ACCOUNT,
                 payload: account // todo check, в паші інакше, у нього ще токен
@@ -101,7 +99,6 @@ export const loadFlat = (id) => {
         try {
             const res = await $host.get("api/flats/" + id);
             const data = await res.data;
-            debugger
             console.log(data)
             dispatch({
                 type: LOAD_FLAT,
