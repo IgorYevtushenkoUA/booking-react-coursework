@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const LoadImageCard = (props) => {
+const DrapImageCard = (props) => {
 
     const styleCard = {
         marginTop: '20px'
@@ -57,4 +57,4 @@ const LoadImageCard = (props) => {
     );
 };
 
-export default LoadImageCard;
+export default DrapImageCard;

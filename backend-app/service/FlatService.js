@@ -1,3 +1,4 @@
+const {House} = require("../models/models");
 const {MetroStation} = require("../models/models");
 const {
     Flat,
@@ -23,7 +24,6 @@ class FlatService {
     async getAllStreets() {
         console.log("getAllStreets");
         let streets = await Street.findAll();
-        console.log(streets);
         return streets;
     }
 
@@ -119,6 +119,17 @@ class FlatService {
 
     async getAllMetroStations() {
         return await MetroStation.findAll();
+    }
+
+    async getHouseByHouseNumAndStreet(house_num, streetId) {
+        console.log("getHouseByHouseNumAndStreet : service");
+        const house = await House.findAll({
+            where: {
+                house_num: house_num,
+                streetId: streetId
+            }
+        });
+        return house;
     }
 
 }

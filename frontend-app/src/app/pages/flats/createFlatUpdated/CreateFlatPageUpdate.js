@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
-import LoadImageCard from "./loadImage/LoadImageCard";
+import DrapImageCard from "./loadImage/drap/DrapImageCard";
 import TextAreaCard from "./textarea/TextAreaCard";
-import {Container} from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
 import {usePreload} from "../../../hooks/usePreload";
 import {
-    loadAllAreas,
-    loadAllCities,
-    loadAllComforts,
-    loadAllHeatings, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias, loadAllPeopleTypes, loadAllRules,
-    loadAllStreets, loadAllWallTypes
+    getHouseByHouseNumAndStreetId, loadAllAreas, loadAllCities, loadAllComforts,
+    loadAllHeatings, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
+    loadAllPeopleTypes, loadAllRules, loadAllStreets, loadAllWallTypes
 } from "../../../store/additional/flat/flatActions";
 import CheckBoxCard from "./checkbox/CheckBoxCard";
 import {useDispatch, useSelector} from "react-redux";
 import DropDownList from "./dropdown/DropDownList";
 import AttributeForm from "./form/AttributeForm";
+import LoadImageCard from "./loadImage/load/LoadImageCard";
 
 const CreateFlatPageUpdate = () => {
 
@@ -51,8 +50,6 @@ const CreateFlatPageUpdate = () => {
     let peopleTypesArr = [];
     let multimediasArr = [];
     let rulesArr = [];
-
-    console.log(streets);
 
     const dispatch = useDispatch();
 
@@ -144,6 +141,17 @@ const CreateFlatPageUpdate = () => {
             console.log("else in setFormData")
         }
         console.log("houseNum : " + houseNum)
+    }
+
+    const house = useSelector(store => store.flat.house);
+
+
+    const handlerClick = async () => {
+        try {
+            dispatch(getHouseByHouseNumAndStreetId(37, 27));
+        } catch (e) {
+            alert("e.response.data.message : handlerClick")
+        }
     }
 
     return (
@@ -246,11 +254,13 @@ const CreateFlatPageUpdate = () => {
                 type="metro"
             />
 
-            <LoadImageCard
+            <DrapImageCard
                 drag={drag}
                 dragStartHandler={dragStartHandler}
                 dragLeaveHandler={dragLeaveHandler}
                 onDropHandler={onDropHandler}/>
+
+            <LoadImageCard/>
 
             <TextAreaCard/>
 
@@ -289,6 +299,7 @@ const CreateFlatPageUpdate = () => {
                 changeData={changeData}
             />
 
+            <Button onClick={handlerClick}>Створити квартиру</Button>
         </Container>
     );
 };

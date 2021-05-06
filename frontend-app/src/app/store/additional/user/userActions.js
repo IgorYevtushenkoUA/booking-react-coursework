@@ -99,7 +99,6 @@ export const loadFlat = (id) => {
         try {
             const res = await $host.get("api/flats/" + id);
             const data = await res.data;
-            console.log(data)
             dispatch({
                 type: LOAD_FLAT,
                 payload: data
@@ -109,6 +108,10 @@ export const loadFlat = (id) => {
             alert("something went wrong : loadFlat")
         }
     }
+}
+
+export const addHouse = () => {
+
 }
 
 export const addFlat = () => {

@@ -64,7 +64,6 @@ const CreateFlatPage = () => {
 
     const createFlat = () => {
         console.log("create flat man")
-        console.log(streets);
     }
 
     const changeWallType = (id) => {

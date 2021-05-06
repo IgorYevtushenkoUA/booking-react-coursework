@@ -9,7 +9,8 @@ import {
     LOAD_ALL_PEOPLE_TYPES,
     LOAD_ALL_REGIONS,
     LOAD_ALL_RULES,
-    LOAD_ALL_STREETS, LOAD_ALL_WALL_TYPES
+    LOAD_ALL_STREETS, LOAD_ALL_WALL_TYPES,
+    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET
 } from "./flatActions";
 
 const initState = {
@@ -25,7 +26,8 @@ const initState = {
     regions: [],
     rules: [],
     wallTypes: [],
-    metroStations: []
+    metroStations: [],
+    house: null
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -56,6 +58,8 @@ export const flatReducer = (state = initState, action) => {
             return {...state, wallTypes: action.payload}
         case LOAD_ALL_METRO_STATION:
             return {...state, metroStations: action.payload}
+        case LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET:
+            return {...state, house: action.payload}
         default:
             return state;
     }
