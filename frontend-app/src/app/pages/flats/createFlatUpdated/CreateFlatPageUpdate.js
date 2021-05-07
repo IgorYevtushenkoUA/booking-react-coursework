@@ -4,6 +4,7 @@ import TextAreaCard from "./textarea/TextAreaCard";
 import {Button, Container} from "react-bootstrap";
 import {usePreload} from "../../../hooks/usePreload";
 import {
+    createFlat,
     getHouseByHouseNumAndStreetId, loadAllAreas, loadAllCities, loadAllComforts,
     loadAllHeatings, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
     loadAllPeopleTypes, loadAllRules, loadAllStreets, loadAllWallTypes
@@ -97,7 +98,6 @@ const CreateFlatPageUpdate = () => {
     }
 
     const setData = (id, type) => {
-        // debugger
         if (type == 'street') {
             streetId = id;
         } else if (type == 'area') {
@@ -111,12 +111,7 @@ const CreateFlatPageUpdate = () => {
         } else {
             console.log("else setData")
         }
-        console.log("streetId : " + streetId)
-        console.log("areaId : " + areaId)
-        console.log("wallTypeId : " + wallTypeId)
-        console.log("heatingId : " + heatingId)
     }
-
 
     const setFormData = (type, value) => {
         if (type == 'houseNum') {
@@ -145,10 +140,42 @@ const CreateFlatPageUpdate = () => {
 
     const house = useSelector(store => store.flat.house);
 
-
+    // todo add household
     const handlerClick = async () => {
         try {
-            dispatch(getHouseByHouseNumAndStreetId(37, 27));
+            const house_num_test = 37;
+            const house_year_test = 1;
+            const floors_num_test = 1;
+            const streetId_test = 7;
+            const wallTypeId_test = 1;
+            const heatingId_test = 1;
+            const metroStationId_test = 1;
+            const images_test = [];
+            const comforts_test = [1];
+            const infrastructures_test = [];
+            const peopleType_test = [];
+            const multimedias_test = [];
+            const rules_test = [];
+            const flat_floor_test = 1;
+            const square_all_test = 1;
+            const square_living_test = 1;
+            const price_month_test = 1;
+            const rooms_num_test = 1;
+            const balconies_num_test = 1;
+            const short_description_test = "short_description";
+            const main_description_test = "main_description";
+            const pledge_test = 1;
+            const bathroomTypeId_test = 1;
+
+            dispatch(createFlat(
+                house_num_test, house_year_test, floors_num_test, streetId_test, wallTypeId_test, heatingId_test, metroStationId_test,
+                images_test, comforts_test, infrastructures_test, peopleType_test, multimedias_test, rules_test,
+                flat_floor_test, square_all_test, square_living_test, price_month_test, rooms_num_test, balconies_num_test, short_description_test, main_description_test,
+                pledge_test, bathroomTypeId_test
+            ))
+
+            // dispatch(getHouseByHouseNumAndStreetId(37,27));
+
         } catch (e) {
             alert("e.response.data.message : handlerClick")
         }
