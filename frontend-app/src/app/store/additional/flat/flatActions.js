@@ -230,22 +230,66 @@ export const getHouseByHouseNumAndStreetId = (house_num, streetId) => {
 }
 
 export const createFlat = (
-    house_num, house_tear, floors_num, streetId, wallTypeId, heatingId, metroStationId,
+    house_num, house_year, floors_num, streetId, wallTypeId, heatingId, metroStationId,
     images, comforts, infrastructures, peopleType, multimedias, rules,
-    flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description, main_description, pledge, bathroomTypeId
-) => {
+    flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description, main_description,
+    pledge, bathroomTypeId) => {
     return async dispatch => {
         try {
-            const house = await $host.post("api/flats/house", {house_num, streetId}).data;
-            if (house.length == 0) {
+            let house = await $host.get("api/flats/house", {
+                params:
+                    {
+                        house_num: house_num,
+                        streetId: streetId
+                    }
+            }).data;
+            if (house.length === 0) {
                 // create house
+                house = await $host.post("api/flats/house", {
+                    house_num, house_year, floors_num, streetId,
+                    wallTypeId, heatingId
+                })
+                // add infrastructures
+                for (let i = 0; i < infrastructures.length; i++) {
+                    // house add infrastructures
+                }
+
+                // todo add metro stations
 
             } else {
+                // todo add flat-images
+                // todo add house-infastructure // зробити перевірки чи така інфаструктура вже не додана
 
+                const flat = await $host.post("api/flats/flat",
+                    {
+                        flat_floor, square_all, square_living, price_month, rooms_num, balconies_num,
+                        short_description, main_description, pledge, houseId: house.id ,bathroomTypeId
+                    }
+                ).data;
+
+                for (let i = 0; i < comforts; i++) {
+                    // add comforts
+                    await $host.post("api/flats/flat-comfort", {flatId:flat.id, comfortId})
+                }
+                for (let i = 0; i < peopleType; i++) {
+                    // add peopleType
+                    await $host.post("api/flats/flat-comfort", {flatId:flat.id, comfortId})
+                }
+                for (let i = 0; i < multimedias; i++) {
+                    // add multimedias
+                    await $host.post("api/flats/flat-comfort", {flatId:flat.id, comfortId})
+                }
+                for (let i = 0; i < rules; i++) {
+                    // add rules
+                    await $host.post("api/flats/flat-comfort", {flatId:flat.id, comfortId})
+                }
+                for (let i = 0; i < images; i++) {
+                    // add images
+                    await $host.post("api/flats/flat-comfort", {flatId:flat.id, comfortId})
+                }
             }
         } catch (e) {
             alert("something went wrong : createFlat")
-
         }
     }
 }

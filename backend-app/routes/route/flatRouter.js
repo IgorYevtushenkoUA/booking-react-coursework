@@ -2,30 +2,34 @@ const Router = require("express")
 const router = new Router();
 const flatController = require("../../controllers/flatController.js");
 
+router.get("/", flatController.getAll);
+router.get('/streets', flatController.getAllStreets);
+router.get('/areas', flatController.getAllAreas);
+router.get('/cities', flatController.getAllCities);
+router.get('/comforts', flatController.getAllComforts);
+router.get('/images', flatController.getAllImages);
+router.get('/heatings', flatController.getAllHeatings);
+router.get('/infrastructures', flatController.getAllInfrastructures);
+router.get('/peopleTypes', flatController.getAllPeopleTypes);
+router.get('/multimedias', flatController.getAllMultimedias);
+router.get('/regions', flatController.getAllRegions);
+router.get('/rules', flatController.getAllRules);
+router.get('/wallTypes', flatController.getAllWallTypes);
+router.get('/metro', flatController.getAllMetroStations);
+router.get('/house', flatController.getHouseByHouseNumAndStreet);
 
-router.get("/", flatController.getAll)
-router.get('/streets', flatController.getAllStreets)
-router.get('/areas', flatController.getAllAreas)
-router.get('/cities', flatController.getAllCities)
-router.get('/comforts', flatController.getAllComforts)
-router.get('/images', flatController.getAllImages)
-router.get('/heatings', flatController.getAllHeatings)
-router.get('/infrastructures', flatController.getAllInfrastructures)
-router.get('/peopleTypes', flatController.getAllPeopleTypes)
-router.get('/multimedias', flatController.getAllMultimedias)
-router.get('/regions', flatController.getAllRegions)
-router.get('/rules', flatController.getAllRules)
-router.get('/wallTypes', flatController.getAllWallTypes)
-router.get('/metro', flatController.getAllMetroStations)
-router.get('/house', flatController.getHouseByHouseNumAndStreet)
+router.get("/:id", flatController.getById);
 
-router.get("/:id", flatController.getById)
+router.delete("/:id", flatController.deleteById);
 
-
-router.delete("/:id", flatController.deleteById)
-
-router.post('/create', flatController.create)
-// router.post('/house', flatController.getHouseByHouseNumAndStreet)
+router.post('/house', flatController.createHouse);
+router.post('/house_infrastructure', flatController.createHouseHasInfrastructure);
+router.post('/flat', flatController.createFlat);
+router.post('/flat_comfort', flatController.createFlatHasComfort);
+router.post('/flat_peopleType', flatController.createFlatHasPeopleType);
+router.post('/flat_multimedia', flatController.createFlatHasMultimedia);
+router.post('/flat_rule', flatController.createFlatHasRule);
+router.post('/flat_images', flatController.createFlatHasImage);
 
 
 // router.get("/update-flat/:id")           // get flat to edit by id

@@ -31,33 +31,39 @@ class FlatController {
         }
     }
 
-    async create(req, res, next) {
+    async createFlat(req, res, next) {
         try {
-            const {
-                flat_floor,
-                square_all,
-                square_living,
-                price_month,
-                rooms_num,
-                balconies_num,
-                short_description,
-                main_description,
-                pledge,
-                houseHouseId
-            } = req.body;
-            const flat = await Flat.create({
-                flat_floor,
-                square_all,
-                square_living,
-                price_month,
-                rooms_num,
-                balconies_num,
-                short_description,
-                main_description,
-                pledge,
-                houseHouseId
-            });
-            return res.json(flat);
+            const flat = {
+                flat_floor: req.body.flat_floor,
+                square_all: req.body.square_all,
+                square_living: req.body.square_living,
+                price_month: req.body.price_month,
+                rooms_num: req.body.rooms_num,
+                balconies_num: req.body.balconies_num,
+                short_description: req.body.short_description,
+                main_description: req.body.main_description,
+                pledge: req.body.pledge,
+                houseId: req.body.houseId,
+                bathroomTypeId: req.body.bathroomTypeId
+            };
+
+            console.log("flat : ")
+            console.log(flat);
+            const createdFlat = await flatService.createFlat(flat);
+
+            //     await Flat.create({
+            //     flat_floor,
+            //     square_all,
+            //     square_living,
+            //     price_month,
+            //     rooms_num,
+            //     balconies_num,
+            //     short_description,
+            //     main_description,
+            //     pledge,
+            //     houseHouseId
+            // });
+            return res.json(createdFlat);
         } catch (e) {
             res.status.json(e);
         }
@@ -198,13 +204,78 @@ class FlatController {
 
     async getHouseByHouseNumAndStreet(req, res) {
         try {
-            console.log("getHouseByHouseNumAndStreet")
-            console.log("req.body.params")
-            console.log(req.query);
             const {house_num, streetId} = req.query;
-            console.log("house_num : " + house_num)
-            console.log("streetId : " + streetId)
             const house = await flatService.getHouseByHouseNumAndStreet(house_num, streetId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createHouse(req, res) {
+        try {
+            const {house_num, streetId} = req.query;
+            const house = await flatService.createHouse(house_num, streetId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createHouseHasInfrastructure(req, res) {
+        try {
+            const {house_num, streetId} = req.query;
+            const house = await flatService.createHouseHasInfrastructure(house_num, streetId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createFlatHasComfort(req, res) {
+        try {
+            const {flatId, comfortId} = req.query;
+            const house = await flatService.createFlatHasComfort(flatId, comfortId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createFlatHasPeopleType(req, res) {
+        try {
+            const {flatId, peopleTypeId} = req.query;
+            const house = await flatService.createFlatHasPeopleType(flatId, peopleTypeId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createFlatHasMultimedia(req, res) {
+        try {
+            const {flatId, multimediaId} = req.query;
+            const house = await flatService.createFlatHasMultimedia(flatId, multimediaId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createFlatHasRule(req, res) {
+        try {
+            const {flatId, ruleId} = req.query;
+            const house = await flatService.createFlatHasRule(flatId, ruleId);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createFlatHasImage(req, res) {
+        try {
+            const {flatId, imageId} = req.query;
+            const house = await flatService.createFlatHasImage(flatId, imageId);
             return res.json(house);
         } catch (e) {
             res.status(500).json(e);

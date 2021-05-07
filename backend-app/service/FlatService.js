@@ -1,20 +1,31 @@
-const {House} = require("../models/models");
-const {MetroStation} = require("../models/models");
 const {
-    Flat,
-    Street,
-    Area,
     City,
-    Comfort,
-    FlatImage,
-    FlatHasImage,
-    Heating,
-    Infrastructure,
-    PeopleType,
-    Multimedia,
     Region,
+    Area,
+    Street,
+    WallType,
+    Heating,
+    House,
+    Infrastructure,
+    HouseHasInfrastructure,
+    MetroStation,
+    HouseNearMetroStation,
+    BathroomType,
+    Flat,
+    RentType,
+    FlatHasRentType,
+    HouseholdAppliances,
+    FlatHasHouseholdAppliances,
+    Multimedia,
+    FlatHasMultimedia,
+    Comfort,
+    FlatHasComfort,
+    PeopleType,
+    FlatHasPeopleType,
     Rule,
-    WallType
+    FlatHasRule,
+    FlatImage,
+    FlatHasImage
 } = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
 
@@ -36,8 +47,7 @@ class FlatService {
         if (!id) {
             throw new Error('е указан ID')
         }
-        const flat = Flat.findByPk(id);
-        return flat;
+        return Flat.findByPk(id);
     }
 
     async deleteById(id) {
@@ -54,13 +64,11 @@ class FlatService {
         if (!flat.flat_id) {
             throw new Error('не указан ID');
         }
-        const updatedFlat = await Flat.update(flat.flat_id, flat);
-        return updatedFlat;
+        return await Flat.update(flat.flat_id, flat);
     }
 
-    async create(flat) {
-        const createdFlat = await Flat.create({...flat});
-        return createdFlat;
+    async createFlat(flat) {
+        return await Flat.create({...flat});
     }
 
     async getStreetsByArea(area) {
@@ -123,15 +131,41 @@ class FlatService {
 
     async getHouseByHouseNumAndStreet(house_num, streetId) {
         console.log("getHouseByHouseNumAndStreet : service");
-        const house = await House.findAll({
+        return await House.findAll({
             where: {
                 house_num: house_num,
                 streetId: streetId
             }
         });
-        return house;
     }
 
+    async createHouse(house) {
+        return await House.create({...house});
+    }
+
+    async createHouseHasInfrastructure(houseInfrastructure) {
+        return await HouseHasInfrastructure.create({...houseInfrastructure});
+    }
+
+    async createFlatHasComfort(flatComfort) {
+        return await FlatHasComfort.create({...flatComfort});
+    }
+
+    async createFlatHasPeopleType(flatPeopleType) {
+        return await FlatHasPeopleType.create({...flatPeopleType});
+    }
+
+    async createFlatHasMultimedia(flatMultimedia) {
+        return await FlatHasMultimedia.create({...flatMultimedia});
+    }
+
+    async createFlatHasRule(flatRule) {
+        return await FlatHasRule.create({...flatRule});
+    }
+
+    async createFlatHasImage(flatImage) {
+        return await FlatHasImage.create({...flatImage});
+    }
 }
 
 module.exports = new FlatService();
