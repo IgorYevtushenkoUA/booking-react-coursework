@@ -129,6 +129,14 @@ class FlatService {
         return await MetroStation.findAll();
     }
 
+    async getAllBathroomTypes() {
+        return await BathroomType.findAll();
+    }
+
+    async getHouseHoldAppliances() {
+        return await HouseholdAppliances.findAll();
+    }
+
     async getHouseByHouseNumAndStreet(house_num, streetId) {
         console.log("getHouseByHouseNumAndStreet : service");
         return await House.findAll({

@@ -188,6 +188,22 @@ class FlatController {
             res.status(500).json(e);
         }
     }
+    async getAllBathroomTypes(req, res) {
+        try {
+            const bathroom = await flatService.getAllBathroomTypes();
+            return res.json(bathroom);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+    async getHouseHoldAppliances(req, res) {
+        try {
+            const householdAppliance = await flatService.getHouseHoldAppliances();
+            return res.json(householdAppliance);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
 
     async getHouseByHouseNumAndStreet(req, res) {
         try {

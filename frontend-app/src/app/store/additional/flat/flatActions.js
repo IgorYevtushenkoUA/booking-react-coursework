@@ -14,6 +14,8 @@ export const LOAD_ALL_RULES = 'LOAD_ALL_RULES';
 export const LOAD_ALL_WALL_TYPES = 'LOAD_ALL_WALL_TYPES';
 export const LOAD_ALL_METRO_STATION = 'LOAD_ALL_METRO_STATION';
 export const LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET = 'LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET';
+export const LOAD_ALL_BATHROOM_TYPE = 'LOAD_ALL_BATHROOM_TYPE';
+export const LOAD_ALL_HOUSEHOLD_APPLIANCE = 'LOAD_ALL_HOUSEHOLD_APPLIANCE';
 
 export const loadAllStreets = () => {
     return async dispatch => {
@@ -209,6 +211,37 @@ export const loadAllMetroStations = () => {
         }
     }
 }
+
+export const loadAllBathroomTypes = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/bathroom");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_BATHROOM_TYPE,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadAllHouseholdAppliance = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/householdAppliance");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_HOUSEHOLD_APPLIANCE,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
 
 export const getHouseByHouseNumAndStreetId = (house_num, streetId) => {
     return async dispatch => {

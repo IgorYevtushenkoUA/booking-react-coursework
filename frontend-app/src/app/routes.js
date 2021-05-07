@@ -64,12 +64,8 @@ export const authRoutes = [
     },
     {
         "path": OWNER_ADD_FLAT,
-        "Component": CreateFlatPage
-    },
-    {
-        "path": OWNER_ADD_FLAT+"/2",
         "Component": CreateFlatPageUpdate
-    },
+    }
     // {
     //     "path": OWNER_PERSONAL_PAGE + "/:id",
     //     "Component": OwnerPage

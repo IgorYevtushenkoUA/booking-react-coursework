@@ -5,8 +5,8 @@ import {Button, Container} from "react-bootstrap";
 import {usePreload} from "../../../hooks/usePreload";
 import {
     createFlat,
-    getHouseByHouseNumAndStreetId, loadAllAreas, loadAllCities, loadAllComforts,
-    loadAllHeatings, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
+    getHouseByHouseNumAndStreetId, loadAllAreas, loadAllBathroomTypes, loadAllCities, loadAllComforts,
+    loadAllHeatings, loadAllHouseholdAppliance, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
     loadAllPeopleTypes, loadAllRules, loadAllStreets, loadAllWallTypes
 } from "../../../store/additional/flat/flatActions";
 import CheckBoxCard from "./checkbox/CheckBoxCard";
@@ -28,29 +28,47 @@ const CreateFlatPageUpdate = () => {
     usePreload(loadAllRules);
     usePreload(loadAllWallTypes);
     usePreload(loadAllMetroStations);
+    usePreload(loadAllBathroomTypes)
+    usePreload(loadAllHouseholdAppliance)
 
-    let streetId = 0, areaId = 0, wallTypeId = 0, heatingId = 0, metro = 0,
-        houseNum = 0, houseYear = 0, numOfFloors = 0, flatFloor = 0, allSquare = 0,
-        livingSquare = 0, priceMonth = 0, pledge = 0, balconiesNum = 0;
+    let streetId = 0,
+        areaId = 0,
+        wallTypeId = 0,
+        heatingId = 0,
+        metro = 0,
+        houseNum = 0,
+        houseYear = 0,
+        numOfFloors = 0,
+        flatFloor = 0,
+        allSquare = 0,
+        livingSquare = 0,
+        priceMonth = 0,
+        pledge = 0,
+        balconiesNum = 0,
+        bathroomTypeId = 0;
 
     const [drag, setDrag] = useState(false);
 
     const streets = useSelector(store => store.flat.streets);
     const areas = useSelector(store => store.flat.areas);
-    const comforts = useSelector(store => store.flat.comforts);
     const heatings = useSelector(store => store.flat.heatings);
+    const wallTypes = useSelector(store => store.flat.wallTypes);
+    const metroStations = useSelector(store => store.flat.metroStations);
+    const bathroomTypes = useSelector(store => store.flat.bathroom);
+
+    const comforts = useSelector(store => store.flat.comforts);
     const infrastructures = useSelector(store => store.flat.infrastructures);
     const peopleTypes = useSelector(store => store.flat.peopleTypes);
     const multimedias = useSelector(store => store.flat.multimedias);
     const rules = useSelector(store => store.flat.rules);
-    const wallTypes = useSelector(store => store.flat.wallTypes);
-    const metroStations = useSelector(store => store.flat.metroStations);
+    const householdAppliances = useSelector(store => store.flat.householdAppliance);
 
     let comfortsArr = [];
     let infrastructuresArr = [];
     let peopleTypesArr = [];
     let multimediasArr = [];
     let rulesArr = [];
+    let householdApplianceArr = [];
 
     const dispatch = useDispatch();
 
@@ -92,6 +110,10 @@ const CreateFlatPageUpdate = () => {
             if (rulesArr.includes(id))
                 rulesArr = rulesArr.filter(w => w != id);
             else rulesArr.push(id);
+        } else if (type = 'householdAppliance') {
+            if (householdApplianceArr.includes(id))
+                householdApplianceArr = householdApplianceArr.filter(w => w != id);
+            else householdApplianceArr.push(id);
         } else {
             console.log("else")
         }
@@ -108,6 +130,8 @@ const CreateFlatPageUpdate = () => {
             heatingId = id;
         } else if (type = 'metro') {
             metro = id
+        } else if (type = 'bathroomType') {
+            bathroomTypeId = id
         } else {
             console.log("else setData")
         }
@@ -275,7 +299,14 @@ const CreateFlatPageUpdate = () => {
             />
 
             <DropDownList
-                title="Оберіть айближчу станцію метро"
+                title="Оберіть тип ванної кімнати"
+                data={bathroomTypes}
+                setData={setData}
+                type="bathroomType"
+            />
+
+            <DropDownList
+                title="Оберіть найближчу станцію метро"
                 data={metroStations}
                 setData={setData}
                 type="metro"
@@ -294,7 +325,7 @@ const CreateFlatPageUpdate = () => {
             <CheckBoxCard
                 type={"comfort"}
                 elem={comforts}
-                title={"Виберіть вулицю"}
+                title={"Виберіть комфорт"}
                 changeData={changeData}
             />
 
@@ -322,7 +353,14 @@ const CreateFlatPageUpdate = () => {
             <CheckBoxCard
                 type={"rule"}
                 elem={rules}
-                title={"Виберіть Правиила поживання"}
+                title={"Виберіть Правила проживання"}
+                changeData={changeData}
+            />
+
+            <CheckBoxCard
+                type={"householdAppliance"}
+                elem={householdAppliances}
+                title={"Виберіть Побутову техніку"}
                 changeData={changeData}
             />
 

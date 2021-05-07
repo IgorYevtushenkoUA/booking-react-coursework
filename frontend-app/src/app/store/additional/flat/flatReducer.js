@@ -1,8 +1,8 @@
 import {
-    LOAD_ALL_AREAS,
+    LOAD_ALL_AREAS, LOAD_ALL_BATHROOM_TYPE,
     LOAD_ALL_CITIES,
     LOAD_ALL_COMFORTS,
-    LOAD_ALL_HEATINGS,
+    LOAD_ALL_HEATINGS, LOAD_ALL_HOUSEHOLD_APPLIANCE,
     LOAD_ALL_IMAGES,
     LOAD_ALL_INFRASTRUCTURES, LOAD_ALL_METRO_STATION,
     LOAD_ALL_MULTIMEDIAS,
@@ -27,6 +27,8 @@ const initState = {
     rules: [],
     wallTypes: [],
     metroStations: [],
+    bathroom: [],
+    householdAppliance: [],
     house: null
 }
 
@@ -60,6 +62,10 @@ export const flatReducer = (state = initState, action) => {
             return {...state, metroStations: action.payload}
         case LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET:
             return {...state, house: action.payload}
+        case LOAD_ALL_BATHROOM_TYPE:
+            return {...state, bathroom: action.payload}
+        case LOAD_ALL_HOUSEHOLD_APPLIANCE:
+            return {...state, householdAppliance: action.payload}
         default:
             return state;
     }

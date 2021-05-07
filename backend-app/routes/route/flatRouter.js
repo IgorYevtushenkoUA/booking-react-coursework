@@ -17,6 +17,8 @@ router.get('/rules', flatController.getAllRules);
 router.get('/wallTypes', flatController.getAllWallTypes);
 router.get('/metro', flatController.getAllMetroStations);
 router.get('/house', flatController.getHouseByHouseNumAndStreet);
+router.get('/bathroom', flatController.getAllBathroomTypes);
+router.get('/householdAppliance', flatController.getHouseHoldAppliances);
 
 router.get("/:id", flatController.getById);
 
