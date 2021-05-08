@@ -1,42 +1,21 @@
 import React, {useState} from 'react';
-import {Button, Card, Container, Form, FormCheck} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
+import DrapImageCard from "../../../component/loadImage/drap/DrapImageCard";
+import TextAreaCard from "../../../component/textarea/TextAreaCard";
+import {Button, Container} from "react-bootstrap";
 import {usePreload} from "../../../hooks/usePreload";
 import {
-    loadAllAreas,
-    loadAllCities,
-    loadAllComforts,
-    loadAllHeatings,
-    loadAllInfrastructures,
-    loadAllMultimedias,
-    loadAllPeopleTypes,
-    loadAllRules,
-    loadAllStreets,
-    loadAllWallTypes
+    createFlat,
+    getHouseByHouseNumAndStreetId, loadAllAreas, loadAllBathroomTypes, loadAllCities, loadAllComforts,
+    loadAllHeatings, loadAllHouseholdAppliance, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
+    loadAllPeopleTypes, loadAllRules, loadAllStreets, loadAllWallTypes
 } from "../../../store/additional/flat/flatActions";
-import CreateFlatPageUpdate from "../createFlatUpdated/CreateFlatPageUpdate";
+import CheckBoxCard from "./checkbox/CheckBoxCard";
+import {useDispatch, useSelector} from "react-redux";
+import DropDownList from "./dropdown/DropDownList";
+import AttributeForm from "./form/AttributeForm";
+import LoadImageCard from "../../../component/loadImage/load/LoadImageCard";
 
-const CreateFlatPage = () => {
-
-    const [flatFloor, setFlatFloor] = useState('');
-    const [squareAll, setSquareAll] = useState('');
-    const [squareLiving, setSquareLiving] = useState('');
-    const [priceMonth, setPriceMonth] = useState('');
-    const [roomsNum, setRoomsNum] = useState('');
-    const [balconiesNum, setBalconiesNum] = useState('');
-    const [shortDescription, setShortDescription] = useState('');
-    const [mainDescription, setMainDescription] = useState('');
-    const [pledge, setPledge] = useState('');
-
-    let comfortsArr = [];
-    let heatingsArr = [];
-    let infrastructuresArr = [];
-    let peopleTypesArr = [];
-    let multimediasArr = [];
-    let rulesArr = [];
-    let wallTypesArr = [];
-
-    const dispatch = useDispatch();
+const CreateFlatPageUpdate = () => {
 
     usePreload(loadAllStreets);
     usePreload(loadAllAreas);
@@ -48,85 +27,50 @@ const CreateFlatPage = () => {
     usePreload(loadAllMultimedias);
     usePreload(loadAllRules);
     usePreload(loadAllWallTypes);
+    usePreload(loadAllMetroStations);
+    usePreload(loadAllBathroomTypes)
+    usePreload(loadAllHouseholdAppliance)
 
-    const streets = useSelector(store => store.flat.streets)
-    const areas = useSelector(store => store.flat.areas)
-    const cities = useSelector(store => store.flat.cities)
-
-    const comforts = useSelector(store => store.flat.comforts)
-    const heatings = useSelector(store => store.flat.heatings)
-    const infrastructures = useSelector(store => store.flat.infrastructures)
-    const peopleTypes = useSelector(store => store.flat.peopleTypes)
-    const multimedias = useSelector(store => store.flat.multimedias)
-    const rules = useSelector(store => store.flat.rules)
-    const wallTypes = useSelector(store => store.flat.wallTypes)
-
-
-    const createFlat = () => {
-        console.log("create flat man")
-    }
-
-    const changeWallType = (id) => {
-        if (wallTypesArr.includes(id))
-            wallTypesArr = wallTypesArr.filter(w => w != id);
-        else wallTypesArr.push(id);
-    }
-
-    const changeHeating = (id) => {
-        if (heatingsArr.includes(id))
-            heatingsArr = heatingsArr.filter(w => w != id);
-        else heatingsArr.push(id);
-    }
-
-    const changeComfort = (id) => {
-        if (comfortsArr.includes(id))
-            comfortsArr = comfortsArr.filter(w => w != id);
-        else comfortsArr.push(id);
-    }
-
-    const changeInfrastructures = (id) => {
-        if (infrastructuresArr.includes(id))
-            infrastructuresArr = infrastructuresArr.filter(w => w != id);
-        else infrastructuresArr.push(id);
-    }
-
-    const changePeopleType = (id) => {
-        if (peopleTypesArr.includes(id))
-            peopleTypesArr = peopleTypesArr.filter(w => w != id);
-        else peopleTypesArr.push(id);
-    }
-
-    const changeMultimedia = (id) => {
-        if (multimediasArr.includes(id))
-            multimediasArr = multimediasArr.filter(w => w != id);
-        else multimediasArr.push(id);
-    }
-
-    const changeRule = (id) => {
-        if (rulesArr.includes(id))
-            rulesArr = rulesArr.filter(w => w != id);
-        else rulesArr.push(id);
-    }
+    let streetId = 0,
+        areaId = 0,
+        wallTypeId = 0,
+        heatingId = 0,
+        metro = 0,
+        houseNum = 0,
+        houseYear = 0,
+        numOfFloors = 0,
+        flatFloor = 0,
+        allSquare = 0,
+        livingSquare = 0,
+        priceMonth = 0,
+        pledge = 0,
+        balconiesNum = 0,
+        bathroomTypeId = 0;
 
     const [drag, setDrag] = useState(false);
 
-    const style = {
-        width: '100%',
-        height: '40vh',
-        border: '5px dashed black',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
+    const streets = useSelector(store => store.flat.streets);
+    const areas = useSelector(store => store.flat.areas);
+    const heatings = useSelector(store => store.flat.heatings);
+    const wallTypes = useSelector(store => store.flat.wallTypes);
+    const metroStations = useSelector(store => store.flat.metroStations);
+    const bathroomTypes = useSelector(store => store.flat.bathroom);
 
-    const style2 = {
-        width: '100%',
-        height: '40vh',
-        border: '5px solid black',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
+    const comforts = useSelector(store => store.flat.comforts);
+    const infrastructures = useSelector(store => store.flat.infrastructures);
+    const peopleTypes = useSelector(store => store.flat.peopleTypes);
+    const multimedias = useSelector(store => store.flat.multimedias);
+    const rules = useSelector(store => store.flat.rules);
+    const householdAppliances = useSelector(store => store.flat.householdAppliance);
+
+    let comfortsArr = [];
+    let infrastructuresArr = [];
+    let peopleTypesArr = [];
+    let multimediasArr = [];
+    let rulesArr = [];
+    let householdApplianceArr = [];
+
+    const dispatch = useDispatch();
 
     const dragStartHandler = (e) => {
         e.preventDefault();
@@ -145,186 +89,284 @@ const CreateFlatPage = () => {
         setDrag(false);
     }
 
+    const changeData = (id, type) => {
+        if (type == 'comfort') {
+            if (comfortsArr.includes(id))
+                comfortsArr = comfortsArr.filter(w => w != id);
+            else comfortsArr.push(id);
+        } else if (type == 'infrastructure') {
+            if (infrastructuresArr.includes(id))
+                infrastructuresArr = infrastructuresArr.filter(w => w != id);
+            else infrastructuresArr.push(id);
+        } else if (type == 'peopleType') {
+            if (peopleTypesArr.includes(id))
+                peopleTypesArr = peopleTypesArr.filter(w => w != id);
+            else peopleTypesArr.push(id);
+        } else if (type == 'multimedia') {
+            if (multimediasArr.includes(id))
+                multimediasArr = multimediasArr.filter(w => w != id);
+            else multimediasArr.push(id);
+        } else if (type == 'rule') {
+            if (rulesArr.includes(id))
+                rulesArr = rulesArr.filter(w => w != id);
+            else rulesArr.push(id);
+        } else if (type = 'householdAppliance') {
+            if (householdApplianceArr.includes(id))
+                householdApplianceArr = householdApplianceArr.filter(w => w != id);
+            else householdApplianceArr.push(id);
+        } else {
+            console.log("else")
+        }
+    }
+
+    const setData = (id, type) => {
+        if (type == 'street') {
+            streetId = id;
+        } else if (type == 'area') {
+            areaId = id;
+        } else if (type == 'wallType') {
+            wallTypeId = id;
+        } else if (type == 'heating') {
+            heatingId = id;
+        } else if (type = 'metro') {
+            metro = id
+        } else if (type = 'bathroomType') {
+            bathroomTypeId = id
+        } else {
+            console.log("else setData")
+        }
+    }
+
+    const setFormData = (type, value) => {
+        if (type == 'houseNum') {
+            houseNum = value;
+        } else if (type = 'houseYear') {
+            houseYear = value;
+        } else if (type = 'numOfFloors') {
+            numOfFloors = value;
+        } else if (type = 'flatFloor') {
+            flatFloor = value;
+        } else if (type = 'allSquare') {
+            allSquare = value;
+        } else if (type = 'livingSquare') {
+            livingSquare = value;
+        } else if (type = 'priceMonth') {
+            priceMonth = value;
+        } else if (type = 'pledge') {
+            pledge = value;
+        } else if (type = 'balconiesNum') {
+            balconiesNum = value;
+        } else {
+            console.log("else in setFormData")
+        }
+        console.log("houseNum : " + houseNum)
+    }
+
+    const house = useSelector(store => store.flat.house);
+
+    // todo add household
+    const handlerClick = async () => {
+        try {
+            const house_num_test = 37;
+            const house_year_test = 1;
+            const floors_num_test = 1;
+            const streetId_test = 7;
+            const wallTypeId_test = 1;
+            const heatingId_test = 1;
+            const metroStationId_test = 1;
+            const images_test = [];
+            const comforts_test = [1];
+            const infrastructures_test = [];
+            const peopleType_test = [];
+            const multimedias_test = [];
+            const rules_test = [];
+            const flat_floor_test = 1;
+            const square_all_test = 1;
+            const square_living_test = 1;
+            const price_month_test = 1;
+            const rooms_num_test = 1;
+            const balconies_num_test = 1;
+            const short_description_test = "short_description";
+            const main_description_test = "main_description";
+            const pledge_test = 1;
+            const bathroomTypeId_test = 1;
+
+            dispatch(createFlat(
+                house_num_test, house_year_test, floors_num_test, streetId_test, wallTypeId_test, heatingId_test, metroStationId_test,
+                images_test, comforts_test, infrastructures_test, peopleType_test, multimedias_test, rules_test,
+                flat_floor_test, square_all_test, square_living_test, price_month_test, rooms_num_test, balconies_num_test, short_description_test, main_description_test,
+                pledge_test, bathroomTypeId_test
+            ))
+
+            // dispatch(getHouseByHouseNumAndStreetId(37,27));
+
+        } catch (e) {
+            alert("e.response.data.message : handlerClick")
+        }
+    }
+
     return (
-        <Container
-            className="d-flex justify-content-center align-items-center">
+        <Container>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"houseNum"}
+                placeholder={"houseNum"}
+                type={"houseNum"}
+            />
 
-            <Card style={{width: 760}}>
-                <h2>Створити квартиру</h2>
-                <Form>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"houseYear"}
+                placeholder={"houseYear"}
+                type={"houseYear"}
+            />
 
-                    <Card>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"numOfFloors"}
+                placeholder={"numOfFloors"}
+                type={"numOfFloors"}
+            />
 
-                        {drag
-                            ? <div
-                                className='drop-area' style={style}
-                                onDragStart={e => dragStartHandler(e)}
-                                onDragLeave={e => dragLeaveHandler(e)}
-                                onDragOver={e => dragStartHandler(e)}
-                                onDrop={e => onDropHandler(e)}
-                            >Load Images</div>
-                            : <div
-                                style={style2}
-                                onDragStart={e => dragStartHandler(e)}
-                                onDragLeave={e => dragLeaveHandler(e)}
-                                onDragOver={e => dragStartHandler(e)}
-                            >Перетащите фотки</div>
-                        }
+            <AttributeForm
+                setFormData={setFormData}
+                title={"flatFloor"}
+                placeholder={"flatFloor"}
+                type={"flatFloor"}
+            />
 
-                    </Card>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"allSquare"}
+                placeholder={"allSquare"}
+                type={"allSquare"}
+            />
 
-                    <Card>
-                        DescriptionBlock
-                    </Card>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"livingSquare"}
+                placeholder={"livingSquare"}
+                type={"livingSquare"}
+            />
 
-                    <Card>
-                        <Form.Control className="mt-3 ml-1" placeholder="Enter area"/>
-                        <Form.Control className="mt-3 ml-1" placeholder="Enter street"/>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"priceMonth"}
+                placeholder={"priceMonth"}
+                type={"priceMonth"}
+            />
 
-                        <Form.Control className="mt-3" placeholder="Enter house num"/>
-                        <Form.Control className="mt-3 ml-1" placeholder="Enter house year"/>
+            <AttributeForm
+                setFormData={setFormData}
+                title={"pledge"}
+                placeholder={"pledge"}
+                type={"pledge"}
+            />
 
-                        <Card>
-                            Comforts
-                            {comforts.map(c => (
-                                <Form.Check key={c.comfort_id}
-                                            label={c.name}
-                                            onChange={() => changeComfort(c.comfort_id)}
+            <AttributeForm
+                setFormData={setFormData}
+                title={"balconiesNum"}
+                placeholder={"balconiesNum"}
+                type={"balconiesNum"}
+            />
 
-                                />
-                            ))}
-                        </Card>
+            <DropDownList
+                title="Оберіть вулицю"
+                data={streets}
+                setData={setData}
+                type="street"
+            />
 
-                        <Card>
-                            Heatings
-                            {heatings.map(h => (
-                                <Form.Check key={h.heating_id}
-                                            label={h.name}
-                                            onChange={() => changeHeating(h.heating_id)}
+            <DropDownList
+                title="Оберіть Район"
+                data={areas}
+                setData={setData}
+                type="area"
+            />
 
-                                />
-                            ))}
-                        </Card>
+            <DropDownList
+                title="Оберіть Тип стін у будинку"
+                data={wallTypes}
+                setData={setData}
+                type="wallType"
+            />
 
-                        <Card>
-                            Infastructure
-                            {infrastructures.map(i => (
-                                <Form.Check key={i.infrastructure_id}
-                                            label={i.name}
-                                            onChange={() => changeInfrastructures(i.infrastructure_id)}
-                                />
-                            ))}
-                        </Card>
+            <DropDownList
+                title="Оберіть опалення у будинку"
+                data={heatings}
+                setData={setData}
+                type="heating"
+            />
 
-                        <Card>
-                            PeopleType
-                            {peopleTypes.map(p => (
-                                <Form.Check key={p.people_type_id}
-                                            label={p.name}
-                                            onChange={() => changePeopleType(p.people_type_id)}
-                                />
-                            ))}
-                        </Card>
+            <DropDownList
+                title="Оберіть тип ванної кімнати"
+                data={bathroomTypes}
+                setData={setData}
+                type="bathroomType"
+            />
 
-                        <Card>
-                            Multimedias
-                            {multimedias.map(m => (
-                                <Form.Check key={m.multimedia_id}
-                                            label={m.name}
-                                            onChange={() => changeMultimedia(m.multimedia_id)}
-                                />
-                            ))}
-                        </Card>
+            <DropDownList
+                title="Оберіть найближчу станцію метро"
+                data={metroStations}
+                setData={setData}
+                type="metro"
+            />
 
-                        <Card>
-                            Rules
-                            {rules.map(r => (
-                                <Form.Check key={r.rule_id}
-                                            label={r.name}
-                                            onChange={() => changeWallType(r.rule_id)}
+            <DrapImageCard
+                drag={drag}
+                dragStartHandler={dragStartHandler}
+                dragLeaveHandler={dragLeaveHandler}
+                onDropHandler={onDropHandler}/>
 
-                                />
-                            ))}
-                        </Card>
+            <LoadImageCard/>
 
-                        <Card>
-                            WallType
-                            {wallTypes.map(wall => (
-                                <Form.Check key={wall.wall_type_id}
-                                            label={wall.name}
-                                            onChange={() => changeWallType(wall.wall_type_id)}
+            <TextAreaCard/>
 
-                                />
-                            ))}
-                        </Card>
+            <CheckBoxCard
+                type={"comfort"}
+                elem={comforts}
+                title={"Виберіть комфорт"}
+                changeData={changeData}
+            />
 
-                        <Form.Control className="mt-3 ml-1" placeholder="Enter house type"/>
-                        <Form.Control className="mt-3 ml-1" placeholder="Enter num of floors"/>
-                        <Form.Control className="mt-3" placeholder="Enter metro station"/>
-                        <Form.Control className="mt-3" placeholder="Enter house advantage"/>
+            <CheckBoxCard
+                type={"infrastructure"}
+                elem={infrastructures}
+                title={"Виберіть Інфраструктуру"}
+                changeData={changeData}
+            />
 
-                        <div className="flat">
+            <CheckBoxCard
+                type={"peopleType"}
+                elem={peopleTypes}
+                title={"Виберіть тип мешканців"}
+                changeData={changeData}
+            />
 
-                            <div className="block">
-                                <label>Поверх квартири</label>
-                                <Form.Control className="mt-3" placeholder="Enter floor" value={flatFloor}
-                                              onChange={e => setFlatFloor(e.target.value)}/>
-                            </div>
+            <CheckBoxCard
+                type={"multimedia"}
+                elem={multimedias}
+                title={"Виберіть Мультимудію в квартирі"}
+                changeData={changeData}
+            />
 
-                            <div className="block">
-                                <label>Площа квартири</label>
-                                <div className="d-flex flex-row">
-                                    <Form.Control className="mt-3" placeholder="Enter square_all" value={squareAll}
-                                                  onChange={e => setSquareAll(e.target.value)}/>
-                                    <Form.Control className="mt-3 ml-3" placeholder="Enter square_living"
-                                                  value={squareLiving}
-                                                  onChange={e => setSquareLiving(e.target.value)}/>
-                                </div>
-                            </div>
+            <CheckBoxCard
+                type={"rule"}
+                elem={rules}
+                title={"Виберіть Правила проживання"}
+                changeData={changeData}
+            />
 
-                            <div className="block">
-                                <label className="flex-grow: 2">Ціна за місяць :: </label>
-                                <Form.Control className="flex-grow:2 mt-3" placeholder="Enter price_month"
-                                              value={priceMonth}
-                                              onChange={e => setPriceMonth(e.target.value)}/>
-                            </div>
+            <CheckBoxCard
+                type={"householdAppliance"}
+                elem={householdAppliances}
+                title={"Виберіть Побутову техніку"}
+                changeData={changeData}
+            />
 
-                            <div className="block">
-                                <label>Застава</label>
-                                <Form.Control className="mt-3" placeholder="Enter pledge" value={pledge}
-                                              onChange={e => setPledge(e.target.value)}/>
-                            </div>
-
-                            <div className="block">
-                                <label>Кількість кімнат</label>
-                                <Form.Control className="mt-3" placeholder="Enter rooms_num" value={roomsNum}
-                                              onChange={e => setRoomsNum(e.target.value)}/>
-                                {/*<AttributeForm.Control className="mt-3" placeholder="Enter elements"/>*/}
-                                {/*<AttributeForm.Control className="mt-3" placeholder="Enter rent type"/>*/}
-                            </div>
-
-                            <div className="block">
-                                <label>Кількість балконів</label>
-                                <Form.Control className="mt-3" placeholder="Enter balconies_num" value={balconiesNum}
-                                              onChange={e => setBalconiesNum(e.target.value)}/>
-                            </div>
-
-                            <Form.Control className="mt-3" placeholder="Enter short description"
-                                          value={shortDescription}
-                                          onChange={e => setShortDescription(e.target.value)}/>
-                            <Form.Control className="mt-3" placeholder="Enter main description" value={mainDescription}
-                                          onChange={e => setMainDescription(e.target.value)}/>
-                        </div>
-                    </Card>
-
-
-                </Form>
-                <Button onClick={createFlat}>Створити</Button>
-            </Card>
-
-
+            <Button onClick={handlerClick}>Створити квартиру</Button>
         </Container>
     );
 };
 
-export default CreateFlatPage;
+export default CreateFlatPageUpdate;
