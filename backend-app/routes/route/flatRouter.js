@@ -24,6 +24,8 @@ router.get('/years_house', flatController.getHouseYears);
 router.get('/years_house_min', flatController.getMinHouseYear);
 router.get('/years_house_max', flatController.getMaxHouseYear);
 router.get('/rooms_flat', flatController.getFlatRooms);
+router.get('/rooms_flat_max', flatController.getMaxFlatRoom);
+router.get('/rooms_flat_min', flatController.getMinFlatRoom);
 router.get('/floors_house', flatController.getHouseFloors);
 router.get('/floors_house_min', flatController.getMinHouseFloor);
 router.get('/floors_house_max', flatController.getMaxHouseFloor);

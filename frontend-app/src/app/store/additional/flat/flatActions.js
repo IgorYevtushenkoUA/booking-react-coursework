@@ -16,17 +16,23 @@ export const LOAD_ALL_METRO_STATION = 'LOAD_ALL_METRO_STATION';
 export const LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET = 'LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET';
 export const LOAD_ALL_BATHROOM_TYPE = 'LOAD_ALL_BATHROOM_TYPE';
 export const LOAD_ALL_HOUSEHOLD_APPLIANCE = 'LOAD_ALL_HOUSEHOLD_APPLIANCE';
-export const LOAD_ALL_HOUSE_YEARS = 'LOAD_ALL_HOUSE_YEARS';
-export const LOAD_ALL_HOUSE_FLOORS = 'LOAD_ALL_HOUSE_FLOORS';
-export const LOAD_ALL_FLAT_FLOORS = 'LOAD_ALL_FLAT_FLOORS';
-export const LOAD_ALL_FLAT_ROOMS = 'LOAD_ALL_FLAT_ROOMS';
 
-export const LOAD_MIN_FLAT_FLOOR = 'LOAD_MIN_FLAT_FLOOR';
-export const LOAD_MAX_FLAT_FLOOR = 'LOAD_MAX_FLAT_FLOOR';
+export const LOAD_ALL_HOUSE_YEARS = 'LOAD_ALL_HOUSE_YEARS';
+export const LOAD_MAX_HOUSE_YEAR = 'LOAD_MAX_HOUSE_YEAR'
+export const LOAD_MIN_HOUSE_YEAR = 'LOAD_MIN_HOUSE_YEAR'
+
+export const LOAD_ALL_FLAT_ROOMS = 'LOAD_ALL_FLAT_ROOMS';
+export const LOAD_MAX_FLAT_ROOM = 'LOAD_MAX_FLAT_ROOM';
+export const LOAD_MIN_FLAT_ROOM = 'LOAD_MIN_FLAT_ROOM';
+
+export const LOAD_ALL_HOUSE_FLOORS = 'LOAD_ALL_HOUSE_FLOORS';
 export const LOAD_MAX_HOUSE_FLOOR = 'LOAD_MAX_HOUSE_FLOOR';
 export const LOAD_MIN_HOUSE_FLOOR = 'LOAD_MIN_HOUSE_FLOOR';
-export const LOAD_MAX_HOUSE_YEAR = 'LOAD_MAX_HOUSE_YEAR';
-export const LOAD_MIN_HOUSE_YEAR = 'LOAD_MIN_HOUSE_YEAR';
+
+export const LOAD_ALL_FLAT_FLOORS = 'LOAD_ALL_FLAT_FLOORS';
+export const LOAD_MIN_FLAT_FLOOR = 'LOAD_MIN_FLAT_FLOOR';
+export const LOAD_MAX_FLAT_FLOOR = 'LOAD_MAX_FLAT_FLOOR';
+
 
 export const loadAllStreets = () => {
     return async dispatch => {
@@ -273,6 +279,7 @@ export const loadMaxHouseYears = () => {
         try {
             const res = await $host.get("api/flats/years_house_max");
             const data = await res.data;
+            console.log(data)
             dispatch({
                 type: LOAD_MAX_HOUSE_YEAR,
                 payload: data
@@ -297,6 +304,50 @@ export const loadMinHouseYears = () => {
     }
 }
 
+export const loadAllRooms = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/rooms_flat");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_FLAT_ROOMS,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMaxFlatRoom = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/rooms_flat_max");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MAX_FLAT_ROOM,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMinFlatRoom = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/rooms_flat_min");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MIN_FLAT_ROOM,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
 
 export const loadAllHouseFloors = () => {
     return async dispatch => {
@@ -305,6 +356,36 @@ export const loadAllHouseFloors = () => {
             const data = await res.data;
             dispatch({
                 type: LOAD_ALL_HOUSE_FLOORS,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMinHouseFloor = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/floors_house_min");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MIN_HOUSE_FLOOR,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMaxHouseFloor = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/floors_house_max");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MAX_HOUSE_FLOOR,
                 payload: data
             })
         } catch (e) {
@@ -328,13 +409,13 @@ export const loadAllFlatFloors = () => {
     }
 }
 
-export const loadAllRooms = () => {
+export const loadMinFlatFloor = () => {
     return async dispatch => {
         try {
-            const res = await $host.get("api/flats/rooms_flat");
+            const res = await $host.get("api/flats/floors_flats_min");
             const data = await res.data;
             dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
+                type: LOAD_MIN_FLAT_FLOOR,
                 payload: data
             })
         } catch (e) {
@@ -343,13 +424,14 @@ export const loadAllRooms = () => {
     }
 }
 
-export const loadMaxFlatRooms = () => {
+export const loadMaxFlatFloor = () => {
     return async dispatch => {
         try {
-            const res = await $host.get("api/flats/rooms_flat");
+            const res = await $host.get("api/flats/floors_flats_max");
             const data = await res.data;
+            debugger
             dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
+                type: LOAD_MAX_FLAT_FLOOR,
                 payload: data
             })
         } catch (e) {
@@ -357,76 +439,7 @@ export const loadMaxFlatRooms = () => {
         }
     }
 }
-export const loadMinFlatRooms = () => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/rooms_flat");
-            const data = await res.data;
-            dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
-                payload: data
-            })
-        } catch (e) {
-            alert("Something went wrong : ")
-        }
-    }
-}
-export const loadMaxFlatRooms = () => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/rooms_flat");
-            const data = await res.data;
-            dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
-                payload: data
-            })
-        } catch (e) {
-            alert("Something went wrong : ")
-        }
-    }
-}
-export const loadAllRooms = () => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/rooms_flat");
-            const data = await res.data;
-            dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
-                payload: data
-            })
-        } catch (e) {
-            alert("Something went wrong : ")
-        }
-    }
-}
-export const loadAllRooms = () => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/rooms_flat");
-            const data = await res.data;
-            dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
-                payload: data
-            })
-        } catch (e) {
-            alert("Something went wrong : ")
-        }
-    }
-}
-export const loadAllRooms = () => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/rooms_flat");
-            const data = await res.data;
-            dispatch({
-                type: LOAD_ALL_FLAT_ROOMS,
-                payload: data
-            })
-        } catch (e) {
-            alert("Something went wrong : ")
-        }
-    }
-}
+
 
 export const getHouseByHouseNumAndStreetId = (house_num, streetId) => {
     return async dispatch => {
@@ -458,7 +471,6 @@ export const createFlat = (
             console.log("house_num :" + house_num)
             console.log("streetId :" + streetId)
             let newHouse;
-            debugger
             const res = await $host.get("api/flats/house", {
                 params:
                     {
@@ -467,17 +479,13 @@ export const createFlat = (
                     }
             });
             let house = await res.data;
-            debugger
             if (house == '') {
                 // create house
                 console.log("create new house")
-                debugger
                 const newRes = await $host.post("api/flats/house", {
                     house_num, house_year, floors_num, streetId, wallTypeId, heatingId
                 })
-                debugger
                 house = await newRes.data[0];
-                debugger
                 // add infrastructures
                 for (let i = 0; i < infrastructures.length; i++) {
                     // house add infrastructures
@@ -489,7 +497,6 @@ export const createFlat = (
             // todo add flat-images
             // todo add house-infastructure // зробити перевірки чи така інфаструктура вже не додана
             console.log("create flat")
-            debugger
             const resFlat = await $host.post("api/flats/flat",
                 {
                     flat_floor, square_all, square_living, price_month, rooms_num, balconies_num,
@@ -497,12 +504,10 @@ export const createFlat = (
                 }
             );
             const flat = await resFlat.data;
-            debugger
             for (let i = 0; i < comforts; i++) {
                 // add comforts
                 await $host.post("api/flats/flat_comfort", {flatId: flat.id, comfortId: comforts[i]})
             }
-            debugger
             for (let i = 0; i < peopleType; i++) {
                 // add peopleType
                 await $host.post("api/flats/flat_peopleType", {
@@ -510,7 +515,6 @@ export const createFlat = (
                     peopleTypeId: peopleType[i]
                 })
             }
-            debugger
             for (let i = 0; i < multimedias; i++) {
                 // add multimedias
                 await $host.post("api/flats/flat_multimedia", {

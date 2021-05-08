@@ -1,5 +1,4 @@
 const flatService = require("../service/FlatService.js");
-const {connection} = require("../database/dbConnector.js")
 
 class FlatController {
 
@@ -275,6 +274,22 @@ class FlatController {
         }
     }
 
+    async getMaxFlatRoom(req, res){
+        try{
+            return res.json(await flatService.getMaxFlatRoom())
+        }catch(e){
+            res.status(500).json(e);
+        }
+    }
+
+    async getMinFlatRoom(req, res){
+        try{
+            return res.json(await flatService.getMinFlatRoom())
+        }catch(e){
+            res.status(500).json(e);
+        }
+    }
+
     async getFlatFloors(req, res){
         try{
             return res.json(await flatService.getFlatFloors())
@@ -285,7 +300,7 @@ class FlatController {
 
     async getMinFlatFloor(req, res){
         try{
-            return res.json(await flatService.getFlatFloors())
+            return res.json(await flatService.getMinFlatFloor())
         }catch(e){
             res.status(500).json(e);
         }

@@ -52,52 +52,62 @@ class FlatService {
     }
 
     async getHouseYears(){
-        let sql = 'select distinct(house_year) from houses'
+        let sql = 'select distinct(house_year) as value from houses'
         return await query(sql);
     }
 
     async getMinHouseYear(){
-        let sql = 'select min(house_year) from houses'
+        let sql = 'select min(house_year) as min from houses'
         return await query(sql);
     }
     async getMaxHouseYear(){
-        let sql = 'select max(house_year) from houses'
+        let sql = 'select max(house_year) as max from houses'
         return await query(sql);
     }
 
     async getFlatRooms(){
         // const query = promisify(connection.query).bind(connection);
-        let sql = 'select id, distinct(rooms_num) as name from flats'
+        let sql = 'select distinct(rooms_num) as value from flats'
+        return await query(sql);
+    }
+
+    async getMaxFlatRoom(){
+        let sql = 'select max(rooms_num) as max from flats'
+        return await query(sql);
+    }
+
+    async getMinFlatRoom(){
+        let sql = 'select min(rooms_num) as min from flats'
         return await query(sql);
     }
 
     async getHouseFloors(){
-        let sql = 'select distinct(floors_num) from houses'
+        let sql = 'select distinct(floors_num) as value from houses'
         return await query(sql);
     }
 
     async getMinHouseFloor(){
-        let sql = 'select min(floors_num) from houses'
+        let sql = 'select min(floors_num) as min from houses'
         return await query(sql);
     }
 
     async getMaxHouseFloor(){
-        let sql = 'select max(floors_num) from houses'
+        let sql = 'select max(floors_num) as max from houses'
         return await query(sql);
     }
 
     async getFlatFloors(){
-        let sql = 'select distinct(flat_floor) from flats'
+        let sql = 'select distinct(flat_floor) as value from flats'
         return await query(sql);
     }
 
     async getMinFlatFloor(){
-        let sql = 'select min(flat_floor) from flats'
+        let sql = 'select min(flat_floor) as min from flats'
         return await query(sql);
     }
 
     async getMaxFlatFloor(){
-        let sql = 'select max(flat_floor) from flats'
+        let sql = 'select max(flat_floor) as max from flats'
         return await query(sql);
     }
 

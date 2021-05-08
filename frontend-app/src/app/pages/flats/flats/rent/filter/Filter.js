@@ -3,9 +3,19 @@ import MultiSelectDropdown from "./multiSelectDropdown/MultiSelectDropdown";
 import {usePreload} from "../../../../../hooks/usePreload";
 import {
     loadAllAreas,
-    loadAllFlatFloors, loadAllHeatings,
-    loadAllHouseFloors, loadAllHouseYears, loadAllInfrastructures, loadAllMetroStations,
-    loadAllRooms, loadAllWallTypes
+    loadAllFlatFloors,
+    loadAllHeatings,
+    loadAllHouseFloors,
+    loadAllHouseYears,
+    loadAllInfrastructures,
+    loadAllMetroStations,
+    loadAllRooms,
+    loadAllWallTypes, loadMaxFlatFloor,
+    loadMaxFlatRoom,
+    loadMaxHouseFloor,
+    loadMaxHouseYears, loadMinFlatFloor,
+    loadMinFlatRoom, loadMinHouseFloor,
+    loadMinHouseYears
 } from "../../../../../store/additional/flat/flatActions";
 import {useDispatch, useSelector} from "react-redux";
 import CheckBoxCard from "../../../../../component/checkbox/CheckBoxCard";
@@ -29,26 +39,68 @@ const Filter = () => {
 
     usePreload(loadAllAreas)
     usePreload(loadAllRooms)
+    usePreload(loadMaxFlatRoom)
+    usePreload(loadMinFlatRoom)
+
     usePreload(loadAllHouseYears)
+    usePreload(loadMaxHouseYears)
+    usePreload(loadMinHouseYears)
+
     usePreload(loadAllWallTypes)
+
     usePreload(loadAllHouseFloors)
+    usePreload(loadMaxHouseFloor)
+    usePreload(loadMinHouseFloor)
+
     usePreload(loadAllHeatings)
+
     usePreload(loadAllFlatFloors)
+    usePreload(loadMaxFlatFloor)
+    usePreload(loadMinFlatFloor)
+
     usePreload(loadAllInfrastructures)
     usePreload(loadAllMetroStations)
 
     const dispatch = useDispatch();
 
-    const areas = useSelector(store => store.flat.areas),
-        rooms = useSelector(store => store.flat.flatRooms),
-        houseYears = useSelector(store => store.flat.houseYears),
-        wallTypes = useSelector(store => store.flat.wallTypes),
-        houseFloors = useSelector(store => store.flat.houseFloors),
-        heatings = useSelector(store => store.flat.heatings),
-        flatFloors = useSelector(store => store.flat.flatFloors),
-        metroStations = useSelector(store => store.flat.metroStations),
-        infrastructures = useSelector(store => store.flat.infrastructures);
+    const buildObj = (min, max) => {
+        console.log("min = '" + min + "' | max='" + max + "'")
+        let obj = [];
+        debugger
+        if (min !== 0 && max !== 0) {
+            debugger
+            for (let i = min[0].min; i <= max[0].max; i++) {
+                obj.push({id: i, name: i.toString()})
+            }
+        }
+        return obj;
+    }
 
+    const areas = useSelector(store => store.flat.areas),
+
+        minRoom = useSelector(store => store.flat.flatRoomMin),
+        maxRoom = useSelector(store => store.flat.flatRoomMax),
+        rooms = buildObj(minRoom, maxRoom),
+
+        minHouseYear = useSelector(store => store.flat.houseYearMin),
+        maxHouseYear = useSelector(store => store.flat.houseYearMax),
+        houseYears = buildObj(minHouseYear, maxHouseYear),
+
+        wallTypes = useSelector(store => store.flat.wallTypes),
+
+        minHouseFloor = useSelector(store => store.flat.houseFloorMin),
+        maxHouseFloor = useSelector(store => store.flat.houseFloorMax),
+        houseFloors = buildObj(minHouseFloor, maxHouseFloor),
+
+        heatings = useSelector(store => store.flat.heatings),
+
+        minFlatFloor = useSelector(store => store.flat.flatFloorMin),
+        maxFlatFloor = useSelector(store => store.flat.flatFloorMax),
+        flatFloors = buildObj(minFlatFloor, maxFlatFloor),
+
+        metroStations = useSelector(store => store.flat.metroStations),
+
+        infrastructures = useSelector(store => store.flat.infrastructures);
 
     let areasArr = [],
         roomsArr = [],
@@ -146,22 +198,50 @@ const Filter = () => {
                 type="rooms"
                 setArray={setArray}
                 data={rooms}
-                placeholder="Set Num Rooms"
+                placeholder="Set Flat Rooms"
             />
 
+            <MultiSelectDropdown
+                type="houseYears"
+                setArray={setArray}
+                data={houseYears}
+                placeholder="Set House Year"
+            />
 
+            <MultiSelectDropdown
+                type="wallTypes"
+                setArray={setArray}
+                data={wallTypes}
+                placeholder="Set wall Type"
+            />
 
-            <div>Район</div>
-            <div>Кількість кімнат квартири</div>
-            <div>Ціна</div>
-            <div>Рік будівництва</div>
-            <div>Тип стін</div>
-            <div>Поверхність будинку</div>
-            <div>Опалення</div>
-            <div>Загальна площа</div>
-            <div>Спальна площа</div>
-            <div>Поверх квартири</div>
-            <div>Інфраструктура до 1 кілометра</div>
+            <MultiSelectDropdown
+                type="houseFloors"
+                setArray={setArray}
+                data={houseFloors}
+                placeholder="Set House Floor"
+            />
+
+            <MultiSelectDropdown
+                type="heatings"
+                setArray={setArray}
+                data={heatings}
+                placeholder="Set Heating"
+            />
+
+            <MultiSelectDropdown
+                type="flatFloors"
+                setArray={setArray}
+                data={flatFloors}
+                placeholder="Set Flat Floor"
+            />
+
+            <MultiSelectDropdown
+                type="metroStations"
+                setArray={setArray}
+                data={metroStations}
+                placeholder="Set Metro Station"
+            />
 
             <CheckBoxCard
                 type={"infrastructure"}
