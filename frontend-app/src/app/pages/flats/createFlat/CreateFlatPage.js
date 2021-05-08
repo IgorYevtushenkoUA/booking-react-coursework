@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import DrapImageCard from "../../../component/loadImage/drap/DrapImageCard";
-import TextAreaCard from "../../../component/textarea/TextAreaCard";
 import {Button, Container} from "react-bootstrap";
 import {usePreload} from "../../../hooks/usePreload";
 import {
@@ -9,13 +7,15 @@ import {
     loadAllHeatings, loadAllHouseholdAppliance, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
     loadAllPeopleTypes, loadAllRules, loadAllStreets, loadAllWallTypes
 } from "../../../store/additional/flat/flatActions";
-import CheckBoxCard from "./checkbox/CheckBoxCard";
 import {useDispatch, useSelector} from "react-redux";
-import DropDownList from "./dropdown/DropDownList";
-import AttributeForm from "./form/AttributeForm";
 import LoadImageCard from "../../../component/loadImage/load/LoadImageCard";
+import DrapImageCard from "../../../component/loadImage/drap/DrapImageCard";
+import TextAreaCard from "../../../component/textarea/TextAreaCard";
+import CheckBoxCard from "../../../component/checkbox/CheckBoxCard";
+import DropDownList from "../../../component/dropdown/DropDownList";
+import AttributeForm from "../../../component/form/AttributeForm";
 
-const CreateFlatPageUpdate = () => {
+const CreateFlatPage = () => {
 
     usePreload(loadAllStreets);
     usePreload(loadAllAreas);
@@ -369,4 +369,4 @@ const CreateFlatPageUpdate = () => {
     );
 };
 
-export default CreateFlatPageUpdate;
+export default CreateFlatPage;

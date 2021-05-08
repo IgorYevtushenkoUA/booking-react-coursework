@@ -11,9 +11,9 @@ const FlatItem = ({flat}) => {
     const dispatch = useDispatch();
 
     const click = async () => {
-        dispatch(loadFlat(flat.flat_id));
+        dispatch(loadFlat(flat.id));
         console.log()
-        history.push(RENT_FLATS_ROUTE + '/' + flat.flat_id)
+        history.push(RENT_FLATS_ROUTE + '/' + flat.id)
     }
 
     return (

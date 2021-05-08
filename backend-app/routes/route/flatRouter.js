@@ -20,6 +20,17 @@ router.get('/house', flatController.getHouseByHouseNumAndStreet);
 router.get('/bathroom', flatController.getAllBathroomTypes);
 router.get('/householdAppliance', flatController.getHouseHoldAppliances);
 
+router.get('/years_house', flatController.getHouseYears);
+router.get('/years_house_min', flatController.getMinHouseYear);
+router.get('/years_house_max', flatController.getMaxHouseYear);
+router.get('/rooms_flat', flatController.getFlatRooms);
+router.get('/floors_house', flatController.getHouseFloors);
+router.get('/floors_house_min', flatController.getMinHouseFloor);
+router.get('/floors_house_max', flatController.getMaxHouseFloor);
+router.get('/floors_flats', flatController.getFlatFloors);
+router.get('/floors_flats_min', flatController.getMinFlatFloor);
+router.get('/floors_flats_max', flatController.getMaxFlatFloor);
+
 router.get("/:id", flatController.getById);
 
 router.delete("/:id", flatController.deleteById);

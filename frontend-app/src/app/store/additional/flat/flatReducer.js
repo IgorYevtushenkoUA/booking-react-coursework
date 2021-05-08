@@ -1,17 +1,30 @@
 import {
-    LOAD_ALL_AREAS, LOAD_ALL_BATHROOM_TYPE,
+    LOAD_ALL_AREAS,
+    LOAD_ALL_BATHROOM_TYPE,
     LOAD_ALL_CITIES,
     LOAD_ALL_COMFORTS,
-    LOAD_ALL_HEATINGS, LOAD_ALL_HOUSEHOLD_APPLIANCE,
+    LOAD_ALL_FLAT_FLOORS,
+    LOAD_ALL_FLAT_ROOMS,
+    LOAD_ALL_HEATINGS,
+    LOAD_ALL_HOUSE_FLOORS,
+    LOAD_ALL_HOUSE_YEARS,
+    LOAD_ALL_HOUSEHOLD_APPLIANCE,
     LOAD_ALL_IMAGES,
-    LOAD_ALL_INFRASTRUCTURES, LOAD_ALL_METRO_STATION,
+    LOAD_ALL_INFRASTRUCTURES,
+    LOAD_ALL_METRO_STATION,
     LOAD_ALL_MULTIMEDIAS,
     LOAD_ALL_PEOPLE_TYPES,
     LOAD_ALL_REGIONS,
     LOAD_ALL_RULES,
-    LOAD_ALL_STREETS, LOAD_ALL_WALL_TYPES,
-    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET
+    LOAD_ALL_STREETS,
+    LOAD_ALL_WALL_TYPES,
+    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET,
+    LOAD_MAX_FLAT_FLOOR,
+    LOAD_MAX_HOUSE_YEAR,
+    LOAD_MIN_FLAT_FLOOR,
+    LOAD_MIN_HOUSE_YEAR
 } from "./flatActions";
+import {LOAD_ALL_FLATS} from "../user/userActions";
 
 const initState = {
     streets: [],
@@ -29,7 +42,24 @@ const initState = {
     metroStations: [],
     bathroom: [],
     householdAppliance: [],
-    house: null
+    house: null,
+
+    houseYears: [],
+    houseYearsMin:0,
+    houseYearMax:0,
+
+    houseFloors: [],
+    houseFloorsMax:0,
+    houseFloorsMin:0,
+
+    flatFloors: [],
+    flatFloorsMax: 0,
+    flatFloorsMin: 0,
+
+    flatRooms: [],
+    flatRoomsMax: 0,
+    flatRoomsMin: 0,
+
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -66,6 +96,28 @@ export const flatReducer = (state = initState, action) => {
             return {...state, bathroom: action.payload}
         case LOAD_ALL_HOUSEHOLD_APPLIANCE:
             return {...state, householdAppliance: action.payload}
+        case LOAD_ALL_HOUSE_YEARS:
+            return {...state, houseYears: action.payload}
+        case LOAD_ALL_HOUSE_FLOORS:
+            return {...state, houseFloors: action.payload}
+        case LOAD_ALL_FLAT_FLOORS:
+            return {...state, flatFloors: action.payload}
+        case LOAD_ALL_FLAT_ROOMS:
+            return {...state, flatRooms: action.payload}
+        case LOAD_MIN_FLAT_FLOOR:
+            return {...state, flatRoomsMin: action.payload}
+        case LOAD_MAX_FLAT_FLOOR:
+            return {...state, flatRoomsMax: action.payload}
+
+        case LOAD_MIN_HOUSE_YEAR:
+            return {...state, houseYearMin: action.payload}
+
+        case LOAD_MAX_HOUSE_YEAR:
+            return {...state, houseYearMax: action.payload}
+
+        case LOAD_MAX_FLAT_FLOOR:
+            return {...state, flatRoomsMax: action.payload}
+
         default:
             return state;
     }

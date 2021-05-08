@@ -15,7 +15,7 @@ const FlatsList = () => {
             <Col>
                 {flats.map(flat =>
                     <FlatItem
-                        key={flat.flat_id}
+                        key={flat.id}
                         flat={flat}/>
                 )}
             </Col>

@@ -7,15 +7,11 @@ import {loadAllFlats} from "./app/store/additional/user/userActions";
 import {BrowserRouter} from "react-router-dom";
 import NavBar from "./app/component/navbar/NavBar";
 import AppRouter from "./app/component/router/AppRouter";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
-const App = observer((props) => {
-
-    const user = useSelector(store => store.user);
-
-    console.log(user);
-    let count = 0;
-
-    // usePreload(loadAllFlats)
+const App = (props) => {
 
     return (
         <BrowserRouter>
@@ -23,6 +19,6 @@ const App = observer((props) => {
             <AppRouter/>
         </BrowserRouter>
     );
-});
+};
 
 export default App;

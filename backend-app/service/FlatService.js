@@ -28,6 +28,8 @@ const {
     FlatHasImage
 } = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
+const {promisify} = require('util');
+const query = promisify(connection.query).bind(connection);
 
 
 class FlatService {
@@ -39,9 +41,65 @@ class FlatService {
     }
 
     async getAll() {
-        return await Flat.findAll();
+        // let flats =  await Flat.findAll();
+        // console.log("flats in service");
+        // return flats;
+
+        const query = promisify(connection.query).bind(connection);
+        let sql = "select * from flats";
+        let flats = await query("select * from flats");
+        return flats;
     }
 
+    async getHouseYears(){
+        let sql = 'select distinct(house_year) from houses'
+        return await query(sql);
+    }
+
+    async getMinHouseYear(){
+        let sql = 'select min(house_year) from houses'
+        return await query(sql);
+    }
+    async getMaxHouseYear(){
+        let sql = 'select max(house_year) from houses'
+        return await query(sql);
+    }
+
+    async getFlatRooms(){
+        // const query = promisify(connection.query).bind(connection);
+        let sql = 'select id, distinct(rooms_num) as name from flats'
+        return await query(sql);
+    }
+
+    async getHouseFloors(){
+        let sql = 'select distinct(floors_num) from houses'
+        return await query(sql);
+    }
+
+    async getMinHouseFloor(){
+        let sql = 'select min(floors_num) from houses'
+        return await query(sql);
+    }
+
+    async getMaxHouseFloor(){
+        let sql = 'select max(floors_num) from houses'
+        return await query(sql);
+    }
+
+    async getFlatFloors(){
+        let sql = 'select distinct(flat_floor) from flats'
+        return await query(sql);
+    }
+
+    async getMinFlatFloor(){
+        let sql = 'select min(flat_floor) from flats'
+        return await query(sql);
+    }
+
+    async getMaxFlatFloor(){
+        let sql = 'select max(flat_floor) from flats'
+        return await query(sql);
+    }
 
     async getById(id) {
         if (!id) {
