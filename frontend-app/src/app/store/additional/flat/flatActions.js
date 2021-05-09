@@ -43,6 +43,44 @@ export const LOAD_MIN_SQUARE_ALL = 'LOAD_MIN_SQUARE_ALL';
 export const LOAD_MAX_SQUARE_LIVING = 'LOAD_MAX_SQUARE_LIVING';
 export const LOAD_MIN_SQUARE_LIVING = 'LOAD_MIN_SQUARE_LIVING';
 
+export const LOAD_HOUSE = 'LOAD_HOUSE';
+export const LOAD_STREET = 'LOAD_STREET';
+export const LOAD_AREA = 'LOAD_AREA';
+export const LOAD_CITY = 'LOAD_CITY';
+
+export const LOAD_HOUSE_DATA = 'LOAD_HOUSE_DATA';
+export const LOAD_FLAT_DATA = 'LOAD_FLAT_DATA';
+
+export const loadData = (url, type) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get(url);
+            dispatch({
+                type: type,
+                payload: await res.data
+            })
+        } catch (e) {
+            alert("something went wrong : loadData :" + url)
+        }
+    }
+}
+
+export const loadFlatData = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/flat_data");
+            const data = await res.data;
+            debugger
+            dispatch({
+                type: LOAD_FLAT_DATA,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
 export const loadAllStreets = () => {
     return async dispatch => {
         try {
@@ -298,6 +336,7 @@ export const loadMaxHouseYears = () => {
         }
     }
 }
+
 export const loadMinHouseYears = () => {
     return async dispatch => {
         try {
@@ -523,7 +562,6 @@ export const loadMinSquareLiving = () => {
     }
 }
 
-
 export const loadMaxFlatFloor = () => {
     return async dispatch => {
         try {
@@ -538,7 +576,6 @@ export const loadMaxFlatFloor = () => {
         }
     }
 }
-
 
 export const getHouseByHouseNumAndStreetId = (house_num, streetId) => {
     return async dispatch => {
@@ -576,6 +613,72 @@ export const loadFlat = (id) => {
     }
 }
 
+export const loadHouseById = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/house/" + id);
+            const data = await res.data;
+            dispatch({
+                type: LOAD_HOUSE,
+                payload: data
+            })
+
+        } catch (e) {
+            alert("something went wrong : loadHouseById")
+        }
+    }
+}
+
+
+
+export const loadStreetById = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/street/" + id);
+            const data = await res.data;
+            dispatch({
+                type: LOAD_STREET,
+                payload: data
+            })
+
+        } catch (e) {
+            alert("something went wrong : loadStreetById")
+        }
+    }
+}
+
+export const loadAreaById = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/area/" + id);
+            const data = await res.data;
+            dispatch({
+                type: LOAD_AREA,
+                payload: data
+            })
+
+        } catch (e) {
+            alert("something went wrong : loadAreaById")
+        }
+    }
+}
+
+export const loadCityById = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/city/" + id);
+            const data = await res.data;
+            dispatch({
+                type: LOAD_CITY,
+                payload: data
+            })
+
+        } catch (e) {
+            alert("something went wrong : loadCityById")
+        }
+    }
+}
+
 export const loadAllFlats = () => {
     return async dispatch => {
         try {
@@ -590,6 +693,7 @@ export const loadAllFlats = () => {
         }
     }
 }
+
 export const loadAllFlatsTest = () => {
     return async dispatch => {
         try {

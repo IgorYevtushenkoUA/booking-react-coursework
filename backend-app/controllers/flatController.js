@@ -71,7 +71,60 @@ class FlatController {
             const role = await flatService.getById(req.params.id);
             return res.json(role);
         } catch (e) {
-            console.log("error controller")
+            res.status(500).json(e);
+        }
+    }
+
+    async getHouseById(req, res){
+        try {
+            const role = await flatService.getHouseById(req.params.id);
+            return res.json(role);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getHouseData(req, res){
+        try {
+            const houseData = await flatService.getHouseData(req.params.id);
+            return res.json(houseData);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatData(req, res){
+        try {
+            const flatData = await flatService.getFlatData();
+            return res.json(flatData);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getStreetById(req, res){
+        try {
+            const role = await flatService.getStreetById(req.params.id);
+            return res.json(role);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getAreaById(req, res){
+        try {
+            const role = await flatService.getAreaById(req.params.id);
+            return res.json(role);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getCityById(req, res){
+        try {
+            const role = await flatService.getCityById(req.params.id);
+            return res.json(role);
+        } catch (e) {
             res.status(500).json(e);
         }
     }

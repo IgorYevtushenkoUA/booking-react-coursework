@@ -72,7 +72,7 @@ class FlatService {
         squareAllFrom,
         squareLivingFrom,
         squareLivingTo) {
-        let sql = "select *\n"+
+        let sql = "select *\n" +
             "from flats f\n" +
             "         inner join houses h on f.houseId = h.id\n" +
             "         inner join house_has_infrastructures hhi on h.id = hhi.houseId\n" +
@@ -87,12 +87,12 @@ class FlatService {
             "  and f.flat_floor in (" + flatFloorsArr + ")\n" +
             "  and hnms.metroStationId in (" + metroStationsArr + ")\n" +
             "  and hhi.infrastructureId in (" + infrastructuresArr + ")\n" +
-            "  and f.price_month >= "+ priceFrom +"\n" +
-            "  and f.price_month <= "+ priceTo +"\n" +
-            "  and f.square_all <= "+ squareAllTo +"\n" +
-            "  and f.square_all >= "+ squareAllFrom +"\n" +
-            "  and f.square_living >= "+ squareLivingFrom +"\n" +
-            "  and f.square_living <= "+ squareLivingTo +"";
+            "  and f.price_month >= " + priceFrom + "\n" +
+            "  and f.price_month <= " + priceTo + "\n" +
+            "  and f.square_all <= " + squareAllTo + "\n" +
+            "  and f.square_all >= " + squareAllFrom + "\n" +
+            "  and f.square_living >= " + squareLivingFrom + "\n" +
+            "  and f.square_living <= " + squareLivingTo + "";
 
         console.log(sql);
         return await query(sql)
@@ -194,6 +194,75 @@ class FlatService {
             throw new Error('е указан ID')
         }
         return Flat.findByPk(id);
+    }
+
+    async getHouseById(id) {
+        if (!id) {
+            throw new Error('е указан ID')
+        }
+        return House.findByPk(id);
+    }
+
+    async getHouseData(id) {
+        if (!id) {
+            throw new Error('не указан ID')
+        }
+        let sql = 'select h.id, s.name as street, a.name as area, r.name as region, c.name as city\n' +
+            'from houses h\n' +
+            'inner join streets s on h.streetId = s.id\n' +
+            'inner join areas a on s.areaId = a.id\n' +
+            'inner join regions r on a.regionId = r.id\n' +
+            'inner join cities c on r.cityId = c.id\n' +
+            'where h.id = ' + id;
+        return await query(sql);
+    }
+
+    async getFlatData() {
+        let sql = 'select f.id                as flat_id,\n' +
+            '       f.flat_floor        as flat_floor,\n' +
+            '       f.square_all        as square_all,\n' +
+            '       f.square_living     as square_living,\n' +
+            '       f.price_month       as price_month,\n' +
+            '       f.rooms_num         as rooms_num,\n' +
+            '       f.balconies_num     as balconies_num,\n' +
+            '       f.short_description as short_description,\n' +
+            '       f.updatedAt         as updatedAt,\n' +
+            '       f.createdAt         as createdAt,\n' +
+            '       h.id                as house_id,\n' +
+            '       h.house_year        as house_year,\n' +
+            '       h.floors_num        as floors_num,\n' +
+            '       s.name              as street_name,\n' +
+            '       a.name              as area_name,\n' +
+            '       r.name              as region_name,\n' +
+            '       c.name              as city_name\n' +
+            'from flats f\n' +
+            '         inner join houses h on h.id = f.houseId\n' +
+            '         inner join streets s on h.streetId = s.id\n' +
+            '         inner join areas a on s.areaId = a.id\n' +
+            '         inner join regions r on a.regionId = r.id\n' +
+            '         inner join cities c on r.cityId = c.id\n';
+        return await query(sql);
+    }
+
+    async getStreetById(id) {
+        if (!id) {
+            throw new Error('е указан ID')
+        }
+        return Street.findByPk(id);
+    }
+
+    async getAreaById(id) {
+        if (!id) {
+            throw new Error('е указан ID')
+        }
+        return Area.findByPk(id);
+    }
+
+    async getCityById(id) {
+        if (!id) {
+            throw new Error('е указан ID')
+        }
+        return City.findByPk(id);
     }
 
     async deleteById(id) {

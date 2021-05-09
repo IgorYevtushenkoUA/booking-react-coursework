@@ -223,24 +223,6 @@ const Filter = () => {
         squareLivingFrom = squareLivingFrom === 0 ? minSquareLiving[0].min : squareLivingFrom;
         squareLivingTo = squareLivingTo === 0 ? maxSquareLiving[0].max : squareLivingTo;
 
-        console.log("-----------------------")
-        console.log(areasArr);
-        console.log(roomsArr);
-        console.log(houseYearsArr);
-        console.log(wallTypesArr);
-        console.log(heatingsArr);
-        console.log(flatFloorsArr);
-        console.log(metroStationsArr);
-        console.log(infrastructuresArr);
-        console.log(priceFrom);
-        console.log(priceTo);
-        console.log(squareAllTo);
-        console.log(squareAllFrom);
-        console.log(squareLivingFrom);
-        console.log(squareLivingTo);
-        console.log("-----------------------")
-        // dispatch(loadAllFlatsTest())
-        debugger
         dispatch(loadFlatsByFilter(
             areasArr,
             roomsArr,

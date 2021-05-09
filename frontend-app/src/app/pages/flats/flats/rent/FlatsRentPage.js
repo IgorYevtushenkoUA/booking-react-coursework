@@ -1,21 +1,28 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {usePreload} from "../../../../hooks/usePreload";
+import {usePreload, usePreloadPRO} from "../../../../hooks/usePreload";
 import {Col, Row} from "react-bootstrap";
 import Filter from "./filter/Filter";
 import FlatsList from "./list/FlatsList";
 import FlatGeolocation from "./geolocation/FlatGeolocation";
-import {loadAllFlats} from "../../../../store/additional/flat/flatActions";
+import {
+    LOAD_ALL_FLATS,
+    LOAD_FLAT_DATA,
+    loadAllFlats,
+    loadData,
+    loadFlatData
+} from "../../../../store/additional/flat/flatActions";
 
 const FlatsRentPage = () => {
 
-    usePreload(loadAllFlats);
+    // usePreload(loadAllFlats);
+    // usePreloadPRO(loadData, "api/flats", LOAD_ALL_FLATS);
+    // const flats = useSelector(store => store.flat.allFlats);
 
-    const dispatch = useDispatch();
-
-    const flats = useSelector(store => store.flat.allFlats);
-
-
+    // usePreloadPRO(loadData, "api/flats/flat_data", LOAD_FLAT_DATA);
+    usePreload(loadFlatData);
+    const flats = useSelector(store => store.flat.flatData);
+    console.log(flats)
 
     if (!flats) {
         return (

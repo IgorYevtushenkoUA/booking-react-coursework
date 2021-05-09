@@ -9,3 +9,12 @@ export const usePreload = (dispatchFunction) => {
         dispatch(dispatchFunction());
     }, []);
 }
+
+export const usePreloadPRO = (dispatchFunction, url, type) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("useEffectPRO")
+        dispatch(dispatchFunction(url,type));
+    }, []);
+}

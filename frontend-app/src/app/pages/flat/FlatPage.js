@@ -1,11 +1,12 @@
 import React from 'react';
 import {Button, Card, Col, Container, Image} from "react-bootstrap";
 import {RENT_FLATS_ROUTE} from "../../utils/consts";
-import {usePreload} from "../../hooks/usePreload";
+import {usePreload, usePreloadPRO} from "../../hooks/usePreload";
 import {loadFlat} from "../../store/additional/user/userActions";
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
+import {LOAD_HOUSE, loadData} from "../../store/additional/flat/flatActions";
 
 const FlatPage = () => {
 
@@ -15,6 +16,12 @@ const FlatPage = () => {
     // usePreload(loadFlat(id))
     const history = useHistory();
     const role = 1;
+
+    usePreloadPRO(loadData, "api/flats/house/1", LOAD_HOUSE);
+    let house = useSelector(store => store.flat.house);
+    console.log("house = ")
+    console.log(house)
+
 
     if (!flat) {
         return (

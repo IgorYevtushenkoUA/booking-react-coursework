@@ -17,12 +17,12 @@ import {
     LOAD_ALL_REGIONS,
     LOAD_ALL_RULES,
     LOAD_ALL_STREETS,
-    LOAD_ALL_WALL_TYPES,
-    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET,
+    LOAD_ALL_WALL_TYPES, LOAD_AREA, LOAD_CITY, LOAD_FLAT_DATA, LOAD_HOUSE,
+    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET, LOAD_HOUSE_DATA,
     LOAD_MAX_FLAT_FLOOR, LOAD_MAX_FLAT_ROOM, LOAD_MAX_HOUSE_FLOOR,
     LOAD_MAX_HOUSE_YEAR, LOAD_MAX_MONTH_PRICE, LOAD_MAX_SQUARE_ALL, LOAD_MAX_SQUARE_LIVING,
     LOAD_MIN_FLAT_FLOOR, LOAD_MIN_FLAT_ROOM, LOAD_MIN_HOUSE_FLOOR,
-    LOAD_MIN_HOUSE_YEAR, LOAD_MIN_MONTH_PRICE, LOAD_MIN_SQUARE_ALL, LOAD_MIN_SQUARE_LIVING
+    LOAD_MIN_HOUSE_YEAR, LOAD_MIN_MONTH_PRICE, LOAD_MIN_SQUARE_ALL, LOAD_MIN_SQUARE_LIVING, LOAD_STREET
 } from "./flatActions";
 import {LOAD_ALL_FLATS, LOAD_FLAT} from "../user/userActions";
 
@@ -42,7 +42,6 @@ const initState = {
     metroStations: [],
     bathroom: [],
     householdAppliance: [],
-    house: null,
 
     houseYears: [],
     houseYearMin: 0,
@@ -70,6 +69,13 @@ const initState = {
     minSquareLiving: 0,
     maxSquareLiving: 0,
 
+    house: null,
+    street: null,
+    area: null,
+    city: null,
+
+    houseData: null,
+    flatData: null,
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -152,6 +158,20 @@ export const flatReducer = (state = initState, action) => {
             return {...state, maxSquareLiving: action.payload}
         case LOAD_MIN_SQUARE_LIVING:
             return {...state, minSquareLiving: action.payload}
+
+        case LOAD_HOUSE:
+            return {...state, minSquareLiving: action.payload}
+        case LOAD_STREET:
+            return {...state, minSquareLiving: action.payload}
+        case LOAD_AREA:
+            return {...state, minSquareLiving: action.payload}
+        case LOAD_CITY:
+            return {...state, minSquareLiving: action.payload}
+        case LOAD_HOUSE_DATA:
+            return {...state, houseData: action.payload}
+        case LOAD_FLAT_DATA:
+            return {...state, flatData: action.payload}
+
 
 
         default:

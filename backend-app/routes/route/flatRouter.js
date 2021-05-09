@@ -40,8 +40,14 @@ router.get('/square_all_max', flatController.getMaxSquareAll);
 router.get('/square_all_min', flatController.getMinSquareAll);
 router.get('/square_living_max', flatController.getMaxSquareLiving);
 router.get('/square_living_min', flatController.getMinSquareLiving);
+router.get("/flat_data", flatController.getFlatData)
 
 router.get("/:id", flatController.getById);
+router.get("/house/:id", flatController.getHouseById);
+router.get("/street/:id", flatController.getStreetById);
+router.get("/area/:id", flatController.getAreaById);
+router.get("/city/:id", flatController.getCityById);
+router.get("/house_data/:id", flatController.getHouseData)
 
 router.delete("/:id", flatController.deleteById);
 
