@@ -3,39 +3,26 @@ import MultiSelectDropdown from "./multiSelectDropdown/MultiSelectDropdown";
 import {usePreload} from "../../../../../hooks/usePreload";
 import {
     loadAllAreas,
-    loadAllFlatFloors,
+    loadAllFlatFloors, loadAllFlatsTest,
     loadAllHeatings,
     loadAllHouseFloors,
     loadAllHouseYears,
     loadAllInfrastructures,
     loadAllMetroStations,
     loadAllRooms,
-    loadAllWallTypes, loadMaxFlatFloor,
+    loadAllWallTypes, loadFlatsByFilter, loadMaxFlatFloor,
     loadMaxFlatRoom,
     loadMaxHouseFloor,
-    loadMaxHouseYears, loadMinFlatFloor,
+    loadMaxHouseYears, loadMaxMonthPrice, loadMaxSquareAll, loadMaxSquareLiving, loadMinFlatFloor,
     loadMinFlatRoom, loadMinHouseFloor,
-    loadMinHouseYears
+    loadMinHouseYears, loadMinMonthPrice, loadMinSquareAll, loadMinSquareLiving
 } from "../../../../../store/additional/flat/flatActions";
 import {useDispatch, useSelector} from "react-redux";
 import CheckBoxCard from "../../../../../component/checkbox/CheckBoxCard";
-import {Container} from "react-bootstrap";
+import {Button, Container, FormControl} from "react-bootstrap";
+import TwoFields from "../../../../../component/twoFields/TwoFields";
 
 const Filter = () => {
-
-    /*
-    rooms                       MultiSelectDropdown
-    price [from | to]           -----------
-    house_year                  MultiSelectDropdown
-    walltype                    MultiSelectDropdown
-    house_floors                MultiSelectDropdown
-    heating type                MultiSelectDropdown
-    square_all [from | to]      ------------
-    square_living [from | to]   --------
-    flat_floor                  MultiSelectDropdown
-    infrastructure to 1 km      CHECKED
-    near metro station          MultiSelectDropdown
-     */
 
     usePreload(loadAllAreas)
     usePreload(loadAllRooms)
@@ -61,14 +48,19 @@ const Filter = () => {
     usePreload(loadAllInfrastructures)
     usePreload(loadAllMetroStations)
 
+    usePreload(loadMaxMonthPrice)
+    usePreload(loadMinMonthPrice)
+    usePreload(loadMaxSquareAll)
+    usePreload(loadMinSquareAll)
+    usePreload(loadMaxSquareLiving)
+    usePreload(loadMinSquareLiving)
+
     const dispatch = useDispatch();
 
     const buildObj = (min, max) => {
         console.log("min = '" + min + "' | max='" + max + "'")
         let obj = [];
-        debugger
         if (min !== 0 && max !== 0) {
-            debugger
             for (let i = min[0].min; i <= max[0].max; i++) {
                 obj.push({id: i, name: i.toString()})
             }
@@ -100,7 +92,14 @@ const Filter = () => {
 
         metroStations = useSelector(store => store.flat.metroStations),
 
-        infrastructures = useSelector(store => store.flat.infrastructures);
+        infrastructures = useSelector(store => store.flat.infrastructures),
+
+        minMonthPrice = useSelector(store => store.flat.minMonthPrice),
+        maxMonthPrice = useSelector(store => store.flat.maxMonthPrice),
+        minSquareAll = useSelector(store => store.flat.minSquareAll),
+        maxSquareAll = useSelector(store => store.flat.maxSquareAll),
+        minSquareLiving = useSelector(store => store.flat.minSquareLiving),
+        maxSquareLiving = useSelector(store => store.flat.maxSquareLiving);
 
     let areasArr = [],
         roomsArr = [],
@@ -184,9 +183,126 @@ const Filter = () => {
         }
     }
 
+    const changeInput = (type, value) => {
+        switch (type) {
+            case "priceFrom" : {
+                priceFrom = value;
+                break;
+            }
+            case "priceTo" : {
+                priceTo = value;
+                break;
+            }
+            case "squareAllFrom" : {
+                squareAllFrom = value;
+                break;
+            }
+            case "squareAllTo" : {
+                squareAllTo = value;
+                break;
+            }
+            case "squareLivingFrom" : {
+                squareLivingFrom = value;
+                break;
+            }
+            case "squareLivingTo" : {
+                squareLivingTo = value;
+                break;
+            }
+            default:
+                break;
+
+        }
+    }
+
+    const search = () => {
+        priceFrom = priceFrom === 0 ? minMonthPrice[0].min : priceFrom;
+        priceTo = priceTo === 0 ? maxMonthPrice[0].max : priceTo;
+        squareAllFrom = squareAllFrom === 0 ? minSquareAll[0].min : squareAllFrom;
+        squareAllTo = squareAllTo === 0 ? maxSquareAll[0].max : squareAllTo;
+        squareLivingFrom = squareLivingFrom === 0 ? minSquareLiving[0].min : squareLivingFrom;
+        squareLivingTo = squareLivingTo === 0 ? maxSquareLiving[0].max : squareLivingTo;
+
+        console.log("-----------------------")
+        console.log(areasArr);
+        console.log(roomsArr);
+        console.log(houseYearsArr);
+        console.log(wallTypesArr);
+        console.log(heatingsArr);
+        console.log(flatFloorsArr);
+        console.log(metroStationsArr);
+        console.log(infrastructuresArr);
+        console.log(priceFrom);
+        console.log(priceTo);
+        console.log(squareAllTo);
+        console.log(squareAllFrom);
+        console.log(squareLivingFrom);
+        console.log(squareLivingTo);
+        console.log("-----------------------")
+        // dispatch(loadAllFlatsTest())
+        debugger
+        dispatch(loadFlatsByFilter(
+            areasArr,
+            roomsArr,
+            houseYearsArr,
+            wallTypesArr,
+            heatingsArr,
+            flatFloorsArr,
+            metroStationsArr,
+            infrastructuresArr,
+            priceFrom,
+            priceTo,
+            squareAllTo,
+            squareAllFrom,
+            squareLivingFrom,
+            squareLivingTo
+        ));
+    }
 
     return (
         <div>
+
+            <FormControl
+                placeholder="priceFrom"
+                onChange={(e) => {
+                    changeInput("priceFrom", e.target.value)
+                }}
+            />
+
+            <FormControl
+                placeholder="priceTo"
+                onChange={(e) => {
+                    changeInput("priceTo", e.target.value)
+                }}
+            />
+            <FormControl
+                placeholder="squareAllFrom"
+                onChange={(e) => {
+                    changeInput("squareAllFrom", e.target.value)
+                }}
+            />
+            <FormControl
+                placeholder="squareAllTo"
+                onChange={(e) => {
+                    changeInput("squareAllTo", e.target.value)
+                }}
+            />
+
+            <FormControl
+                placeholder="squareLivingFrom"
+                onChange={(e) => {
+                    changeInput("squareLivingFrom", e.target.value)
+                }}
+            />
+
+            <FormControl
+                placeholder="squareLivingTo"
+                onChange={(e) => {
+                    changeInput("squareLivingTo", e.target.value)
+                }}
+            />
+
+
             <MultiSelectDropdown
                 type="areas"
                 setArray={setArray}
@@ -250,8 +366,9 @@ const Filter = () => {
                 changeData={changeData}
             />
 
-            <div>Поблизу станцій метро</div>
-
+            <Button
+                onClick={search}
+            >Пошук</Button>
         </div>
     );
 };

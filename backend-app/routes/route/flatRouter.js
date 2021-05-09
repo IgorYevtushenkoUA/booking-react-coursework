@@ -32,6 +32,14 @@ router.get('/floors_house_max', flatController.getMaxHouseFloor);
 router.get('/floors_flats', flatController.getFlatFloors);
 router.get('/floors_flats_min', flatController.getMinFlatFloor);
 router.get('/floors_flats_max', flatController.getMaxFlatFloor);
+router.get('/filter', flatController.loadFlatsByFilter);
+
+router.get('/month_price_max', flatController.getMaxMonthPrice);
+router.get('/month_price_min', flatController.getMinMonthPrice);
+router.get('/square_all_max', flatController.getMaxSquareAll);
+router.get('/square_all_min', flatController.getMinSquareAll);
+router.get('/square_living_max', flatController.getMaxSquareLiving);
+router.get('/square_living_min', flatController.getMinSquareLiving);
 
 router.get("/:id", flatController.getById);
 

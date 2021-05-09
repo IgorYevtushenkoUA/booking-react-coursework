@@ -11,7 +11,7 @@ const MultiSelectDropdown = (props) => {
 
     const handleChange = (event) => {
         state = event.target.value
-        props.setArray(state, props.type);
+        props.setArray(state.map(item =>item.id), props.type);
     }
 
     return (

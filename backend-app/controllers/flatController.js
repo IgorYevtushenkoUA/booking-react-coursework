@@ -13,6 +13,59 @@ class FlatController {
         }
     }
 
+    async loadFlatsByFilter(req, res) {
+        try {
+            console.log("loadFlatsByFilter")
+            let areasArr = !!req.query.areasArr ? req.query.areasArr : " select id from areas ",
+                roomsArr = !!req.query.roomsArr ? req.query.roomsArr : " select distinct(rooms_num) from flats ",
+                houseYearsArr = !!req.query.houseYearsArr ? req.query.houseYearsArr : " select distinct(house_year) from houses ",
+                wallTypesArr = !!req.query.wallTypesArr ? req.query.wallTypesArr : " select id from wall_types ",
+                heatingsArr = !!req.query.heatingsArr ? req.query.heatingsArr : " select id from heatings ",
+                flatFloorsArr = !!req.query.flatFloorsArr ? req.query.flatFloorsArr : " select distinct(flat_floor) from flats ",
+                metroStationsArr = !!req.query.metroStationsArr ? req.query.metroStationsArr : " select id from metro_stations ",
+                infrastructuresArr = !!req.query.infrastructuresArr ? req.query.infrastructuresArr : " select id from infrastructures ",
+                priceFrom = req.query.priceFrom,
+                priceTo = req.query.priceTo,
+                squareAllTo = req.query.squareAllTo,
+                squareAllFrom = req.query.squareAllFrom,
+                squareLivingFrom = req.query.squareLivingFrom,
+                squareLivingTo = req.query.squareLivingTo;
+            console.log(areasArr,)
+            console.log(roomsArr,)
+            console.log(houseYearsArr,)
+            console.log(wallTypesArr,)
+            console.log(heatingsArr,)
+            console.log(flatFloorsArr,)
+            console.log(metroStationsArr,)
+            console.log(infrastructuresArr)
+            console.log(priceFrom,)
+            console.log(priceTo,)
+            console.log(squareAllTo,)
+            console.log(squareAllFrom,)
+            console.log(squareLivingFrom,)
+            console.log(squareLivingTo)
+            const flats = await flatService.loadFlatsByFilter(
+                areasArr,
+                roomsArr,
+                houseYearsArr,
+                wallTypesArr,
+                heatingsArr,
+                flatFloorsArr,
+                metroStationsArr,
+                infrastructuresArr,
+                priceFrom,
+                priceTo,
+                squareAllTo,
+                squareAllFrom,
+                squareLivingFrom,
+                squareLivingTo
+            );
+            return res.json(flats);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
     async getById(req, res) {
         try {
             const role = await flatService.getById(req.params.id);
@@ -218,98 +271,146 @@ class FlatController {
         }
     }
 
-    async getHouseYears(req, res){
-        try{
+    async getHouseYears(req, res) {
+        try {
             return res.json(await flatService.getHouseYears())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMinHouseYear(req, res){
-        try{
+    async getMinHouseYear(req, res) {
+        try {
             return res.json(await flatService.getMinHouseYear())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMaxHouseYear(req, res){
-        try{
+    async getMaxHouseYear(req, res) {
+        try {
             return res.json(await flatService.getMaxHouseYear())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getHouseFloors(req, res){
-        try{
+    async getHouseFloors(req, res) {
+        try {
             return res.json(await flatService.getHouseFloors())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMinHouseFloor(req, res){
-        try{
+    async getMinHouseFloor(req, res) {
+        try {
             return res.json(await flatService.getMinHouseFloor())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMaxHouseFloor(req, res){
-        try{
+    async getMaxHouseFloor(req, res) {
+        try {
             return res.json(await flatService.getMaxHouseFloor())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getFlatRooms(req, res){
-        try{
+    async getFlatRooms(req, res) {
+        try {
             return res.json(await flatService.getFlatRooms())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMaxFlatRoom(req, res){
-        try{
+    async getMaxFlatRoom(req, res) {
+        try {
             return res.json(await flatService.getMaxFlatRoom())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMinFlatRoom(req, res){
-        try{
+    async getMinFlatRoom(req, res) {
+        try {
             return res.json(await flatService.getMinFlatRoom())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getFlatFloors(req, res){
-        try{
+    async getFlatFloors(req, res) {
+        try {
             return res.json(await flatService.getFlatFloors())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMinFlatFloor(req, res){
-        try{
+    async getMinFlatFloor(req, res) {
+        try {
             return res.json(await flatService.getMinFlatFloor())
-        }catch(e){
+        } catch (e) {
             res.status(500).json(e);
         }
     }
 
-    async getMaxFlatFloor(req, res){
-        try{
+    async getMaxFlatFloor(req, res) {
+        try {
             return res.json(await flatService.getMaxFlatFloor())
-        }catch(e){
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getMaxMonthPrice(req, res) {
+        try {
+            return res.json(await flatService.getMaxMonthPrice())
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getMinMonthPrice(req, res) {
+        try {
+            return res.json(await flatService.getMinMonthPrice())
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getMaxSquareAll(req, res) {
+        try {
+            return res.json(await flatService.getMaxSquareAll())
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getMinSquareAll(req, res) {
+        try {
+            return res.json(await flatService.getMinSquareAll())
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getMaxSquareLiving(req, res) {
+        try {
+            return res.json(await flatService.getMaxSquareLiving())
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getMinSquareLiving(req, res) {
+        try {
+            return res.json(await flatService.getMinSquareLiving())
+        } catch (e) {
             res.status(500).json(e);
         }
     }

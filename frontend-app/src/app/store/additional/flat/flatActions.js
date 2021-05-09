@@ -33,6 +33,15 @@ export const LOAD_ALL_FLAT_FLOORS = 'LOAD_ALL_FLAT_FLOORS';
 export const LOAD_MIN_FLAT_FLOOR = 'LOAD_MIN_FLAT_FLOOR';
 export const LOAD_MAX_FLAT_FLOOR = 'LOAD_MAX_FLAT_FLOOR';
 
+export const LOAD_ALL_FLATS = 'LOAD_ALL_FLATS';
+export const LOAD_FLAT = 'LOAD_FLAT';
+
+export const LOAD_MAX_MONTH_PRICE = 'LOAD_MAX_MONTH_PRICE';
+export const LOAD_MIN_MONTH_PRICE = 'LOAD_MIN_MONTH_PRICE';
+export const LOAD_MAX_SQUARE_ALL = 'LOAD_MAX_SQUARE_ALL';
+export const LOAD_MIN_SQUARE_ALL = 'LOAD_MIN_SQUARE_ALL';
+export const LOAD_MAX_SQUARE_LIVING = 'LOAD_MAX_SQUARE_LIVING';
+export const LOAD_MIN_SQUARE_LIVING = 'LOAD_MIN_SQUARE_LIVING';
 
 export const loadAllStreets = () => {
     return async dispatch => {
@@ -424,12 +433,102 @@ export const loadMinFlatFloor = () => {
     }
 }
 
+export const loadMaxMonthPrice = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/month_price_max");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MAX_MONTH_PRICE,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMinMonthPrice = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/month_price_min");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MIN_MONTH_PRICE,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMaxSquareAll = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/square_all_max");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MAX_SQUARE_ALL,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMinSquareAll = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/square_all_min");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MIN_SQUARE_ALL,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMaxSquareLiving = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/square_living_max");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MAX_SQUARE_LIVING,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadMinSquareLiving = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/square_living_min");
+            const data = await res.data;
+            dispatch({
+                type: LOAD_MIN_SQUARE_LIVING,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+
 export const loadMaxFlatFloor = () => {
     return async dispatch => {
         try {
             const res = await $host.get("api/flats/floors_flats_max");
             const data = await res.data;
-            debugger
             dispatch({
                 type: LOAD_MAX_FLAT_FLOOR,
                 payload: data
@@ -460,6 +559,99 @@ export const getHouseByHouseNumAndStreetId = (house_num, streetId) => {
         }
     }
 }
+
+export const loadFlat = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/" + id);
+            const data = await res.data;
+            dispatch({
+                type: LOAD_FLAT,
+                payload: data
+            })
+
+        } catch (e) {
+            alert("something went wrong : loadFlat")
+        }
+    }
+}
+
+export const loadAllFlats = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/")
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_FLATS,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : loadAllFlats")
+        }
+    }
+}
+export const loadAllFlatsTest = () => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/test")
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_FLATS,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : loadAllFlats")
+        }
+    }
+}
+
+export const loadFlatsByFilter = (
+    areasArr,
+    roomsArr,
+    houseYearsArr,
+    wallTypesArr,
+    heatingsArr,
+    flatFloorsArr,
+    metroStationsArr,
+    infrastructuresArr,
+    priceFrom,
+    priceTo,
+    squareAllTo,
+    squareAllFrom,
+    squareLivingFrom,
+    squareLivingTo
+) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/filter", {
+                params: {
+                    areasArr: areasArr,
+                    roomsArr: roomsArr,
+                    houseYearsArr: houseYearsArr,
+                    wallTypesArr: wallTypesArr,
+                    heatingsArr: heatingsArr,
+                    flatFloorsArr: flatFloorsArr,
+                    metroStationsArr: metroStationsArr,
+                    infrastructuresArr: infrastructuresArr,
+                    priceFrom: priceFrom,
+                    priceTo: priceTo,
+                    squareAllTo: squareAllTo,
+                    squareAllFrom: squareAllFrom,
+                    squareLivingFrom: squareLivingFrom,
+                    squareLivingTo: squareLivingTo
+                }
+            });
+            const data = await res.data;
+            dispatch({
+                type: LOAD_ALL_FLATS,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : loadAllFlatsByFilter")
+        }
+    }
+}
+
 
 export const createFlat = (
     house_num, house_year, floors_num, streetId, wallTypeId, heatingId, metroStationId,

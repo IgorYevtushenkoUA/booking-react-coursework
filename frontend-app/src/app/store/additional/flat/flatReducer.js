@@ -20,11 +20,11 @@ import {
     LOAD_ALL_WALL_TYPES,
     LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET,
     LOAD_MAX_FLAT_FLOOR, LOAD_MAX_FLAT_ROOM, LOAD_MAX_HOUSE_FLOOR,
-    LOAD_MAX_HOUSE_YEAR,
+    LOAD_MAX_HOUSE_YEAR, LOAD_MAX_MONTH_PRICE, LOAD_MAX_SQUARE_ALL, LOAD_MAX_SQUARE_LIVING,
     LOAD_MIN_FLAT_FLOOR, LOAD_MIN_FLAT_ROOM, LOAD_MIN_HOUSE_FLOOR,
-    LOAD_MIN_HOUSE_YEAR
+    LOAD_MIN_HOUSE_YEAR, LOAD_MIN_MONTH_PRICE, LOAD_MIN_SQUARE_ALL, LOAD_MIN_SQUARE_LIVING
 } from "./flatActions";
-import {LOAD_ALL_FLATS} from "../user/userActions";
+import {LOAD_ALL_FLATS, LOAD_FLAT} from "../user/userActions";
 
 const initState = {
     streets: [],
@@ -59,6 +59,16 @@ const initState = {
     flatRooms: [],
     flatRoomMax: 0,
     flatRoomMin: 0,
+
+    allFlats: [],
+    flat: null,
+
+    minMonthPrice: 0,
+    maxMonthPrice: 0,
+    minSquareAll: 0,
+    maxSquareAll: 0,
+    minSquareLiving: 0,
+    maxSquareLiving: 0,
 
 }
 
@@ -124,6 +134,26 @@ export const flatReducer = (state = initState, action) => {
             return {...state, flatFloorMin: action.payload}
         case LOAD_MAX_FLAT_FLOOR:
             return {...state, flatFloorMax: action.payload}
+
+        case LOAD_ALL_FLATS:
+            return {...state, allFlats: action.payload}
+        case LOAD_FLAT:
+            return {...state, flat: action.payload}
+
+        case LOAD_MAX_MONTH_PRICE:
+            return {...state, maxMonthPrice: action.payload}
+        case LOAD_MIN_MONTH_PRICE:
+            return {...state, minMonthPrice: action.payload}
+        case LOAD_MAX_SQUARE_ALL:
+            return {...state, maxSquareAll: action.payload}
+        case LOAD_MIN_SQUARE_ALL:
+            return {...state, minSquareAll: action.payload}
+        case LOAD_MAX_SQUARE_LIVING:
+            return {...state, maxSquareLiving: action.payload}
+        case LOAD_MIN_SQUARE_LIVING:
+            return {...state, minSquareLiving: action.payload}
+
+
         default:
             return state;
     }

@@ -1,11 +1,11 @@
 import React from 'react';
-import {useSelector} from "react-redux";
 import {Col, Row} from "react-bootstrap";
 import FlatItem from "./item/FlatItem";
 
-const FlatsList = () => {
+const FlatsList = (props) => {
 
-    const flats = useSelector(store => store.user.allFlats);
+    // const flats = useSelector(store => store.flat.allFlats);
+    const flats = props.flats;
 
     console.log("flats")
     console.log(flats)

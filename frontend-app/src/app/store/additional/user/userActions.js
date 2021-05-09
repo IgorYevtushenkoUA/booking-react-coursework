@@ -1,4 +1,4 @@
-import axios, {$host} from "../../../axios/axios";
+import {$host} from "../../../axios/axios";
 
 export const REGISTER_ACCOUNT = 'REGISTER_ACCOUNT';
 export const REGISTER_OWNER = 'REGISTER_OWNER';
@@ -77,37 +77,6 @@ export const login = (email, password) => {
 export const sighOut = () => {
     localStorage.removeItem("token")
     return {type: SIGN_OUT, payload: null};
-}
-
-export const loadAllFlats = () => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/")
-            const data = await res.data;
-            dispatch({
-                type: LOAD_ALL_FLATS,
-                payload: data
-            })
-        } catch (e) {
-            alert("Something went wrong : loadAllFlats")
-        }
-    }
-}
-
-export const loadFlat = (id) => {
-    return async dispatch => {
-        try {
-            const res = await $host.get("api/flats/" + id);
-            const data = await res.data;
-            dispatch({
-                type: LOAD_FLAT,
-                payload: data
-            })
-
-        } catch (e) {
-            alert("something went wrong : loadFlat")
-        }
-    }
 }
 
 export const addHouse = () => {

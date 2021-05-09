@@ -3,7 +3,7 @@ import {Card} from "react-bootstrap";
 import {RENT_FLATS_ROUTE} from "../../../../../../utils/consts";
 import {useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {loadFlat} from "../../../../../../store/additional/user/userActions";
+import {loadFlat} from "../../../../../../store/additional/flat/flatActions";
 
 const FlatItem = ({flat}) => {
 

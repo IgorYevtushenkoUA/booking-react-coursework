@@ -11,7 +11,7 @@ const FlatPage = () => {
 
     const id = useParams().id;
     const user = useSelector(store => store.user);
-    const flat = useSelector(store => store.user.flat);
+    const flat = useSelector(store => store.flat.flat);
     // usePreload(loadFlat(id))
     const history = useHistory();
     const role = 1;

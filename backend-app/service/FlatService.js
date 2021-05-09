@@ -51,63 +51,141 @@ class FlatService {
         return flats;
     }
 
-    async getHouseYears(){
+    async loadAllFlatTest() {
+        let sql = "select * from flats where rooms_num > 1";
+        return await query(sql);
+    }
+
+//todo
+    async loadFlatsByFilter(
+        areasArr,
+        roomsArr,
+        houseYearsArr,
+        wallTypesArr,
+        heatingsArr,
+        flatFloorsArr,
+        metroStationsArr,
+        infrastructuresArr,
+        priceFrom,
+        priceTo,
+        squareAllTo,
+        squareAllFrom,
+        squareLivingFrom,
+        squareLivingTo) {
+        let sql = "select *\n"+
+            "from flats f\n" +
+            "         inner join houses h on f.houseId = h.id\n" +
+            "         inner join house_has_infrastructures hhi on h.id = hhi.houseId\n" +
+            "         inner join house_near_metro_stations hnms on h.id = hnms.houseId\n" +
+            "         inner join streets s on h.streetId = s.id\n" +
+            "         inner join areas a on s.areaId = a.id\n" +
+            "where a.id in (" + areasArr + ")\n" +
+            "  and f.rooms_num in (" + roomsArr + ")\n" +
+            "  and h.house_year in (" + houseYearsArr + ")\n" +
+            "  and h.heatingId in (" + heatingsArr + ")\n" +
+            "  and h.wallTypeId in (" + wallTypesArr + ")\n" +
+            "  and f.flat_floor in (" + flatFloorsArr + ")\n" +
+            "  and hnms.metroStationId in (" + metroStationsArr + ")\n" +
+            "  and hhi.infrastructureId in (" + infrastructuresArr + ")\n" +
+            "  and f.price_month >= "+ priceFrom +"\n" +
+            "  and f.price_month <= "+ priceTo +"\n" +
+            "  and f.square_all <= "+ squareAllTo +"\n" +
+            "  and f.square_all >= "+ squareAllFrom +"\n" +
+            "  and f.square_living >= "+ squareLivingFrom +"\n" +
+            "  and f.square_living <= "+ squareLivingTo +"";
+
+        console.log(sql);
+        return await query(sql)
+    }
+
+    async getHouseYears() {
         let sql = 'select distinct(house_year) as value from houses'
         return await query(sql);
     }
 
-    async getMinHouseYear(){
+    async getMinHouseYear() {
         let sql = 'select min(house_year) as min from houses'
         return await query(sql);
     }
-    async getMaxHouseYear(){
+
+    async getMaxHouseYear() {
         let sql = 'select max(house_year) as max from houses'
         return await query(sql);
     }
 
-    async getFlatRooms(){
+    async getFlatRooms() {
         // const query = promisify(connection.query).bind(connection);
         let sql = 'select distinct(rooms_num) as value from flats'
         return await query(sql);
     }
 
-    async getMaxFlatRoom(){
+    async getMaxFlatRoom() {
         let sql = 'select max(rooms_num) as max from flats'
         return await query(sql);
     }
 
-    async getMinFlatRoom(){
+    async getMinFlatRoom() {
         let sql = 'select min(rooms_num) as min from flats'
         return await query(sql);
     }
 
-    async getHouseFloors(){
+    async getHouseFloors() {
         let sql = 'select distinct(floors_num) as value from houses'
         return await query(sql);
     }
 
-    async getMinHouseFloor(){
+    async getMinHouseFloor() {
         let sql = 'select min(floors_num) as min from houses'
         return await query(sql);
     }
 
-    async getMaxHouseFloor(){
+    async getMaxHouseFloor() {
         let sql = 'select max(floors_num) as max from houses'
         return await query(sql);
     }
 
-    async getFlatFloors(){
+    async getFlatFloors() {
         let sql = 'select distinct(flat_floor) as value from flats'
         return await query(sql);
     }
 
-    async getMinFlatFloor(){
+    async getMinFlatFloor() {
         let sql = 'select min(flat_floor) as min from flats'
         return await query(sql);
     }
 
-    async getMaxFlatFloor(){
+    async getMaxFlatFloor() {
         let sql = 'select max(flat_floor) as max from flats'
+        return await query(sql);
+    }
+
+    async getMaxMonthPrice() {
+        let sql = 'select max(price_month) as max from flats'
+        return await query(sql);
+    }
+
+    async getMinMonthPrice() {
+        let sql = 'select min(price_month) as min from flats'
+        return await query(sql);
+    }
+
+    async getMaxSquareAll() {
+        let sql = 'select max(square_all) as max from flats'
+        return await query(sql);
+    }
+
+    async getMinSquareAll() {
+        let sql = 'select min(square_all) as min from flats'
+        return await query(sql);
+    }
+
+    async getMaxSquareLiving() {
+        let sql = 'select max(square_living) as max from flats'
+        return await query(sql);
+    }
+
+    async getMinSquareLiving() {
+        let sql = 'select min(square_living) as min from flats'
         return await query(sql);
     }
 
