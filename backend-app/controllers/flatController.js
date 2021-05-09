@@ -84,10 +84,20 @@ class FlatController {
         }
     }
 
+
     async getHouseData(req, res){
         try {
             const houseData = await flatService.getHouseData(req.params.id);
             return res.json(houseData);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatComfort(req, res){
+        try {
+            const flatHasComfort = await flatService.getFlatComfort(req.params.id);
+            return res.json(flatHasComfort);
         } catch (e) {
             res.status(500).json(e);
         }
@@ -479,7 +489,6 @@ class FlatController {
                 heatingId: req.body.heatingId
             };
             console.log(house);
-            debugger
             const createdHouse = await flatService.createHouse(house);
             return res.json(createdHouse);
         } catch (e) {
@@ -490,10 +499,26 @@ class FlatController {
     async createHouseHasInfrastructure(req, res) {
         try {
             const houseInfrastructure = {
-                house_num: req.body.house_num,
-                streetId: req.body.streetId
+                houseId: req.body.houseId,
+                infrastructureId: req.body.infrastructureId
             };
             const house = await flatService.createHouseHasInfrastructure(houseInfrastructure);
+            return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+    async createHouseNearMetroStation(req, res) {
+        try {
+            const houseNearMetroStation = {
+                distance: 1,
+                houseId: req.body.houseId,
+                metroStationId: req.body.metroStationId
+            };
+            console.log("req.body.houseId: "+req.body.houseId)
+            console.log("req.body.metroStationId: "+req.body.metroStationId)
+            console.log("createHouseNearMetroStation : Constructor")
+            const house = await flatService.createHouseNearMetroStation(houseNearMetroStation);
             return res.json(house);
         } catch (e) {
             res.status(500).json(e);
@@ -564,6 +589,20 @@ class FlatController {
             res.status(500).json(e);
         }
     }
+
+    async createImage(req, res) {
+        try {
+            const flatImage = {
+                name: req.body.name,
+            };
+            const image = await flatService.createImage(flatImage);
+            return res.json(image);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+
 
 }
 

@@ -24,7 +24,7 @@ const {
     FlatHasPeopleType,
     Rule,
     FlatHasRule,
-    FlatImage,
+    Image,
     FlatHasImage
 } = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
@@ -217,6 +217,31 @@ class FlatService {
         return await query(sql);
     }
 
+    async getFlatComfort(id) {
+        if (!id) {
+            throw new Error('не указан ID')
+        }
+        let sql = 'select f.id                as flat_id,\n' +
+            '       f.flat_floor        as flat_floor,\n' +
+            '       f.square_all        as square_all,\n' +
+            '       f.square_living     as square_living,\n' +
+            '       f.price_month       as price_month,\n' +
+            '       f.rooms_num         as rooms_num,\n' +
+            '       f.balconies_num     as balconies_num,\n' +
+            '       f.short_description as short_description,\n' +
+            '       f.updatedAt         as updatedAt,\n' +
+            '       f.createdAt         as createdAt,\n' +
+            '       c.id                as comfort_id,\n' +
+            '       c.name              as comfort_name\n' +
+            'from flats f\n' +
+            '         inner join flat_has_comforts fhc on f.id = fhc.flatId\n' +
+            '         inner join comforts c on fhc.comfortId = c.id\n' +
+            'where f.id = ' + id;
+        console.log(sql)
+
+        return await query(sql);
+    }
+
     async getFlatData() {
         let sql = 'select f.id                as flat_id,\n' +
             '       f.flat_floor        as flat_floor,\n' +
@@ -370,6 +395,11 @@ class FlatService {
         return await HouseHasInfrastructure.create({...houseInfrastructure});
     }
 
+    async createHouseNearMetroStation(houseNearMetroStation) {
+        console.log("createHouseNearMetroStation : service")
+        return await HouseNearMetroStation.create({...houseNearMetroStation});
+    }
+
     async createFlatHasComfort(flatComfort) {
         return await FlatHasComfort.create({...flatComfort});
     }
@@ -389,6 +419,11 @@ class FlatService {
     async createFlatHasImage(flatImage) {
         return await FlatHasImage.create({...flatImage});
     }
+
+    async createImage(flatImage) {
+        return await Image.create({...flatImage});
+    }
+
 }
 
 module.exports = new FlatService();

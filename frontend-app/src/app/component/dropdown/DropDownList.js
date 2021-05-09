@@ -12,7 +12,6 @@ const DropDownList = (props) => {
         props.setData(id, props.type);
         setMenuName(name);
         console.log("setData click")
-        debugger
     }
 
     return (

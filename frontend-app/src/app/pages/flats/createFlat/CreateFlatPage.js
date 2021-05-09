@@ -161,20 +161,17 @@ const CreateFlatPage = () => {
         }
         console.log("houseNum : " + houseNum)
     }
-
-    const house = useSelector(store => store.flat.house);
-
     // todo add household
     const handlerClick = async () => {
         try {
-            const house_num_test = 37;
+            const house_num_test = 33;
             const house_year_test = 1;
             const floors_num_test = 1;
             const streetId_test = 7;
             const wallTypeId_test = 1;
             const heatingId_test = 1;
             const metroStationId_test = 1;
-            const images_test = [];
+            const images_test = [1,2,3];
             const comforts_test = [1];
             const infrastructures_test = [];
             const peopleType_test = [];
@@ -192,14 +189,31 @@ const CreateFlatPage = () => {
             const bathroomTypeId_test = 1;
 
             dispatch(createFlat(
-                house_num_test, house_year_test, floors_num_test, streetId_test, wallTypeId_test, heatingId_test, metroStationId_test,
-                images_test, comforts_test, infrastructures_test, peopleType_test, multimedias_test, rules_test,
-                flat_floor_test, square_all_test, square_living_test, price_month_test, rooms_num_test, balconies_num_test, short_description_test, main_description_test,
-                pledge_test, bathroomTypeId_test
+                house_num_test,
+                house_year_test,
+                floors_num_test,
+                streetId_test,
+                wallTypeId_test,
+                heatingId_test,
+                metroStationId_test,
+                images_test,
+                comforts_test,
+                infrastructures_test,
+                peopleType_test,
+                multimedias_test,
+                rules_test,
+                householdAppliances,
+                flat_floor_test,
+                square_all_test,
+                square_living_test,
+                price_month_test,
+                rooms_num_test,
+                balconies_num_test,
+                short_description_test,
+                main_description_test,
+                pledge_test,
+                bathroomTypeId_test
             ))
-
-            // dispatch(getHouseByHouseNumAndStreetId(37,27));
-
         } catch (e) {
             alert("e.response.data.message : handlerClick")
         }

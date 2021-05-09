@@ -6,22 +6,23 @@ import {loadFlat} from "../../store/additional/user/userActions";
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import {LOAD_HOUSE, loadData} from "../../store/additional/flat/flatActions";
+import {LOAD_FLAT_HAS_COMFORT, LOAD_HOUSE, loadData, loadFlatHasComfort} from "../../store/additional/flat/flatActions";
 
 const FlatPage = () => {
 
     const id = useParams().id;
-    const user = useSelector(store => store.user);
+    usePreloadPRO(loadData, `api/flats/flat_comfort/${id}`, LOAD_FLAT_HAS_COMFORT);
+    let flatHasComfort = useSelector(store => store.flat.flatHasComfort);
+    console.log("flatHasComfort")
+    console.log(flatHasComfort)
+
     const flat = useSelector(store => store.flat.flat);
-    // usePreload(loadFlat(id))
     const history = useHistory();
-    const role = 1;
 
-    usePreloadPRO(loadData, "api/flats/house/1", LOAD_HOUSE);
-    let house = useSelector(store => store.flat.house);
-    console.log("house = ")
-    console.log(house)
+    console.log(id);
 
+
+    let role = 2;
 
     if (!flat) {
         return (
@@ -36,7 +37,8 @@ const FlatPage = () => {
 
                             <div className="imagesBlock">
                                 <Image style={{maxWidth: '100%'}}
-                                       src='https://www.apartments.com/images/default-source/2020-blogimages/apartments493227be-286f-4141-aceb-d874f43b13cd.tmb-featuredim.jpg?sfvrsn=42e4b1d3_1'/>
+                                       // src='https://www.apartments.com/images/default-source/2020-blogimages/apartments493227be-286f-4141-aceb-d874f43b13cd.tmb-featuredim.jpg?sfvrsn=42e4b1d3_1'
+                                       src='http://localhost:3000/909ee545-559a-454d-a3f1-f1c3c2af7a5e'/>
                             </div>
                         </Col>
                         <div className="infoBlock">

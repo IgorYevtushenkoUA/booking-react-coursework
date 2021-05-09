@@ -51,6 +51,10 @@ export const LOAD_CITY = 'LOAD_CITY';
 export const LOAD_HOUSE_DATA = 'LOAD_HOUSE_DATA';
 export const LOAD_FLAT_DATA = 'LOAD_FLAT_DATA';
 
+export const LOAD_FLAT_HAS_COMFORT = 'LOAD_FLAT_HAS_COMFORT';
+
+export const CREATE_IMAGE = 'CREATE_IMAGE';
+
 export const loadData = (url, type) => {
     return async dispatch => {
         try {
@@ -70,9 +74,38 @@ export const loadFlatData = () => {
         try {
             const res = await $host.get("api/flats/flat_data");
             const data = await res.data;
-            debugger
             dispatch({
                 type: LOAD_FLAT_DATA,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadFlatHasComfort = (id) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get("api/flats/flat_comfort/" + id);
+            const data = await res.data;
+            dispatch({
+                type: LOAD_FLAT_HAS_COMFORT,
+                payload: data
+            })
+        } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const createImage = (image) => {
+    return async dispatch => {
+        try {
+            const res = await $host.post("api/flats/image", {image});
+            const data = await res.data;
+            dispatch({
+                type: CREATE_IMAGE,
                 payload: data
             })
         } catch (e) {
@@ -630,7 +663,6 @@ export const loadHouseById = (id) => {
 }
 
 
-
 export const loadStreetById = (id) => {
     return async dispatch => {
         try {
@@ -759,7 +791,7 @@ export const loadFlatsByFilter = (
 
 export const createFlat = (
     house_num, house_year, floors_num, streetId, wallTypeId, heatingId, metroStationId,
-    images, comforts, infrastructures, peopleType, multimedias, rules,
+    images, comforts, infrastructures, peopleType, multimedias, rules, householdAppliances,
     flat_floor, square_all, square_living, price_month, rooms_num, balconies_num, short_description, main_description,
     pledge, bathroomTypeId) => {
     return async dispatch => {
@@ -775,56 +807,84 @@ export const createFlat = (
                     }
             });
             let house = await res.data;
+            debugger
             if (house == '') {
-                // create house
-                console.log("create new house")
+                debugger
                 const newRes = await $host.post("api/flats/house", {
                     house_num, house_year, floors_num, streetId, wallTypeId, heatingId
                 })
-                house = await newRes.data[0];
-                // add infrastructures
+                debugger
+                house = await newRes.data;
+                console.log(house.id);
+                debugger
+                await $host.post("api/flats/house_near_metro_station", {
+                    houseId: house.id,
+                    metroStationId: metroStationId
+                })
+                debugger
                 for (let i = 0; i < infrastructures.length; i++) {
-                    // house add infrastructures
+                    await $host.post("api/flats/house_has_infrastructure", {
+                        houseId: house.id,
+                        infrastructureId: infrastructures[i]
+                    })
                 }
 
-                // todo add metro stations
-
             }
-            // todo add flat-images
-            // todo add house-infastructure // зробити перевірки чи така інфаструктура вже не додана
             console.log("create flat")
+            console.log(!house.id);
+            const houseId = !house.id ? house[0].id : house.id;
+            debugger
             const resFlat = await $host.post("api/flats/flat",
                 {
                     flat_floor, square_all, square_living, price_month, rooms_num, balconies_num,
-                    short_description, main_description, pledge, houseId: house.id, bathroomTypeId
+                    short_description, main_description, pledge, houseId, bathroomTypeId
                 }
             );
+            debugger
             const flat = await resFlat.data;
-            for (let i = 0; i < comforts; i++) {
-                // add comforts
-                await $host.post("api/flats/flat_comfort", {flatId: flat.id, comfortId: comforts[i]})
+            for (let i = 0; i < comforts.length; i++) {
+                await $host.post("api/flats/flat_has_comfort", {
+                    flatId: flat.id,
+                    comfortId: comforts[i]
+                })
             }
-            for (let i = 0; i < peopleType; i++) {
-                // add peopleType
-                await $host.post("api/flats/flat_peopleType", {
+            for (let i = 0; i < peopleType.length; i++) {
+                await $host.post("api/flats/flat_has_people_type", {
                     flatId: flat.id,
                     peopleTypeId: peopleType[i]
                 })
             }
-            for (let i = 0; i < multimedias; i++) {
-                // add multimedias
-                await $host.post("api/flats/flat_multimedia", {
+            for (let i = 0; i < multimedias.length; i++) {
+                await $host.post("api/flats/flat_has_multimedia", {
                     flatId: flat.id,
                     multimediaId: multimedias[i]
                 })
             }
-            for (let i = 0; i < rules; i++) {
-                // add rules
-                await $host.post("api/flats/flat_rule", {flatId: flat.id, ruleId: rules[i]})
+            for (let i = 0; i < rules.length; i++) {
+                await $host.post("api/flats/flat_has_rule", {
+                    flatId: flat.id,
+                    ruleId: rules[i]
+                })
             }
-            for (let i = 0; i < images; i++) {
-                // add images
-                await $host.post("api/flats/flat_images", {flatId: flat.id, imageId: images[i]})
+
+            // todo create image
+            let imagesId = []
+            debugger
+            for (let i = 0; i < images.length; i++) {
+                debugger
+                let img = await $host.post("api/flats/image", {
+                    name: images[i]
+                })
+                debugger
+                imagesId.push(await img.data.id)
+                debugger
+            }
+
+            for (let i = 0; i < images.length; i++) {
+                await $host.post("api/flats/flat_has_image", {
+                    flatId: flat.id,
+                    imageId: imagesId[i]
+                })
             }
         } catch (e) {
             alert("something went wrong : createFlat")

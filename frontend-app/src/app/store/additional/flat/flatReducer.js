@@ -17,7 +17,7 @@ import {
     LOAD_ALL_REGIONS,
     LOAD_ALL_RULES,
     LOAD_ALL_STREETS,
-    LOAD_ALL_WALL_TYPES, LOAD_AREA, LOAD_CITY, LOAD_FLAT_DATA, LOAD_HOUSE,
+    LOAD_ALL_WALL_TYPES, LOAD_AREA, LOAD_CITY, LOAD_FLAT_DATA, LOAD_FLAT_HAS_COMFORT, LOAD_HOUSE,
     LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET, LOAD_HOUSE_DATA,
     LOAD_MAX_FLAT_FLOOR, LOAD_MAX_FLAT_ROOM, LOAD_MAX_HOUSE_FLOOR,
     LOAD_MAX_HOUSE_YEAR, LOAD_MAX_MONTH_PRICE, LOAD_MAX_SQUARE_ALL, LOAD_MAX_SQUARE_LIVING,
@@ -76,6 +76,8 @@ const initState = {
 
     houseData: null,
     flatData: null,
+
+    flatHasComfort: [],
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -171,7 +173,8 @@ export const flatReducer = (state = initState, action) => {
             return {...state, houseData: action.payload}
         case LOAD_FLAT_DATA:
             return {...state, flatData: action.payload}
-
+        case LOAD_FLAT_HAS_COMFORT:
+            return {...state, flatHasComfort: action.payload}
 
 
         default:

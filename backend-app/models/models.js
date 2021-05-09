@@ -125,9 +125,9 @@ const Rule = sequelize.define('rules', {
 const FlatHasRule = sequelize.define('flat_has_rules', {})
 
 // change type for image
-const FlatImage = sequelize.define('flat_images', {
+const Image = sequelize.define('images', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    image: {type: DataTypes.STRING, allowNull: false}
+    name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const FlatHasImage = sequelize.define('flat_has_images', {})
@@ -233,8 +233,8 @@ Flat.belongsToMany(Rule, {through: FlatHasRule});
 Rule.belongsToMany(Flat, {through: FlatHasRule});
 
 // flat -> {flat_has_images} <- images
-Flat.belongsToMany(FlatImage, {through: FlatHasImage});
-FlatImage.belongsToMany(Flat, {through: FlatHasImage});
+Flat.belongsToMany(Image, {through: FlatHasImage});
+Image.belongsToMany(Flat, {through: FlatHasImage});
 
 // owner - flat
 Account.belongsToMany(Flat, {through: OwnerHasFlat});
@@ -282,7 +282,7 @@ module.exports = {
     FlatHasPeopleType,
     Rule,
     FlatHasRule,
-    FlatImage,
+    Image,
     FlatHasImage,
     Role,
     Account,

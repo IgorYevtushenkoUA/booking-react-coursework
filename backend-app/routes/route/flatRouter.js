@@ -42,25 +42,29 @@ router.get('/square_living_max', flatController.getMaxSquareLiving);
 router.get('/square_living_min', flatController.getMinSquareLiving);
 router.get("/flat_data", flatController.getFlatData)
 
+
+router.post('/image', flatController.createImage);
+router.post('/house', flatController.createHouse);
+router.post('/house_has_infrastructure', flatController.createHouseHasInfrastructure);
+router.post('/house_near_metro_station', flatController.createHouseNearMetroStation);
+router.post('/flat', flatController.createFlat);
+router.post('/flat_has_comfort', flatController.createFlatHasComfort);
+router.post('/flat_has_people_type', flatController.createFlatHasPeopleType);
+router.post('/flat_has_multimedia', flatController.createFlatHasMultimedia);
+router.post('/flat_has_rule', flatController.createFlatHasRule);
+router.post('/flat_has_image', flatController.createFlatHasImage);
+
+
 router.get("/:id", flatController.getById);
 router.get("/house/:id", flatController.getHouseById);
 router.get("/street/:id", flatController.getStreetById);
 router.get("/area/:id", flatController.getAreaById);
 router.get("/city/:id", flatController.getCityById);
 router.get("/house_data/:id", flatController.getHouseData)
+router.get("/flat_comfort/:id", flatController.getFlatComfort)
+// router.get("/flat_images/:id", flatController.getFlatImages)
 
 router.delete("/:id", flatController.deleteById);
-
-router.post('/house', flatController.createHouse);
-router.post('/house_infrastructure', flatController.createHouseHasInfrastructure);
-router.post('/flat', flatController.createFlat);
-router.post('/flat_comfort', flatController.createFlatHasComfort);
-router.post('/flat_peopleType', flatController.createFlatHasPeopleType);
-router.post('/flat_multimedia', flatController.createFlatHasMultimedia);
-router.post('/flat_rule', flatController.createFlatHasRule);
-router.post('/flat_images', flatController.createFlatHasImage);
-
-
 // router.get("/update-flat/:id")           // get flat to edit by id
 // router.post("/update-flat/:id")     // post-update flat by id
 // router.delete("/update-flat/:id")   // delete flat by id
