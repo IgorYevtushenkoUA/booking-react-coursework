@@ -2,34 +2,28 @@ import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {createImage} from "../../../store/additional/flat/flatActions";
 
-const LoadImageCard = () => {
+const LoadImageCard = (props) => {
     const [selectedFiles, setSelectedFiles] = useState([]);
 
     const dispatch = useDispatch();
 
     const handleImageChange = (e) => {
-
-        console.log(e.target.files)
-        console.log(e)
-        debugger
-        if (e.target.files) {
-            const filesArray = Array.from(e.target.files).map((file) =>
-                URL.createObjectURL(file)
-            );
-
-            for(let i = 0 ; i < filesArray.length; i++){
-                dispatch(createImage(filesArray[i]));
-            }
-
-            console.log("filesArray: ", filesArray);
-            debugger
-            setSelectedFiles((prevImages) => prevImages.concat(filesArray));
-
-            Array.from(e.target.files).map(
-                (file) => URL.revokeObjectURL(file)
-            );
-            debugger
-        }
+        props.setImages(e.target.files);
+        // if (e.target.files) {
+        //     const filesArray = Array.from(e.target.files).map((file) =>
+        //         URL.createObjectURL(file)
+        //     );
+        //
+        //
+        //     console.log("filesArray: ", filesArray);
+        //     debugger
+        //     setSelectedFiles((prevImages) => prevImages.concat(filesArray));
+        //
+        //     Array.from(e.target.files).map(
+        //         (file) => URL.revokeObjectURL(file)
+        //     );
+        //     debugger
+        // }
     };
 
     const styleImage = {
@@ -48,7 +42,7 @@ const LoadImageCard = () => {
         <div className="app">
             <div className="heading">React Multiple Images Preview</div>
             <div>
-                <input type="file" id="file" multiple onChange={handleImageChange} />
+                <input type="file" id="file" multiple onChange={handleImageChange}/>
                 <div className="label-holder">
                     <label htmlFor="file" className="label">
                         <i className="material-icons">add_a_photo</i>

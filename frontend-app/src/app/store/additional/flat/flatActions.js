@@ -1,4 +1,5 @@
 import {$host} from "../../../axios/axios";
+import firebase from "firebase";
 
 export const LOAD_ALL_STREETS = 'LOAD_ALL_STREETS';
 export const LOAD_ALL_AREAS = 'LOAD_ALL_AREAS';
@@ -867,25 +868,35 @@ export const createFlat = (
                 })
             }
 
-            // todo create image
-            let imagesId = []
             debugger
+            console.log("before")
             for (let i = 0; i < images.length; i++) {
-                debugger
-                let img = await $host.post("api/flats/image", {
-                    name: images[i]
-                })
-                debugger
-                imagesId.push(await img.data.id)
-                debugger
+                console.log("saving")
+                let storageRef = firebase.storage().ref(`images/${flat.id}/${images[i].name}`)
+                let uploadTask = storageRef.put(images[i]);
+                uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+                    () => {
+                        let downloadURL = uploadTask.snapshot.downloadURL
+                    })
             }
+            console.log("after")
+            debugger
 
+            let imagesId = []
             for (let i = 0; i < images.length; i++) {
+                let img = await $host.post("api/flats/image", {
+                    name: images[i].name
+                })
+                imagesId.push(await img.data.id)
+            }
+            debugger
+            for (let i = 0; i < imagesId.length; i++) {
                 await $host.post("api/flats/flat_has_image", {
                     flatId: flat.id,
                     imageId: imagesId[i]
                 })
             }
+            debugger
         } catch (e) {
             alert("something went wrong : createFlat")
         }

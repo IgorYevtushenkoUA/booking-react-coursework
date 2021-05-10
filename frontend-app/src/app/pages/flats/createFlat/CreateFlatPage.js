@@ -45,7 +45,14 @@ const CreateFlatPage = () => {
         priceMonth = 0,
         pledge = 0,
         balconiesNum = 0,
-        bathroomTypeId = 0;
+        bathroomTypeId = 0,
+        comfortsArr = [],
+        infrastructuresArr = [],
+        peopleTypesArr = [],
+        multimediasArr = [],
+        rulesArr = [],
+        householdApplianceArr = [],
+        imagesArr = [];
 
     const [drag, setDrag] = useState(false);
 
@@ -63,31 +70,7 @@ const CreateFlatPage = () => {
     const rules = useSelector(store => store.flat.rules);
     const householdAppliances = useSelector(store => store.flat.householdAppliance);
 
-    let comfortsArr = [];
-    let infrastructuresArr = [];
-    let peopleTypesArr = [];
-    let multimediasArr = [];
-    let rulesArr = [];
-    let householdApplianceArr = [];
-
     const dispatch = useDispatch();
-
-    const dragStartHandler = (e) => {
-        e.preventDefault();
-        setDrag(true);
-    }
-
-    const dragLeaveHandler = (e) => {
-        e.preventDefault();
-        setDrag(false);
-    }
-
-    const onDropHandler = (e) => {
-        e.preventDefault();
-        let files = [...e.dataTransfer.files];
-        console.log(files);
-        setDrag(false);
-    }
 
     const changeData = (id, type) => {
         if (type == 'comfort') {
@@ -161,9 +144,14 @@ const CreateFlatPage = () => {
         }
         console.log("houseNum : " + houseNum)
     }
-    // todo add household
+
+    const setImages = (images) => {
+        imagesArr = images;
+    }
+
     const handlerClick = async () => {
         try {
+
             const house_num_test = 33;
             const house_year_test = 1;
             const floors_num_test = 1;
@@ -171,7 +159,7 @@ const CreateFlatPage = () => {
             const wallTypeId_test = 1;
             const heatingId_test = 1;
             const metroStationId_test = 1;
-            const images_test = [1,2,3];
+            const images_test = [1, 2, 3];
             const comforts_test = [1];
             const infrastructures_test = [];
             const peopleType_test = [];
@@ -196,7 +184,7 @@ const CreateFlatPage = () => {
                 wallTypeId_test,
                 heatingId_test,
                 metroStationId_test,
-                images_test,
+                imagesArr,
                 comforts_test,
                 infrastructures_test,
                 peopleType_test,
@@ -326,13 +314,7 @@ const CreateFlatPage = () => {
                 type="metro"
             />
 
-            <DrapImageCard
-                drag={drag}
-                dragStartHandler={dragStartHandler}
-                dragLeaveHandler={dragLeaveHandler}
-                onDropHandler={onDropHandler}/>
-
-            <LoadImageCard/>
+            <LoadImageCard setImages={setImages}/>
 
             <TextAreaCard/>
 
