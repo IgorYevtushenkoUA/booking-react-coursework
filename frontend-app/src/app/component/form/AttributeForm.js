@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Col, Form} from "react-bootstrap";
+import {Card, Col, Form, Row} from "react-bootstrap";
 
 const AttributeForm = (props) => {
 
@@ -9,18 +9,19 @@ const AttributeForm = (props) => {
 
     return (
         <Card>
-            <Col>
-                {props.title}
-            </Col>
-            <Col>
-                <Form.Control
-                    placeholder={props.placeholder}
-                    onChange={(e) => {
-                        setFormData(e.target.value)
-                    }}
-                >
-                </Form.Control>
-            </Col>
+            <Row style={{display:'flex', textAlign:'center'}}>
+                <Col md={4}>
+                    {props.title}
+                </Col>
+                <Col md={8}>
+                    <Form.Control
+                        placeholder={props.placeholder}
+                        onChange={(e) => {
+                            setFormData(e.target.value)
+                        }}>
+                    </Form.Control>
+                </Col>
+            </Row>
         </Card>
     );
 };

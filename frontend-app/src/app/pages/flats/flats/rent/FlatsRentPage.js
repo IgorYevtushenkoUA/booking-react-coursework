@@ -1,28 +1,27 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {usePreload, usePreloadPRO} from "../../../../hooks/usePreload";
-import {Col, Row} from "react-bootstrap";
+import {Col, Container, Row} from "react-bootstrap";
 import Filter from "./filter/Filter";
 import FlatsList from "./list/FlatsList";
 import FlatGeolocation from "./geolocation/FlatGeolocation";
-import {
-    LOAD_ALL_FLATS,
-    LOAD_FLAT_DATA,
-    loadAllFlats,
-    loadData,
-    loadFlatData
-} from "../../../../store/additional/flat/flatActions";
+import {loadFlatData} from "../../../../store/additional/flat/flatActions";
 
 const FlatsRentPage = () => {
 
-    // usePreload(loadAllFlats);
-    // usePreloadPRO(loadData, "api/flats", LOAD_ALL_FLATS);
-    // const flats = useSelector(store => store.flat.allFlats);
-
-    // usePreloadPRO(loadData, "api/flats/flat_data", LOAD_FLAT_DATA);
     usePreload(loadFlatData);
     const flats = useSelector(store => store.flat.flatData);
-    console.log(flats)
+    const [showFlat, setShowFlat] = useState(false);
+
+    const styleFilterDiv = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+
+    const styleFilterBtn = {
+        width: '100%',
+    }
 
     if (!flats) {
         return (
@@ -32,18 +31,23 @@ const FlatsRentPage = () => {
         );
     } else {
         return (
-            <div className="mt-3 ml-3">
-                <Filter/>
+            <Container>
+                <div style={styleFilterDiv}>
+                    <button className="btn btn-dark"
+                            style={styleFilterBtn}
+                            onClick={() => {
+                                setShowFlat(!showFlat)
+                            }}>Filter
+                    </button>
+                </div>
+                {showFlat ? <Filter/> : <div></div>}
 
                 <Row>
-                    <Col md={7}>
+                    <Col>
                         <FlatsList flats={flats}/>
                     </Col>
-                    <Col md={5}>
-                        <FlatGeolocation/>
-                    </Col>
                 </Row>
-            </div>
+            </Container>
         );
     }
 };

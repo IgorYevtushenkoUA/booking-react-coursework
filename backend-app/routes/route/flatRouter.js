@@ -42,12 +42,29 @@ router.get('/square_living_max', flatController.getMaxSquareLiving);
 router.get('/square_living_min', flatController.getMinSquareLiving);
 router.get("/flat_data", flatController.getFlatData)
 
+router.get("/:id", flatController.getById);
+router.get("/house/:id", flatController.getHouseById);
+router.get("/street/:id", flatController.getStreetById);
+router.get("/area/:id", flatController.getAreaById);
+router.get("/city/:id", flatController.getCityById);
+router.get("/house_data/:id", flatController.getHouseData)
+router.get("/flat_data/:id", flatController.getFlatDataById)
+
+router.get("/flat_has_comfort/:id", flatController.getFlatComfort)
+router.get("/flat_has_household_appliance/:id", flatController.getFlatHouseholdAppliance)
+router.get("/flat_has_multimedia/:id", flatController.getFlatMultimedia)
+router.get("/flat_has_people_type/:id", flatController.getFlatPeopleType)
+router.get("/flat_has_rule/:id", flatController.getFlatRule)
+router.get("/flat_has_image/:id", flatController.getFlatImage)
+// router.get("/flat_has_image_url/:id", flatController.getFlatImageUrl)
+
 
 router.post('/image', flatController.createImage);
 router.post('/house', flatController.createHouse);
 router.post('/house_has_infrastructure', flatController.createHouseHasInfrastructure);
 router.post('/house_near_metro_station', flatController.createHouseNearMetroStation);
 router.post('/flat', flatController.createFlat);
+router.post('/flat_has_household_appliance', flatController.createFlatHasHouseholdAppliance);
 router.post('/flat_has_comfort', flatController.createFlatHasComfort);
 router.post('/flat_has_people_type', flatController.createFlatHasPeopleType);
 router.post('/flat_has_multimedia', flatController.createFlatHasMultimedia);
@@ -55,14 +72,6 @@ router.post('/flat_has_rule', flatController.createFlatHasRule);
 router.post('/flat_has_image', flatController.createFlatHasImage);
 
 
-router.get("/:id", flatController.getById);
-router.get("/house/:id", flatController.getHouseById);
-router.get("/street/:id", flatController.getStreetById);
-router.get("/area/:id", flatController.getAreaById);
-router.get("/city/:id", flatController.getCityById);
-router.get("/house_data/:id", flatController.getHouseData)
-router.get("/flat_comfort/:id", flatController.getFlatComfort)
-// router.get("/flat_images/:id", flatController.getFlatImages)
 
 router.delete("/:id", flatController.deleteById);
 // router.get("/update-flat/:id")           // get flat to edit by id

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Card, Form} from "react-bootstrap";
 
-const TextAreaCard = () => {
+const TextAreaCard = (props) => {
 
     const styleForm = {
         marginTop: '20px',
@@ -13,11 +13,15 @@ const TextAreaCard = () => {
         justifyContent: 'center'
     }
 
+    const setTextArea = (type, value) => {
+        props.setTextArea(type, value);
+    }
+
     return (
         <Card style={styleForm}>
             <Form.Group controlId="exampleForm.ControlTextarea1">
-                <Form.Label style={styleLabel}>Введіть опис квартири</Form.Label>
-                <Form.Control as="textarea" rows={3}/>
+                <Form.Label style={styleLabel}>{props.type}</Form.Label>
+                <Form.Control as="textarea" rows={3} onChange={setTextArea}/>
             </Form.Group>
         </Card>
     );

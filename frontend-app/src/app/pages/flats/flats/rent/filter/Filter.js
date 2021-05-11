@@ -21,6 +21,7 @@ import {useDispatch, useSelector} from "react-redux";
 import CheckBoxCard from "../../../../../component/checkbox/CheckBoxCard";
 import {Button, Container, FormControl} from "react-bootstrap";
 import TwoFields from "../../../../../component/twoFields/TwoFields";
+import FilterFormControl from "./filterFormControl/FilterFormControl";
 
 const Filter = () => {
 
@@ -186,6 +187,7 @@ const Filter = () => {
     const changeInput = (type, value) => {
         switch (type) {
             case "priceFrom" : {
+                debugger
                 priceFrom = value;
                 break;
             }
@@ -215,6 +217,24 @@ const Filter = () => {
         }
     }
 
+    const style1 = {
+        display: 'grid',
+        gridTemplateColumns: '5fr 5fr',
+        gridGap: '20px'
+    }
+
+    const style2 = {
+        display: 'grid',
+        gridTemplateColumns: '3fr 3fr 3fr',
+        gridGap: '20px'
+    }
+
+    const styleBtn = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+
     const search = () => {
         priceFrom = priceFrom === 0 ? minMonthPrice[0].min : priceFrom;
         priceTo = priceTo === 0 ? maxMonthPrice[0].max : priceTo;
@@ -242,104 +262,94 @@ const Filter = () => {
     }
 
     return (
-        <div>
+        <Container>
 
-            <FormControl
-                placeholder="priceFrom"
-                onChange={(e) => {
-                    changeInput("priceFrom", e.target.value)
-                }}
-            />
-
-            <FormControl
-                placeholder="priceTo"
-                onChange={(e) => {
-                    changeInput("priceTo", e.target.value)
-                }}
-            />
-            <FormControl
-                placeholder="squareAllFrom"
-                onChange={(e) => {
-                    changeInput("squareAllFrom", e.target.value)
-                }}
-            />
-            <FormControl
-                placeholder="squareAllTo"
-                onChange={(e) => {
-                    changeInput("squareAllTo", e.target.value)
-                }}
+            <FilterFormControl
+                label={"Price"}
+                typeFrom={"priceFrom"}
+                typeTo={"priceTo"}
+                placeholderFrom={"Enter price from"}
+                placeholderTo={"Enter price To"}
+                changeInput={changeInput}
             />
 
-            <FormControl
-                placeholder="squareLivingFrom"
-                onChange={(e) => {
-                    changeInput("squareLivingFrom", e.target.value)
-                }}
+            <FilterFormControl
+                label={"Square All"}
+                typeFrom={"squareAllFrom"}
+                typeTo={"squareAllTo"}
+                placeholderFrom={"Enter square all from"}
+                placeholderTo={"Enter square all To"}
+                changeInput={changeInput}
             />
 
-            <FormControl
-                placeholder="squareLivingTo"
-                onChange={(e) => {
-                    changeInput("squareLivingTo", e.target.value)
-                }}
+            <FilterFormControl
+                label={"Square Living"}
+                typeFrom={"squareLivingFrom"}
+                typeTo={"squareLivingTo"}
+                placeholderFrom={"Enter square living From"}
+                placeholderTo={"Enter square living To"}
+                changeInput={changeInput}
             />
+            <div style={style1}>
+                <MultiSelectDropdown
+                    type="areas"
+                    setArray={setArray}
+                    data={areas}
+                    placeholder="Set Area"
+                />
 
+                <MultiSelectDropdown
+                    type="metroStations"
+                    setArray={setArray}
+                    data={metroStations}
+                    placeholder="Set Metro Station"
+                />
+            </div>
+            <div style={style2}>
+                <MultiSelectDropdown
+                    type="rooms"
+                    setArray={setArray}
+                    data={rooms}
+                    placeholder="Set Flat Rooms"
+                />
 
-            <MultiSelectDropdown
-                type="areas"
-                setArray={setArray}
-                data={areas}
-                placeholder="Set Area"
-            />
+                <MultiSelectDropdown
+                    type="flatFloors"
+                    setArray={setArray}
+                    data={flatFloors}
+                    placeholder="Set Flat Floor"
+                />
 
-            <MultiSelectDropdown
-                type="rooms"
-                setArray={setArray}
-                data={rooms}
-                placeholder="Set Flat Rooms"
-            />
+                <MultiSelectDropdown
+                    type="houseFloors"
+                    setArray={setArray}
+                    data={houseFloors}
+                    placeholder="Set House Floor"
+                />
+            </div>
+            <div style={style2}>
+                <MultiSelectDropdown
+                    type="houseYears"
+                    setArray={setArray}
+                    data={houseYears}
+                    placeholder="Set House Year"
+                />
 
-            <MultiSelectDropdown
-                type="houseYears"
-                setArray={setArray}
-                data={houseYears}
-                placeholder="Set House Year"
-            />
+                <MultiSelectDropdown
+                    type="wallTypes"
+                    setArray={setArray}
+                    data={wallTypes}
+                    placeholder="Set wall Type"
+                />
 
-            <MultiSelectDropdown
-                type="wallTypes"
-                setArray={setArray}
-                data={wallTypes}
-                placeholder="Set wall Type"
-            />
+                <MultiSelectDropdown
+                    type="heatings"
+                    setArray={setArray}
+                    data={heatings}
+                    placeholder="Set Heating"
+                />
+            </div>
 
-            <MultiSelectDropdown
-                type="houseFloors"
-                setArray={setArray}
-                data={houseFloors}
-                placeholder="Set House Floor"
-            />
-
-            <MultiSelectDropdown
-                type="heatings"
-                setArray={setArray}
-                data={heatings}
-                placeholder="Set Heating"
-            />
-
-            <MultiSelectDropdown
-                type="flatFloors"
-                setArray={setArray}
-                data={flatFloors}
-                placeholder="Set Flat Floor"
-            />
-
-            <MultiSelectDropdown
-                type="metroStations"
-                setArray={setArray}
-                data={metroStations}
-                placeholder="Set Metro Station"
-            />
 
             <CheckBoxCard
                 type={"infrastructure"}
@@ -348,10 +358,13 @@ const Filter = () => {
                 changeData={changeData}
             />
 
-            <Button
-                onClick={search}
-            >Пошук</Button>
-        </div>
+            <div style={styleBtn}>
+                <button className="btn btn-dark"
+                        onClick={search}>
+                    Пошук
+                </button>
+            </div>
+        </Container>
     );
 };
 

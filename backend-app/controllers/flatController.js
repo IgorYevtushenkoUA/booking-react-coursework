@@ -75,7 +75,7 @@ class FlatController {
         }
     }
 
-    async getHouseById(req, res){
+    async getHouseById(req, res) {
         try {
             const role = await flatService.getHouseById(req.params.id);
             return res.json(role);
@@ -85,7 +85,7 @@ class FlatController {
     }
 
 
-    async getHouseData(req, res){
+    async getHouseData(req, res) {
         try {
             const houseData = await flatService.getHouseData(req.params.id);
             return res.json(houseData);
@@ -94,7 +94,7 @@ class FlatController {
         }
     }
 
-    async getFlatComfort(req, res){
+    async getFlatComfort(req, res) {
         try {
             const flatHasComfort = await flatService.getFlatComfort(req.params.id);
             return res.json(flatHasComfort);
@@ -103,7 +103,52 @@ class FlatController {
         }
     }
 
-    async getFlatData(req, res){
+    async getFlatHouseholdAppliance(req, res) {
+        try {
+            const flatHouseholdAppliance = await flatService.getFlatHouseholdAppliance(req.params.id);
+            return res.json(flatHouseholdAppliance);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatMultimedia(req, res) {
+        try {
+            const flatMultimedia = await flatService.getFlatMultimedia(req.params.id);
+            return res.json(flatMultimedia);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatPeopleType(req, res) {
+        try {
+            const flatPeopleType = await flatService.getFlatPeopleType(req.params.id);
+            return res.json(flatPeopleType);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatRule(req, res) {
+        try {
+            const flatRule = await flatService.getFlatRule(req.params.id);
+            return res.json(flatRule);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatImage(req, res) {
+        try {
+            const flatImage = await flatService.getFlatImage(req.params.id);
+            return res.json(flatImage);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatData(req, res) {
         try {
             const flatData = await flatService.getFlatData();
             return res.json(flatData);
@@ -112,7 +157,16 @@ class FlatController {
         }
     }
 
-    async getStreetById(req, res){
+    async getFlatDataById(req, res) {
+        try {
+            const role = await flatService.getFlatDataById(req.params.id);
+            return res.json(role);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getStreetById(req, res) {
         try {
             const role = await flatService.getStreetById(req.params.id);
             return res.json(role);
@@ -121,7 +175,7 @@ class FlatController {
         }
     }
 
-    async getAreaById(req, res){
+    async getAreaById(req, res) {
         try {
             const role = await flatService.getAreaById(req.params.id);
             return res.json(role);
@@ -130,7 +184,7 @@ class FlatController {
         }
     }
 
-    async getCityById(req, res){
+    async getCityById(req, res) {
         try {
             const role = await flatService.getCityById(req.params.id);
             return res.json(role);
@@ -508,6 +562,7 @@ class FlatController {
             res.status(500).json(e);
         }
     }
+
     async createHouseNearMetroStation(req, res) {
         try {
             const houseNearMetroStation = {
@@ -515,11 +570,24 @@ class FlatController {
                 houseId: req.body.houseId,
                 metroStationId: req.body.metroStationId
             };
-            console.log("req.body.houseId: "+req.body.houseId)
-            console.log("req.body.metroStationId: "+req.body.metroStationId)
+            console.log("req.body.houseId: " + req.body.houseId)
+            console.log("req.body.metroStationId: " + req.body.metroStationId)
             console.log("createHouseNearMetroStation : Constructor")
             const house = await flatService.createHouseNearMetroStation(houseNearMetroStation);
             return res.json(house);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async createFlatHasHouseholdAppliance(req, res) {
+        try {
+            const flatHouseholdAppliance = {
+                flatId: req.body.flatId,
+                householdApplianceId: req.body.householdApplianceId
+            };
+            const flatHasHouseholdAppliance = await flatService.createFlatHasHouseholdAppliance(flatHouseholdAppliance);
+            return res.json(flatHasHouseholdAppliance);
         } catch (e) {
             res.status(500).json(e);
         }
@@ -601,7 +669,6 @@ class FlatController {
             res.status(500).json(e);
         }
     }
-
 
 
 }

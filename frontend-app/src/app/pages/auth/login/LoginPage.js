@@ -21,7 +21,6 @@ const LoginPage = () => {
     const [passwordError, setPasswordError] = useState('Password can not be empty')
     const [formValid, setFormValid] = useState(false);
 
-    const account = useSelector(store => store.user);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -29,6 +28,8 @@ const LoginPage = () => {
         console.log("click")
         try {
             dispatch(login(email, password));
+            debugger
+
             history.push(MAIN_ROUTE)
         } catch (e) {
             alert("e.response.data.message")
@@ -77,7 +78,7 @@ const LoginPage = () => {
 
     return (
         <div
-            className="d-flex justify-content-center align-items-center login"
+            className="d-flex justify-content-center align-items-center login_page"
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-5">

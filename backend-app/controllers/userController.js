@@ -1,6 +1,4 @@
-const ApiError = require("../error/apiError");
 const userService = require("../service/UserService.js");
-const {Role} = require("../models/models");
 const {Account} = require("../models/models");
 const nodemailer = require("nodemailer");
 
@@ -57,16 +55,43 @@ class UserController {
         }
     }
 
-    // todo change 'check' -> auth
-    async check(req, res, next) {
-        // req.query = для того щоб дістати дані із юрл  http://localhost:5000/api/user/auth?id=1
-        // const {id} = req.query;
-        // if (!id){
-        //     next(ApiError.badRequest("Forgot ID"));
-        // }
-        // res.json(id);
+    async ownerAddFlat(req, res) {
+        try {
+            const ownerHasFlat = {
+                accountId: req.body.accountId,
+                flatId: req.body.flatId
+            };
+            const ohf = await userService.ownerAddFlat(ownerHasFlat);
+            return res.json(ohf);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
 
-        res.json("message");
+    async clientLikedFlat(req, res) {
+        try {
+            const clientLikedFlat = {
+                accountId: req.body.accountId,
+                flatId: req.body.flatId
+            };
+            const clf = await userService.clientLikedFlat(clientLikedFlat);
+            return res.json(clf);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async clientWatchedFlat(req, res) {
+        try {
+            const clientWatchedFlat = {
+                accountId: req.body.accountId,
+                flatId: req.body.flatId
+            };
+            const cwf = await userService.clientWatchedFlat(clientWatchedFlat);
+            return res.json(cwf);
+        } catch (e) {
+            res.status(500).json(e);
+        }
     }
 
 }

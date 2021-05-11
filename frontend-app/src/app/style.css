@@ -1,0 +1,186 @@
+.navbar .nav-left, .navbar .nav-center, .navbar .nav-right {
+  display: flex;
+  grid-gap: 10px;
+}
+.navbar .nav-left h3:hover, .navbar .nav-center h3:hover, .navbar .nav-right h3:hover {
+  border-bottom: 2px solid white;
+}
+.navbar .nav-center .menu {
+  grid-gap: 20px;
+}
+.navbar .nav-center .menu h4 {
+  color: white;
+}
+.navbar .nav-center .menu h4:hover {
+  border-bottom: 2px solid white;
+}
+.navbar .nav-right .btn {
+  color: white;
+  border: 2px solid white;
+}
+.navbar .nav-right .btn:hover {
+  color: #222222;
+  background-color: white;
+}
+.navbar .nav-right .sign_out .btn, .navbar .nav-right .sign_in .btn {
+  color: white;
+  border: 2px solid white;
+}
+.navbar .nav-right .sign_out .btn:hover, .navbar .nav-right .sign_in .btn:hover {
+  color: #222222;
+  background-color: white;
+}
+
+.main-page {
+  margin-top: -3px;
+  height: 90vh;
+  background-color: #fad383;
+  display: grid;
+  justify-content: flex-end;
+}
+.main-page .rent {
+  border-radius: 15px;
+  margin: 80px 50px 10px 0;
+  background-color: #DE6D45;
+}
+.main-page .sell {
+  border-radius: 15px;
+  margin: 0 50px 100px 0;
+  background-color: #ecb35b;
+}
+.main-page .block .btn {
+  color: #222222;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.main-page .block .btn_rent:hover {
+  background-color: #FB7B4E;
+}
+.main-page .block .btn_sell:hover {
+  background-color: #fad383;
+}
+
+.about_us_page {
+  margin-top: -3px;
+  height: 90vh;
+  background-image: url("https://i.pinimg.com/564x/47/16/76/4716769c168617c2d85fee41e6108168.jpg");
+}
+.about_us_page p {
+  font-weight: bold;
+}
+.about_us_page .small-block {
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 3fr;
+}
+.about_us_page .small-block p {
+  font-weight: bold;
+}
+
+.sell_page {
+  background-image: url("https://i.pinimg.com/564x/a9/59/92/a9599200511dabbda58954ae4543d059.jpg");
+}
+
+.login_page {
+  background-image: url("https://i.pinimg.com/236x/2f/fd/d4/2ffdd4356daad346f556667612a5c93d.jpg");
+}
+
+.registration_page {
+  background-image: url("https://i.pinimg.com/236x/19/f1/dc/19f1dcd4c8487e01f6d559371f3543f6.jpg");
+}
+
+.filter_form_control {
+  display: grid;
+  grid-template-columns: 3fr 5fr 5fr;
+  grid-gap: 20px;
+}
+
+.flat_page .image_block .block_center {
+  margin: 0 auto;
+  height: 450px;
+  max-width: 800px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+.flat_page .image_block .img {
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  width: 85%;
+  height: 350px;
+  object-fit: cover;
+  border: 4px solid var(--clr-grey-8);
+  box-shadow: var(--dark-shadow);
+}
+.flat_page .image_block article h4 {
+  text-transform: uppercase;
+  color: var(--clr-primary-5);
+  margin-bottom: 0.25rem;
+}
+.flat_page .image_block .title {
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+  color: var(--clr-grey-3);
+}
+.flat_page .image_block .text {
+  max-width: 35em;
+  margin: 0 auto;
+  margin-top: 2rem;
+  line-height: 2;
+  color: var(--clr-grey-5);
+}
+.flat_page .image_block .icon {
+  font-size: 3rem;
+  margin-top: 1rem;
+  color: var(--clr-primary-5);
+}
+.flat_page .image_block .prev,
+.flat_page .image_block .next {
+  position: absolute;
+  top: 200px;
+  transform: translateY(-50%);
+  background: var(--clr-grey-5);
+  color: var(--clr-white);
+  width: 1.25rem;
+  height: 1.25rem;
+  display: grid;
+  place-items: center;
+  border-color: transparent;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.flat_page .image_block .prev:hover,
+.flat_page .image_block .next:hover {
+  background: var(--clr-primary-5);
+}
+.flat_page .image_block .prev {
+  left: 0;
+}
+.flat_page .image_block .next {
+  right: 0;
+}
+.flat_page .image_block article {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: var(--transition);
+}
+.flat_page .image_block article.activeImage {
+  opacity: 1;
+  transform: translateX(0);
+}
+.flat_page .image_block article.nextImage {
+  transform: translateX(100%);
+}
+
+.image_loader {
+  margin-top: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */

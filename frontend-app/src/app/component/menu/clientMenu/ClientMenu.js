@@ -13,20 +13,18 @@ const ClientMenu = () => {
     const [mes, setMessage] = useState('режим');
     const {t} = useTranslation();
     return (
-            <Row>
-                <Col>
-                    <Nav>
-                        <Link to={CLIENT_LIKED_FLATS}>
-                            {t("menu.client.liked")}
-                        </Link>
-                    </Nav>
-                    <Nav>
-                        <Link to={CLIENT_QUICK_LOVE}>
-                            {t("menu.client.quick_love")}
-                        </Link>
-                    </Nav>
-                </Col>
-            </Row>
+        <Row className="menu">
+            <Nav>
+                <Link to={CLIENT_LIKED_FLATS}>
+                    {t("menu.client.liked")}
+                </Link>
+            </Nav>
+            <Nav>
+                <Link to={CLIENT_QUICK_LOVE}>
+                    {t("menu.client.quick_love")}
+                </Link>
+            </Nav>
+        </Row>
     );
 };
 

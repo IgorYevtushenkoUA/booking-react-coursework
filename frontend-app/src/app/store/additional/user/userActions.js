@@ -46,6 +46,8 @@ export const register = (account) => {
                 last_name,
                 roleRoleId
             });
+            localStorage.setItem("accountId", account.id);
+
             dispatch({
                 type: REGISTER_ACCOUNT,
                 payload: account // todo check, в паші інакше, у нього ще токен
@@ -61,9 +63,10 @@ export const login = (email, password) => {
         try {
             const res = await $host.post("/api/user/login", {email, password});
             const data = await res.data;
-            // localStorage.setItem("token", data.token);
             let account = data[0];
-            localStorage.setItem("role", account.roleRoleId);
+            localStorage.setItem("role", account.roleId);
+            localStorage.setItem("accountId", account.id);
+            debugger
             dispatch({
                 type: LOGIN,
                 payload: account

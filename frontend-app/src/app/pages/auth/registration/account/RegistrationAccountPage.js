@@ -169,6 +169,9 @@ const RegistrationAccountPage = (props) => {
                 roleRoleId: props.role
             }
             dispatch(register(account));
+            debugger
+            localStorage.setItem("role", props.role);
+            debugger
             history.push(MAIN_ROUTE);
         } catch (e) {
             alert(e.response.data.message)
@@ -177,8 +180,8 @@ const RegistrationAccountPage = (props) => {
 
 
     return (
-        <Container
-            className="d-flex justify-content-center align-items-center register"
+        <div
+            className="d-flex justify-content-center align-items-center registration_page"
             style={{height: window.innerHeight - 54}}
         >
             <Card style={{width: 600}} className="p-4">
@@ -295,7 +298,7 @@ const RegistrationAccountPage = (props) => {
                     </Row>
                 </Form>
             </Card>
-        </Container>
+        </div>
     );
 };
 

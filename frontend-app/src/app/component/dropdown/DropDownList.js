@@ -15,8 +15,8 @@ const DropDownList = (props) => {
     }
 
     return (
-        <Card style={{marginTop: '20px'}}>
-            <Dropdown>
+        <Card style={{padding:'10px'}}>
+            <Dropdown >
                 <DropdownToggle as={CustomToggle}>{menuName}</DropdownToggle>
                 <DropdownMenu as={CustomMenu} style={{maxHeight: '250px', overflowY: 'scroll'}}>
                     {elem.map(item => (

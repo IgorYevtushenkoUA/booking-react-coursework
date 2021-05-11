@@ -5,7 +5,6 @@ import ClientMenu from "./clientMenu/ClientMenu";
 
 const UserMenu = (props) => {
 
-    const account = props.account
     const role = localStorage.getItem("role");
 
     if (role == 1) {

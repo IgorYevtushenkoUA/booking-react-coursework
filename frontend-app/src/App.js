@@ -38,12 +38,13 @@ const App = () => {
 //     handleSave = () => {
 //         let bucketName = 'images'
 //         let files = this.state.files
-//         for(let i = 0 ; i < files.length; i++){
+//         for (let i = 0; i < files.length; i++) {
 //             let storageRef = firebase.storage().ref(`${bucketName}/${files[i].name}`)
 //             let uploadTask = storageRef.put(files[i]);
 //             uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
 //                 () => {
 //                     let downloadURL = uploadTask.snapshot.downloadURL
+
 //                 })
 //         }
 //
@@ -51,12 +52,14 @@ const App = () => {
 //
 //     showImage = () => {
 //         let storageRef = firebase.storage().ref();
-//         for(let i = 0 ; i < this.state.files.length; i++) {
-//             let spaceRef = storageRef.child('images/' + this.state.files[i].name);
-//             storageRef.child('images/' + this.state.files[i].name).getDownloadURL().then((url) => {
-//                 console.log(url);
-//                 console.log("change, because add only to one") // todo
-//                 document.getElementById('new-img').src = url
+//         for (let i = 0; i < this.state.files.length; i++) {
+//             let address = 'images/21/' + this.state.files[i].name;
+//             console.log("address :" + address)
+//             debugger
+//             storageRef.child(address).getDownloadURL().then((url) => {
+//                 console.log("url :" + url);
+//                 debugger
+//                 // document.getElementById('new-img').src = url
 //             });
 //         }
 //     }

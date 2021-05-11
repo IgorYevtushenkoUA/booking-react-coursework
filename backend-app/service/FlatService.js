@@ -222,23 +222,72 @@ class FlatService {
             throw new Error('не указан ID')
         }
         let sql = 'select f.id                as flat_id,\n' +
-            '       f.flat_floor        as flat_floor,\n' +
-            '       f.square_all        as square_all,\n' +
-            '       f.square_living     as square_living,\n' +
-            '       f.price_month       as price_month,\n' +
-            '       f.rooms_num         as rooms_num,\n' +
-            '       f.balconies_num     as balconies_num,\n' +
-            '       f.short_description as short_description,\n' +
-            '       f.updatedAt         as updatedAt,\n' +
-            '       f.createdAt         as createdAt,\n' +
-            '       c.id                as comfort_id,\n' +
-            '       c.name              as comfort_name\n' +
+            '       c.id                as id,\n' +
+            '       c.name              as name\n' +
             'from flats f\n' +
             '         inner join flat_has_comforts fhc on f.id = fhc.flatId\n' +
             '         inner join comforts c on fhc.comfortId = c.id\n' +
             'where f.id = ' + id;
-        console.log(sql)
+        return await query(sql);
+    }
 
+    async getFlatHouseholdAppliance(id) {
+        if (!id) throw new Error('не указан ID')
+        let sql = 'select f.id                as flat_id,\n' +
+            '       ha.id                as id,\n' +
+            '       ha.name              as name\n' +
+            'from flats f\n' +
+            'inner join flat_has_household_appliances fhha on f.id = fhha.flatId\n' +
+            'inner join household_appliances ha on fhha.householdApplianceId = ha.id\n' +
+            'where f.id = ' + id;
+        return await query(sql);
+    }
+
+    async getFlatMultimedia(id) {
+        if (!id) throw new Error('не указан ID')
+        let sql = 'select f.id                as flat_id,\n' +
+            '       m.id                as id,\n' +
+            '       m.name              as name\n' +
+            'from flats f\n' +
+            '       inner join flat_has_multimedias fhm on f.id = fhm.flatId\n' +
+            '       inner join multimedias m on fhm.multimediaId = m.id\n' +
+            'where f.id =' + id;
+        return await query(sql);
+    }
+
+    async getFlatPeopleType(id) {
+        if (!id) throw new Error('не указан ID')
+        let sql = 'select f.id    as flat_id,\n' +
+            '       pt.id   as id,\n' +
+            '       pt.name as name\n' +
+            'from flats f\n' +
+            '         inner join flat_has_people_types fhpt on f.id = fhpt.flatId\n' +
+            '         inner join people_types pt on fhpt.peopleTypeId = pt.id\n' +
+            'where f.id =' + id;
+        return await query(sql);
+    }
+
+    async getFlatRule(id) {
+        if (!id) throw new Error('не указан ID')
+        let sql = 'select f.id   as flat_id,\n' +
+            '       r.id   as id,\n' +
+            '       r.name as name\n' +
+            'from flats f\n' +
+            '         inner join flat_has_rules fhr on f.id = fhr.flatId\n' +
+            '         inner join rules r on fhr.ruleId = r.id\n' +
+            'where f.id =' + id;
+        return await query(sql);
+    }
+
+    async getFlatImage(id) {
+        if (!id) throw new Error('не указан ID')
+        let sql = 'select f.id   as flat_id,\n' +
+            '       i.id   as id,\n' +
+            '       i.name as name\n' +
+            'from flats f\n' +
+            '         inner join flat_has_images fhi on f.id = fhi.flatId\n' +
+            '         inner join images i on fhi.imageId = i.id\n' +
+            'where f.id = ' + id;
         return await query(sql);
     }
 
@@ -254,18 +303,69 @@ class FlatService {
             '       f.updatedAt         as updatedAt,\n' +
             '       f.createdAt         as createdAt,\n' +
             '       h.id                as house_id,\n' +
+            '       h.floors_num        as house_floors,\n' +
             '       h.house_year        as house_year,\n' +
             '       h.floors_num        as floors_num,\n' +
+            '       h.house_num         as house_num,\n' +
+            '       h2.name             as heating_name,\n' +
             '       s.name              as street_name,\n' +
             '       a.name              as area_name,\n' +
             '       r.name              as region_name,\n' +
             '       c.name              as city_name\n' +
             'from flats f\n' +
             '         inner join houses h on h.id = f.houseId\n' +
+            '         inner join heatings h2 on h.heatingId = h2.id\n' +
             '         inner join streets s on h.streetId = s.id\n' +
             '         inner join areas a on s.areaId = a.id\n' +
             '         inner join regions r on a.regionId = r.id\n' +
-            '         inner join cities c on r.cityId = c.id\n';
+            '         inner join cities c on r.cityId = c.id';
+        return await query(sql);
+    }
+
+
+    async getFlatDataById(id) {
+        let sql = 'select f.id                as flat_id,\n' +
+            '       f.flat_floor        as flat_floor,\n' +
+            '       f.square_all        as square_all,\n' +
+            '       f.square_living     as square_living,\n' +
+            '       f.price_month       as price_month,\n' +
+            '       f.rooms_num         as rooms_num,\n' +
+            '       f.balconies_num     as balconies_num,\n' +
+            '       f.short_description as short_description,\n' +
+            '       f.main_description  as main_description,\n' +
+            '       f.updatedAt         as updatedAt,\n' +
+            '       f.createdAt         as createdAt,\n' +
+            '       h.id                as house_id,\n' +
+            '       f.flat_floor        as flat_floor,\n' +
+            '       h.house_year        as house_year,\n' +
+            '       h.floors_num        as floors_num,\n' +
+            '       h.house_num         as house_num,\n' +
+            '       h2.name             as heating_name,\n' +
+            '       s.name              as street_name,\n' +
+            '       a.name              as area_name,\n' +
+            '       r.name              as region_name,\n' +
+            '       c.name              as city_name,\n' +
+            '       a2.email            as account_email,\n' +
+            '       a2.first_name       as account_first_name,\n' +
+            '       a2.second_name      as account_second_name,\n' +
+            '       a2.last_name        as account_last_name,\n' +
+            '       a2.phone_num1       as account_phone_num1,\n' +
+            '       bt.name             as bathroom_type_name,\n' +
+            '       ms.name             as metro_station_name,\n' +
+            '       ms.line_color       as line_color\n' +
+            'from flats f\n' +
+            '         inner join houses h on h.id = f.houseId\n' +
+            '         inner join heatings h2 on h.heatingId = h2.id\n' +
+            '         inner join streets s on h.streetId = s.id\n' +
+            '         inner join areas a on s.areaId = a.id\n' +
+            '         inner join regions r on a.regionId = r.id\n' +
+            '         inner join cities c on r.cityId = c.id\n' +
+            '         inner join owner_has_flats ohf on f.id = ohf.flatId\n' +
+            '         inner join accounts a2 on ohf.accountId = a2.id\n' +
+            '         inner join bathroom_types bt on f.bathroomTypeId = bt.id\n' +
+            '         inner join house_near_metro_stations hnms on h.id = hnms.houseId\n' +
+            '         inner join metro_stations ms on hnms.metroStationId = ms.id\n' +
+            'where f.id = ' + id;
         return await query(sql);
     }
 
@@ -398,6 +498,10 @@ class FlatService {
     async createHouseNearMetroStation(houseNearMetroStation) {
         console.log("createHouseNearMetroStation : service")
         return await HouseNearMetroStation.create({...houseNearMetroStation});
+    }
+
+    async createFlatHasHouseholdAppliance(flatHouseholdAppliance) {
+        return await FlatHasHouseholdAppliances.create({...flatHouseholdAppliance});
     }
 
     async createFlatHasComfort(flatComfort) {

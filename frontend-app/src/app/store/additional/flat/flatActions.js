@@ -1,5 +1,6 @@
 import {$host} from "../../../axios/axios";
 import firebase from "firebase";
+import {useParams} from "react-router";
 
 export const LOAD_ALL_STREETS = 'LOAD_ALL_STREETS';
 export const LOAD_ALL_AREAS = 'LOAD_ALL_AREAS';
@@ -53,8 +54,17 @@ export const LOAD_HOUSE_DATA = 'LOAD_HOUSE_DATA';
 export const LOAD_FLAT_DATA = 'LOAD_FLAT_DATA';
 
 export const LOAD_FLAT_HAS_COMFORT = 'LOAD_FLAT_HAS_COMFORT';
+export const LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE = 'LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE';
+export const LOAD_FLAT_HAS_MULTIMEDIA = 'LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE';
+export const LOAD_FLAT_HAS_PEOPLE_TYPE = 'LOAD_FLAT_HAS_PEOPLE_TYPE';
+export const LOAD_FLAT_HAS_RULE = 'LOAD_FLAT_HAS_RULE';
+export const LOAD_FLAT_HAS_IMAGE = 'LOAD_FLAT_HAS_IMAGE';
+export const LOAD_FLAT_HAS_IMAGE_NAME = 'LOAD_FLAT_HAS_IMAGE_NAME';
+export const LOAD_FLAT_DATA_BY_ID = 'LOAD_FLAT_DATA_BY_ID';
 
 export const CREATE_IMAGE = 'CREATE_IMAGE';
+export const LOAD_FLAT_HAS_IMAGE_URL = 'LOAD_FLAT_HAS_IMAGE_URL';
+
 
 export const loadData = (url, type) => {
     return async dispatch => {
@@ -88,13 +98,44 @@ export const loadFlatData = () => {
 export const loadFlatHasComfort = (id) => {
     return async dispatch => {
         try {
-            const res = await $host.get("api/flats/flat_comfort/" + id);
+            const res = await $host.get("api/flats/flat_has_comfort/" + id);
             const data = await res.data;
             dispatch({
                 type: LOAD_FLAT_HAS_COMFORT,
                 payload: data
             })
         } catch (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadFlatHasImageUrl = (address, type, flatId) => {
+    return async dispatch => {
+        try {
+            const res = await $host.get(address);
+            const flatsImage = await res.data;
+            debugger
+            let imagesURL = [];
+            for (let i = 0; i < flatsImage.length; i++) {
+                let address = 'images/' + flatId + '/' + flatsImage[i].name;
+                debugger
+                await firebase.storage().ref().child(address).getDownloadURL().then((url) => {
+                    console.log("url :" + url);
+                    imagesURL.push({
+                        id: i,
+                        url: url
+                    });
+                    debugger;
+                });
+            }
+            debugger
+            dispatch({
+                type: type,
+                payload: imagesURL
+            })
+        } catch
+            (e) {
             alert("Something went wrong : ")
         }
     }
@@ -797,9 +838,6 @@ export const createFlat = (
     pledge, bathroomTypeId) => {
     return async dispatch => {
         try {
-            console.log("house_num :" + house_num)
-            console.log("streetId :" + streetId)
-            let newHouse;
             const res = await $host.get("api/flats/house", {
                 params:
                     {
@@ -808,21 +846,15 @@ export const createFlat = (
                     }
             });
             let house = await res.data;
-            debugger
             if (house == '') {
-                debugger
                 const newRes = await $host.post("api/flats/house", {
                     house_num, house_year, floors_num, streetId, wallTypeId, heatingId
                 })
-                debugger
                 house = await newRes.data;
-                console.log(house.id);
-                debugger
                 await $host.post("api/flats/house_near_metro_station", {
                     houseId: house.id,
                     metroStationId: metroStationId
                 })
-                debugger
                 for (let i = 0; i < infrastructures.length; i++) {
                     await $host.post("api/flats/house_has_infrastructure", {
                         houseId: house.id,
@@ -831,17 +863,13 @@ export const createFlat = (
                 }
 
             }
-            console.log("create flat")
-            console.log(!house.id);
             const houseId = !house.id ? house[0].id : house.id;
-            debugger
             const resFlat = await $host.post("api/flats/flat",
                 {
                     flat_floor, square_all, square_living, price_month, rooms_num, balconies_num,
                     short_description, main_description, pledge, houseId, bathroomTypeId
                 }
             );
-            debugger
             const flat = await resFlat.data;
             for (let i = 0; i < comforts.length; i++) {
                 await $host.post("api/flats/flat_has_comfort", {
@@ -868,10 +896,14 @@ export const createFlat = (
                 })
             }
 
-            debugger
-            console.log("before")
+            for (let i = 0; i < householdAppliances.length; i++) {
+                await $host.post("api/flats/flat_has_household_appliance", {
+                    flatId: flat.id,
+                    householdApplianceId: householdAppliances[i]
+                })
+            }
+
             for (let i = 0; i < images.length; i++) {
-                console.log("saving")
                 let storageRef = firebase.storage().ref(`images/${flat.id}/${images[i].name}`)
                 let uploadTask = storageRef.put(images[i]);
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
@@ -879,9 +911,6 @@ export const createFlat = (
                         let downloadURL = uploadTask.snapshot.downloadURL
                     })
             }
-            console.log("after")
-            debugger
-
             let imagesId = []
             for (let i = 0; i < images.length; i++) {
                 let img = await $host.post("api/flats/image", {
@@ -889,14 +918,18 @@ export const createFlat = (
                 })
                 imagesId.push(await img.data.id)
             }
-            debugger
             for (let i = 0; i < imagesId.length; i++) {
                 await $host.post("api/flats/flat_has_image", {
                     flatId: flat.id,
                     imageId: imagesId[i]
                 })
             }
-            debugger
+            // todo check
+            await $host.post("api/user/owner_has_flat", {
+                accountId: localStorage.getItem("accountId"),
+                flatId: flat.id
+            });
+
         } catch (e) {
             alert("something went wrong : createFlat")
         }

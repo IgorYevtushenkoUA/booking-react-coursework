@@ -1,3 +1,6 @@
+const {ClientWatchedFlat} = require("../models/models");
+const {ClientLikedFlat} = require("../models/models");
+const {OwnerHasFlat} = require("../models/models");
 const {Account} = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
 
@@ -14,6 +17,18 @@ class UserService {
         }
         const users = await Account.findByPk(id);
         return users;
+    }
+
+    async ownerAddFlat(accountHasFlat){
+        return await OwnerHasFlat.create({...accountHasFlat});
+    }
+
+    async clientLikedFlat(clientLikedFlat){
+        return await ClientLikedFlat.create({...clientLikedFlat});
+    }
+
+    async clientWatchedFlat(clientWatchedFlat){
+        return await ClientWatchedFlat.create({...clientWatchedFlat});
     }
 
     async deleteById(id) {

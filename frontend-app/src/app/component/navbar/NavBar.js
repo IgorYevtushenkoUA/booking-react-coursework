@@ -5,7 +5,9 @@ import {useSelector} from "react-redux";
 import AuthMenu from "../menu/authMenu/AuthMenu";
 import UserMenu from "../menu/UserMenu";
 import {Link} from "react-router-dom";
-import {ABOUT_US_ROUTE, MAIN_ROUTE} from "../../utils/consts";
+import {ABOUT_US_ROUTE, MAIN_ROUTE, OWNER_ADD_FLAT, OWNER_FLATS} from "../../utils/consts";
+import "../../style.css"
+
 
 const NavBar = () => {
 
@@ -18,25 +20,32 @@ const NavBar = () => {
     let account = useSelector(store => store.user.userCredentials);
 
     return (
-        <Navbar bg="dark" variant="dark" className="header">
+        <Navbar bg="dark" variant="dark" className="navbar">
             <Container>
+                <div className="nav-left">
+                    <Nav>
+                        <Link to={MAIN_ROUTE}>
+                            <h3 className="text-white">Flatty</h3>
+                        </Link>
+                    </Nav>
+                    <Nav>
+                        <Link to={ABOUT_US_ROUTE}>
+                            <h3 className="text-white">{t("navbar.about")}</h3>
+                        </Link>
+                    </Nav>
+                </div>
 
-                <Nav>
-                    <Link to={MAIN_ROUTE}>
-                        Flatty
-                    </Link>
-                </Nav>
-                <Nav>
-                    <Link to={ABOUT_US_ROUTE}>
-                        {t("navbar.about")}
-                    </Link>
-                </Nav>
+                <div className="nav-center">
+                    <UserMenu account={account} />
+                </div>
 
-                <Button className="mr-2" variant={"outline-light"} onClick={() => changeLanguage("en")}>EN</Button>
-                <Button variant={"outline-light"} onClick={() => changeLanguage("ua")}>UA</Button>
+                <div className="nav-right">
+                    <button className="btn" onClick={() => changeLanguage("en")}>EN</button>
+                    <button className="btn" onClick={() => changeLanguage("ua")}>UA</button>
+                    <AuthMenu account={account}/>
+                </div>
 
-                <UserMenu account={account}/>
-                <AuthMenu account={account}/>
+
             </Container>
         </Navbar>
     );

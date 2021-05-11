@@ -1,85 +1,116 @@
 import React from 'react';
 import {Button, Card, Col, Container, Image} from "react-bootstrap";
 import {RENT_FLATS_ROUTE} from "../../utils/consts";
-import {usePreload, usePreloadPRO} from "../../hooks/usePreload";
+import {usePreload, usePreloadPRO, usePreloadPRO3} from "../../hooks/usePreload";
 import {loadFlat} from "../../store/additional/user/userActions";
 import {useParams} from "react-router";
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import {LOAD_FLAT_HAS_COMFORT, LOAD_HOUSE, loadData, loadFlatHasComfort} from "../../store/additional/flat/flatActions";
+import {
+    LOAD_FLAT_DATA_BY_ID,
+    LOAD_FLAT_HAS_COMFORT,
+    LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE,
+    LOAD_FLAT_HAS_IMAGE, LOAD_FLAT_HAS_IMAGE_URL,
+    LOAD_FLAT_HAS_MULTIMEDIA,
+    LOAD_FLAT_HAS_PEOPLE_TYPE,
+    LOAD_FLAT_HAS_RULE,
+    LOAD_HOUSE,
+    loadData,
+    loadFlatHasComfort, loadFlatHasImageUrl
+} from "../../store/additional/flat/flatActions";
+import firebase from "firebase";
+import ImageList from "./imageList/ImageList";
+import InfoBlock from "./infoBlock/InfoBlock";
 
 const FlatPage = () => {
 
     const id = useParams().id;
-    usePreloadPRO(loadData, `api/flats/flat_comfort/${id}`, LOAD_FLAT_HAS_COMFORT);
-    let flatHasComfort = useSelector(store => store.flat.flatHasComfort);
-    console.log("flatHasComfort")
-    console.log(flatHasComfort)
-
-    const flat = useSelector(store => store.flat.flat);
     const history = useHistory();
 
-    console.log(id);
+    usePreloadPRO3(loadFlatHasImageUrl, `api/flats/flat_has_image/${id}`, LOAD_FLAT_HAS_IMAGE_URL, id);
+    usePreloadPRO(loadData, `api/flats/flat_has_comfort/${id}`, LOAD_FLAT_HAS_COMFORT);
+    usePreloadPRO(loadData, `api/flats/flat_has_household_appliance/${id}`, LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE);
+    usePreloadPRO(loadData, `api/flats/flat_has_multimedia/${id}`, LOAD_FLAT_HAS_MULTIMEDIA);
+    usePreloadPRO(loadData, `api/flats/flat_has_people_type/${id}`, LOAD_FLAT_HAS_PEOPLE_TYPE);
+    usePreloadPRO(loadData, `api/flats/flat_has_rule/${id}`, LOAD_FLAT_HAS_RULE);
+    usePreloadPRO(loadData, `api/flats/flat_has_image/${id}`, LOAD_FLAT_HAS_IMAGE);
+    usePreloadPRO(loadData, `api/flats/flat_data/${id}`, LOAD_FLAT_DATA_BY_ID);
 
+    let flatHasComfort = useSelector(store => store.flat.flatHasComfort),
+        flatHasHouseholdAppliance = useSelector(store => store.flat.flatHasHouseholdAppliance),
+        flatHasMultimedia = useSelector(store => store.flat.flatHasMultimedia),
+        flatHasPeopleType = useSelector(store => store.flat.flatHasPeopleType),
+        flatHasRule = useSelector(store => store.flat.flatHasRule),
+        flatHasImage = useSelector(store => store.flat.flatHasImage),
+        flatData = useSelector(store => store.flat.flatDataById),
+        imagesURL = useSelector(store => store.flat.flatHasImageURL);
+
+    const greenLine = {
+        borderRadius: '15px',
+        backgroundColor: '#38CC5C',
+        padding: '5px'
+    }
+    const redLine = {
+        borderRadius: '15px',
+        backgroundColor: '#F03E33',
+        padding: '5px'
+    }
+    const blueLine = {
+        borderRadius: '15px',
+        backgroundColor: '#33BDF0',
+        padding: '5px'
+    }
 
     let role = 2;
 
-    if (!flat) {
+    if (flatData == null) {
         return (
             <div> Loading</div>
         )
     } else {
         return (
-            <Container style={{height: window.innerHeight - 54}}>
+            <Container style={{height: window.innerHeight - 54}}
+                       className="flat_page">
                 <Card>
-                    <div className="d-flex flex-row">
+                    <div className="d-flex flex-row mt-4">
                         <Col md={6}>
-
-                            <div className="imagesBlock">
-                                <Image style={{maxWidth: '100%'}}
-                                       // src='https://www.apartments.com/images/default-source/2020-blogimages/apartments493227be-286f-4141-aceb-d874f43b13cd.tmb-featuredim.jpg?sfvrsn=42e4b1d3_1'
-                                       src='http://localhost:3000/909ee545-559a-454d-a3f1-f1c3c2af7a5e'/>
+                            <div className="image_block">
+                                <ImageList images={imagesURL}/>
                             </div>
                         </Col>
-                        <div className="infoBlock">
 
-
-                            <dl>
-                                <dt>Price :</dt>
-                                <dd>{flat.price_month}</dd>
-
-                                <dt>Floor :</dt>
-                                <dd>{flat.flat_floor}</dd>
-
-                                <dt>Square :</dt>
-                                <dd>{flat.square_all} / {flat.square_living}</dd>
-
-                                <dt>Rooms :</dt>
-                                <dd>{flat.rooms_num}</dd>
-
-                                <dt>Balconies</dt>
-                                <dd>{flat.balconies_num}</dd>
-
-                                {/*<dt></dt><dd>{}</dd>*/}
-
-                            </dl>
-
-                            <dt>Description</dt>
-                            <dd>{flat.main_description}</dd>
-
-                            <div className="priceBlock">
-
+                        <Col>
+                            <div>{flatData[0].short_description}</div>
+                            <div>{flatData[0].street_name} {flatData[0].house_num}</div>
+                            <div>{flatData[0].region_name} {flatData[0].area_name} {flatData[0].city_name}</div>
+                            <div>Кімнати {flatData[0].rooms_num},
+                                Поверх {flatData[0].flat_floor} із {flatData[0].floors_num}</div>
+                            <div>Ціна {flatData[0].price_month} грн/міс</div>
+                            <div>Площа {flatData[0].square_all}/{flatData[0].square_living} м²</div>
+                            <div>Кімнати {flatData[0].rooms_num}</div>
+                            <div>Кількість балконів {flatData[0].balconies_num}</div>
+                            <div>Тип Ванної кімнати {flatData[0].bathroom_type_name}</div>
+                            <div>Поверхність будинку {flatData[0].floors_num}</div>
+                            <div>Тип опаленння {flatData[0].heating_name}</div>
+                            <div>Вік будинку {flatData[0].house_year}</div>
+                            <div>
+                                <label style={
+                                    flatData[0].line_color === 'зелена'
+                                        ? greenLine
+                                        : flatData[0].line_color === 'червона'
+                                        ? redLine : blueLine}>
+                                    <strong>M</strong> {flatData[0].metro_station_name}
+                                </label>
                             </div>
-                            <div className="streetBlock">
-                            </div>
-                            <div className="houseBlock">
-
-                            </div>
-                            <div className="flatBlock">
-
-                            </div>
-                        </div>
+                        </Col>
                     </div>
+
+                    <InfoBlock elem={flatHasComfort} name={"Comfort: "}/>
+                    <InfoBlock elem={flatHasHouseholdAppliance} name={"HouseHoldAppliance :"}/>
+                    <InfoBlock elem={flatHasMultimedia} name={"Multimedia :"}/>
+                    <InfoBlock elem={flatHasPeopleType} name={"PeopleType :"}/>
+                    <InfoBlock elem={flatHasRule} name={"Rule :"}/>
+
                     {role == 1 &&
                     <Button onClick={() => {
                         console.log("delete by ID")

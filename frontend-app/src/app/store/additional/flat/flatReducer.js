@@ -17,12 +17,37 @@ import {
     LOAD_ALL_REGIONS,
     LOAD_ALL_RULES,
     LOAD_ALL_STREETS,
-    LOAD_ALL_WALL_TYPES, LOAD_AREA, LOAD_CITY, LOAD_FLAT_DATA, LOAD_FLAT_HAS_COMFORT, LOAD_HOUSE,
-    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET, LOAD_HOUSE_DATA,
-    LOAD_MAX_FLAT_FLOOR, LOAD_MAX_FLAT_ROOM, LOAD_MAX_HOUSE_FLOOR,
-    LOAD_MAX_HOUSE_YEAR, LOAD_MAX_MONTH_PRICE, LOAD_MAX_SQUARE_ALL, LOAD_MAX_SQUARE_LIVING,
-    LOAD_MIN_FLAT_FLOOR, LOAD_MIN_FLAT_ROOM, LOAD_MIN_HOUSE_FLOOR,
-    LOAD_MIN_HOUSE_YEAR, LOAD_MIN_MONTH_PRICE, LOAD_MIN_SQUARE_ALL, LOAD_MIN_SQUARE_LIVING, LOAD_STREET
+    LOAD_ALL_WALL_TYPES,
+    LOAD_AREA,
+    LOAD_CITY,
+    LOAD_FLAT_DATA,
+    LOAD_FLAT_DATA_BY_ID,
+    LOAD_FLAT_HAS_COMFORT,
+    LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE,
+    LOAD_FLAT_HAS_IMAGE,
+    LOAD_FLAT_HAS_IMAGE_NAME,
+    LOAD_FLAT_HAS_IMAGE_URL,
+    LOAD_FLAT_HAS_MULTIMEDIA,
+    LOAD_FLAT_HAS_PEOPLE_TYPE,
+    LOAD_FLAT_HAS_RULE,
+    LOAD_HOUSE,
+    LOAD_HOUSE_BY_HOUSE_NUM_AND_STREET,
+    LOAD_HOUSE_DATA,
+    LOAD_MAX_FLAT_FLOOR,
+    LOAD_MAX_FLAT_ROOM,
+    LOAD_MAX_HOUSE_FLOOR,
+    LOAD_MAX_HOUSE_YEAR,
+    LOAD_MAX_MONTH_PRICE,
+    LOAD_MAX_SQUARE_ALL,
+    LOAD_MAX_SQUARE_LIVING,
+    LOAD_MIN_FLAT_FLOOR,
+    LOAD_MIN_FLAT_ROOM,
+    LOAD_MIN_HOUSE_FLOOR,
+    LOAD_MIN_HOUSE_YEAR,
+    LOAD_MIN_MONTH_PRICE,
+    LOAD_MIN_SQUARE_ALL,
+    LOAD_MIN_SQUARE_LIVING,
+    LOAD_STREET
 } from "./flatActions";
 import {LOAD_ALL_FLATS, LOAD_FLAT} from "../user/userActions";
 
@@ -78,6 +103,13 @@ const initState = {
     flatData: null,
 
     flatHasComfort: [],
+    flatHasHouseholdAppliance: [],
+    flatHasMultimedia: [],
+    flatHasPeopleType: [],
+    flatHasRule: [],
+    flatHasImage: [],
+    flatHasImageURL: [],
+    flatDataById: null
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -173,8 +205,23 @@ export const flatReducer = (state = initState, action) => {
             return {...state, houseData: action.payload}
         case LOAD_FLAT_DATA:
             return {...state, flatData: action.payload}
+
         case LOAD_FLAT_HAS_COMFORT:
             return {...state, flatHasComfort: action.payload}
+        case LOAD_FLAT_HAS_HOUSEHOLD_APPLIANCE:
+            return {...state, flatHasHouseholdAppliance: action.payload}
+        case LOAD_FLAT_HAS_MULTIMEDIA:
+            return {...state, flatHasMultimedia: action.payload}
+        case LOAD_FLAT_HAS_PEOPLE_TYPE:
+            return {...state, flatHasPeopleType: action.payload}
+        case LOAD_FLAT_HAS_RULE:
+            return {...state, flatHasRule: action.payload}
+        case LOAD_FLAT_HAS_IMAGE:
+            return {...state, flatHasImage: action.payload}
+        case LOAD_FLAT_DATA_BY_ID:
+            return {...state, flatDataById: action.payload}
+        case LOAD_FLAT_HAS_IMAGE_URL:
+            return {...state, flatHasImageURL: action.payload}
 
 
         default:

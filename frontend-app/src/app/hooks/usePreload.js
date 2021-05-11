@@ -15,6 +15,14 @@ export const usePreloadPRO = (dispatchFunction, url, type) => {
 
     useEffect(() => {
         console.log("useEffectPRO")
-        dispatch(dispatchFunction(url,type));
+        dispatch(dispatchFunction(url, type));
+    }, []);
+}
+export const usePreloadPRO3 = (dispatchFunction, url, type, id) => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("useEffectPRO3")
+        dispatch(dispatchFunction(url, type, id));
     }, []);
 }

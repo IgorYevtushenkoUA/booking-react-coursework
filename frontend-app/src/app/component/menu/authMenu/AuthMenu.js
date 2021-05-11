@@ -13,33 +13,30 @@ const AuthMenu = (props) => {
     const history = useHistory();
 
     const signOut = () => {
-        alert("signout")
         localStorage.setItem("role", -1);
         history.push(MAIN_ROUTE);
-        // todo navbar -> не перемальовується
+        window.location.reload();
     }
 
     if (role == -1) {
         return (
-            <Nav className="ml-auto">
+            <Nav className="ml-auto sign_in">
                 <Link to={REGISTRATION_OWNER_ROUTE}>
-                    <Button variant={"outline-light"}
-                    >{t("navbar.owner")}</Button>
+                    <button className="btn"
+                    >{t("navbar.owner")}</button>
                 </Link>
                 <Link to={LOGIN_ROUTE}>
-                    <Button variant={"outline-light"}
-                    >{t("navbar.sign_in")}</Button>
+                    <button className="btn"
+                    >{t("navbar.sign_in")}</button>
                 </Link>
             </Nav>
         );
     } else {
         return (
-            <Nav className="ml-auto">
+            <Nav className="ml-auto sign_out">
                 <Link to={MAIN_ROUTE}>
-                    <Button
-                        onClick={signOut}
-                        variant={"outline-light"}
-                        className={"ml-1"}>{t("navbar.sign_out")}</Button>
+                    <button className="btn"
+                        onClick={signOut}>{t("navbar.sign_out")}</button>
                 </Link>
             </Nav>
         );

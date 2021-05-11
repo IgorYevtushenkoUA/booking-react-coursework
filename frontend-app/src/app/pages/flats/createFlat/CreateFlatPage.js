@@ -3,13 +3,12 @@ import {Button, Container} from "react-bootstrap";
 import {usePreload} from "../../../hooks/usePreload";
 import {
     createFlat,
-    getHouseByHouseNumAndStreetId, loadAllAreas, loadAllBathroomTypes, loadAllCities, loadAllComforts,
+    loadAllAreas, loadAllBathroomTypes, loadAllCities, loadAllComforts,
     loadAllHeatings, loadAllHouseholdAppliance, loadAllInfrastructures, loadAllMetroStations, loadAllMultimedias,
     loadAllPeopleTypes, loadAllRules, loadAllStreets, loadAllWallTypes
 } from "../../../store/additional/flat/flatActions";
 import {useDispatch, useSelector} from "react-redux";
 import LoadImageCard from "../../../component/loadImage/load/LoadImageCard";
-import DrapImageCard from "../../../component/loadImage/drap/DrapImageCard";
 import TextAreaCard from "../../../component/textarea/TextAreaCard";
 import CheckBoxCard from "../../../component/checkbox/CheckBoxCard";
 import DropDownList from "../../../component/dropdown/DropDownList";
@@ -45,6 +44,7 @@ const CreateFlatPage = () => {
         priceMonth = 0,
         pledge = 0,
         balconiesNum = 0,
+        roomsNum = 0,
         bathroomTypeId = 0,
         comfortsArr = [],
         infrastructuresArr = [],
@@ -52,7 +52,9 @@ const CreateFlatPage = () => {
         multimediasArr = [],
         rulesArr = [],
         householdApplianceArr = [],
-        imagesArr = [];
+        imagesArr = [],
+        short_description = "",
+        main_description = "";
 
     const [drag, setDrag] = useState(false);
 
@@ -139,6 +141,8 @@ const CreateFlatPage = () => {
             pledge = value;
         } else if (type = 'balconiesNum') {
             balconiesNum = value;
+        } else if (type == 'roomsNum') {
+            roomsNum = value;
         } else {
             console.log("else in setFormData")
         }
@@ -147,6 +151,16 @@ const CreateFlatPage = () => {
 
     const setImages = (images) => {
         imagesArr = images;
+    }
+
+    const setTextArea = (type, value) => {
+        if (type == 'short_description') {
+            short_description = value;
+        } else if (type == 'main_description') {
+            main_description = value;
+        } else {
+            console.log("else in set TextArea")
+        }
     }
 
     const handlerClick = async () => {
@@ -207,116 +221,165 @@ const CreateFlatPage = () => {
         }
     }
 
+    const style3 = {
+        display: 'grid',
+        gridTemplateColumns: '3fr 3fr 3fr',
+        gridGap: '20px',
+        paddingTop: '20px',
+    }
+
+    const styleBtn = {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+
     return (
         <Container>
-            <AttributeForm
-                setFormData={setFormData}
-                title={"houseNum"}
-                placeholder={"houseNum"}
-                type={"houseNum"}
-            />
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"houseYear"}
-                placeholder={"houseYear"}
-                type={"houseYear"}
-            />
+            <div style={style3}>
+                <DropDownList
+                    title="Оберіть вулицю"
+                    data={streets}
+                    setData={setData}
+                    type="street"
+                />
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"numOfFloors"}
-                placeholder={"numOfFloors"}
-                type={"numOfFloors"}
-            />
+                <DropDownList
+                    title="Оберіть Район"
+                    data={areas}
+                    setData={setData}
+                    type="area"
+                />
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"flatFloor"}
-                placeholder={"flatFloor"}
-                type={"flatFloor"}
-            />
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"houseNum"}
+                    placeholder={"houseNum"}
+                    type={"houseNum"}
+                />
+            </div>
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"allSquare"}
-                placeholder={"allSquare"}
-                type={"allSquare"}
-            />
+            <div style={style3}>
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"houseYear"}
+                    placeholder={"houseYear"}
+                    type={"houseYear"}
+                />
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"livingSquare"}
-                placeholder={"livingSquare"}
-                type={"livingSquare"}
-            />
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"numOfFloors"}
+                    placeholder={"numOfFloors"}
+                    type={"numOfFloors"}
+                />
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"priceMonth"}
-                placeholder={"priceMonth"}
-                type={"priceMonth"}
-            />
+                <DropDownList
+                    title="Тип опалення"
+                    data={heatings}
+                    setData={setData}
+                    type="heating"
+                />
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"pledge"}
-                placeholder={"pledge"}
-                type={"pledge"}
-            />
+            </div>
 
-            <AttributeForm
-                setFormData={setFormData}
-                title={"balconiesNum"}
-                placeholder={"balconiesNum"}
-                type={"balconiesNum"}
-            />
+            <div style={{marginTop:'20px'}}>
+                <DropDownList
+                    title="Оберіть найближчу станцію метро"
+                    data={metroStations}
+                    setData={setData}
+                    type="metro"
+                />
+            </div>
 
-            <DropDownList
-                title="Оберіть вулицю"
-                data={streets}
-                setData={setData}
-                type="street"
-            />
 
-            <DropDownList
-                title="Оберіть Район"
-                data={areas}
-                setData={setData}
-                type="area"
-            />
+            <div style={style3}>
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"flatFloor"}
+                    placeholder={"flatFloor"}
+                    type={"flatFloor"}
+                />
 
-            <DropDownList
-                title="Оберіть Тип стін у будинку"
-                data={wallTypes}
-                setData={setData}
-                type="wallType"
-            />
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"flat Rooms"}
+                    placeholder={"roomsNum"}
+                    type={"roomsNum"}
+                />
 
-            <DropDownList
-                title="Оберіть опалення у будинку"
-                data={heatings}
-                setData={setData}
-                type="heating"
-            />
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"balconiesNum"}
+                    placeholder={"balconiesNum"}
+                    type={"balconiesNum"}
+                />
+            </div>
 
-            <DropDownList
-                title="Оберіть тип ванної кімнати"
-                data={bathroomTypes}
-                setData={setData}
-                type="bathroomType"
-            />
 
-            <DropDownList
-                title="Оберіть найближчу станцію метро"
-                data={metroStations}
-                setData={setData}
-                type="metro"
-            />
+            <div style={style3}>
+
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"allSquare"}
+                    placeholder={"allSquare"}
+                    type={"allSquare"}
+                />
+
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"livingSquare"}
+                    placeholder={"livingSquare"}
+                    type={"livingSquare"}
+                />
+
+                <DropDownList
+                    title="Оберіть тип ванної кімнати"
+                    data={bathroomTypes}
+                    setData={setData}
+                    type="bathroomType"
+                />
+
+            </div>
+
+            <div style={style3}>
+
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"priceMonth"}
+                    placeholder={"priceMonth"}
+                    type={"priceMonth"}
+                />
+
+                <AttributeForm
+                    setFormData={setFormData}
+                    title={"pledge"}
+                    placeholder={"pledge"}
+                    type={"pledge"}
+                />
+
+                <DropDownList
+                    title="Оберіть Тип стін у будинку"
+                    data={wallTypes}
+                    setData={setData}
+                    type="wallType"
+                />
+
+            </div>
 
             <LoadImageCard setImages={setImages}/>
 
-            <TextAreaCard/>
+            <TextAreaCard
+                type="short_description"
+                setTextArea={setTextArea}
+            />
+
+            <TextAreaCard
+                type="main_description"
+                setTextArea={setTextArea}
+            />
+
 
             <CheckBoxCard
                 type={"comfort"}
@@ -359,8 +422,9 @@ const CreateFlatPage = () => {
                 title={"Виберіть Побутову техніку"}
                 changeData={changeData}
             />
-
-            <Button onClick={handlerClick}>Створити квартиру</Button>
+            <div style={styleBtn}>
+                <Button onClick={handlerClick}>Створити квартиру</Button>
+            </div>
         </Container>
     );
 };

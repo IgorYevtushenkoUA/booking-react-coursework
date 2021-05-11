@@ -39,15 +39,9 @@ const LoadImageCard = (props) => {
     };
 
     return (
-        <div className="app">
-            <div className="heading">React Multiple Images Preview</div>
+        <div className="image_loader">
             <div>
-                <input type="file" id="file" multiple onChange={handleImageChange}/>
-                <div className="label-holder">
-                    <label htmlFor="file" className="label">
-                        <i className="material-icons">add_a_photo</i>
-                    </label>
-                </div>
+                <input  type="file" id="file" multiple onChange={handleImageChange}/>
                 <div className="result">{renderPhotos(selectedFiles)}</div>
             </div>
         </div>

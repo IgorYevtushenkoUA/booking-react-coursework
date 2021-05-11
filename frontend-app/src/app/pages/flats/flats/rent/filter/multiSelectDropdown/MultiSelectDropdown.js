@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Select from 'react-select';
 import {MultiSelect} from "@progress/kendo-react-dropdowns";
+import {Container} from "react-bootstrap";
 
 const MultiSelectDropdown = (props) => {
 
