@@ -28,9 +28,9 @@ export const userReducer = (state = initState, action) => {
         case LOAD_OWNER_HAS_FLATS:
             return {...state, ownerHasFlat: action.payload}
         case LOAD_CLIENT_LIKED_FLAT:
-            return {...state, clientWatchedFlat: action.payload}
-        case LOAD_CLIENT_WATCHED_FLAT:
             return {...state, clientLikedFlat: action.payload}
+        case LOAD_CLIENT_WATCHED_FLAT:
+            return {...state, clientWatchedFlat: action.payload}
 
         case ADD_OWNER_HAS_FLATS:
             return {...state, ownerHasFlat: []}

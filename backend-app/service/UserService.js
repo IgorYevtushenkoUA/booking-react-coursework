@@ -52,6 +52,7 @@ class UserService {
     }
 
     async clientLikedFlat(clientLikedFlat) {
+
         return await ClientLikedFlat.create({...clientLikedFlat});
     }
 

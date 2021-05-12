@@ -17,7 +17,7 @@ export const OWNER_FLATS = "/owner/flats"
 
 // account role
 export const CLIENT_PERSONAL_PAGE = "/account";
-export const CLIENT_LIKED_FLATS = "/flats/liked";
+export const CLIENT_LIKED_FLATS = "/account/liked";
 export const CLIENT_QUICK_LOVE = "/flats/quick-love";
 
 // admin role

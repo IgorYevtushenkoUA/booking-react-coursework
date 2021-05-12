@@ -9,6 +9,7 @@ import {
 } from "../../store/additional/flat/flatActions";
 import {useDispatch, useSelector} from "react-redux";
 import {
+    ADD_CLIENT_LIKED_FLAT,
     ADD_CLIENT_WATCHED_FLAT,
     LOAD_CLIENT_WATCHED_FLAT,
     loadClientWatchedFlat,
@@ -48,7 +49,7 @@ const BadooPage = () => {
 
     const like = (flatId) => {
         dispatch(userAddData(`api/user/client_watched_flat`, accountId, flatId, ADD_CLIENT_WATCHED_FLAT));
-        dispatch(userAddData("api/user/client_liked_flat", accountId, flatId, ADD_CLIENT_WATCHED_FLAT));
+        dispatch(userAddData("api/user/client_liked_flat", accountId, flatId, ADD_CLIENT_LIKED_FLAT));
         window.location.reload();
     }
 

@@ -110,13 +110,14 @@ export const loadOwnerHasFlat = (id) => {
     }
 }
 
-export const loadClientLikedFlat = (id) => {
+export const loadClientLikedFlat = (url, type) => {
     return async dispatch => {
         try {
-            const res = await $host.get("api/user/client_liked_flat/" + id);
+            const res = await $host.get(url);
             const data = await res.data;
+            debugger
             dispatch({
-                type: LOAD_CLIENT_LIKED_FLAT,
+                type: type,
                 payload: data
             })
         } catch (e) {
