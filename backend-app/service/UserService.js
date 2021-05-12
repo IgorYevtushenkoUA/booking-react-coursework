@@ -3,6 +3,8 @@ const {ClientLikedFlat} = require("../models/models");
 const {OwnerHasFlat} = require("../models/models");
 const {Account} = require("../models/models.js")
 const {connection} = require("../database/dbConnector.js")
+const {promisify} = require('util');
+const query = promisify(connection.query).bind(connection);
 
 class UserService {
 
@@ -10,6 +12,32 @@ class UserService {
         const users = await Account.findAll();
         return users;
     }
+
+
+    async getOwnerFlat() {
+        let sql = "select a.id as accountId, f.id as flatId\n" +
+            "from accounts a\n" +
+            "         inner join owner_has_flats o on a.id = o.accountId\n" +
+            "         inner join flats f on o.flatId = f.id";
+        return await query(sql);
+    }
+
+    async getClientLikedFlat() {
+        let sql = "select a.id as accountId, f.id as flatId\n" +
+            "from accounts a\n" +
+            "         inner join client_liked_flats o on a.id = o.accountId\n" +
+            "         inner join flats f on o.flatId = f.id";
+        return await query(sql);
+    }
+
+    async getClientWatchedFlat() {
+        let sql = "select a.id as accountId, f.id as flatId\n" +
+            "from accounts a\n" +
+            "         inner join client_has_seen_flats o on a.id = o.accountId\n" +
+            "         inner join flats f on o.flatId = f.id";
+        return await query(sql);
+    }
+
 
     async getById(id) {
         if (!id) {
@@ -19,15 +47,15 @@ class UserService {
         return users;
     }
 
-    async ownerAddFlat(accountHasFlat){
+    async ownerAddFlat(accountHasFlat) {
         return await OwnerHasFlat.create({...accountHasFlat});
     }
 
-    async clientLikedFlat(clientLikedFlat){
+    async clientLikedFlat(clientLikedFlat) {
         return await ClientLikedFlat.create({...clientLikedFlat});
     }
 
-    async clientWatchedFlat(clientWatchedFlat){
+    async clientWatchedFlat(clientWatchedFlat) {
         return await ClientWatchedFlat.create({...clientWatchedFlat});
     }
 

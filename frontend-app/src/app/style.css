@@ -183,4 +183,111 @@
   margin-top: 20px;
 }
 
+.badoo .badoo_item {
+  margin-top: 20px;
+}
+.badoo .badoo_item .image_block .block_center {
+  margin: 0 auto;
+  height: 250px;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+.badoo .badoo_item .image_block .img {
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  width: 85%;
+  height: 250px;
+  object-fit: cover;
+  border: 4px solid var(--clr-grey-8);
+  box-shadow: var(--dark-shadow);
+}
+.badoo .badoo_item .image_block article h4 {
+  text-transform: uppercase;
+  color: var(--clr-primary-5);
+  margin-bottom: 0.25rem;
+}
+.badoo .badoo_item .image_block .title {
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+  color: var(--clr-grey-3);
+}
+.badoo .badoo_item .image_block .text {
+  max-width: 35em;
+  margin: 0 auto;
+  margin-top: 2rem;
+  line-height: 2;
+  color: var(--clr-grey-5);
+}
+.badoo .badoo_item .image_block .icon {
+  font-size: 3rem;
+  margin-top: 1rem;
+  color: var(--clr-primary-5);
+}
+.badoo .badoo_item .image_block .prev,
+.badoo .badoo_item .image_block .next {
+  position: absolute;
+  top: 200px;
+  transform: translateY(-50%);
+  background: var(--clr-grey-5);
+  color: var(--clr-white);
+  width: 1.25rem;
+  height: 1.25rem;
+  display: grid;
+  place-items: center;
+  border-color: transparent;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.badoo .badoo_item .image_block .prev:hover,
+.badoo .badoo_item .image_block .next:hover {
+  background: var(--clr-primary-5);
+}
+.badoo .badoo_item .image_block .prev {
+  left: 0;
+}
+.badoo .badoo_item .image_block .next {
+  right: 0;
+}
+.badoo .badoo_item .image_block article {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: var(--transition);
+}
+.badoo .badoo_item .image_block article.activeImage {
+  opacity: 1;
+  transform: translateX(0);
+}
+.badoo .badoo_item .image_block article.nextImage {
+  transform: translateX(100%);
+}
+.badoo .info_block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.badoo .btn_badoo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.badoo .btn_badoo .dislike {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+.badoo .btn_badoo .like {
+  background-color: green;
+  color: white;
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=style.css.map */

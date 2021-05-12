@@ -8,7 +8,7 @@ import {
     SELL_FLATS_ROUTE,
     REGISTRATION_OWNER_ROUTE,
     OWNER_ADD_FLAT,
-    CLIENT_PERSONAL_PAGE
+    CLIENT_PERSONAL_PAGE, BADOO_FLAT
 } from "../app/utils/consts"
 import MainPage from "./pages/main/MainPage";
 import AuthPage from "./pages/auth/AuthPage";
@@ -19,6 +19,7 @@ import FlatPage from "./pages/flat/FlatPage";
 import OwnerPage from "./pages/users/owner/OwnerPage";
 import ClientPage from "./pages/users/client/clientPage";
 import CreateFlatPage from "./pages/flats/createFlat/CreateFlatPage";
+import BadooPage from "./pages/badoo/BadooPage";
 
 export const authRoutes = [
     {
@@ -46,6 +47,10 @@ export const authRoutes = [
         "Component": FlatsRentPage
     },
     {
+        "path": BADOO_FLAT,
+        "Component": BadooPage
+    },
+    {
         "path": RENT_FLATS_ROUTE + "/:id",
         "Component": FlatPage
     },
@@ -64,7 +69,9 @@ export const authRoutes = [
     {
         "path": OWNER_ADD_FLAT,
         "Component": CreateFlatPage
-    }
+    },
+
+
     // {
     //     "path": OWNER_PERSONAL_PAGE + "/:id",
     //     "Component": OwnerPage

@@ -94,6 +94,33 @@ class UserController {
         }
     }
 
+    async getOwnerFlat(req, res){
+        try {
+            const ownerFlat = await userService.getOwnerFlat(req.params.id);
+            return res.json(ownerFlat);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getClientLikedFlat(req, res){
+        try {
+            const clientLikedFlat = await userService.getClientLikedFlat(req.params.id);
+            return res.json(clientLikedFlat);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getClientWatchedFlat(req, res){
+        try {
+            const clientWatchedFlat = await userService.getClientWatchedFlat(req.params.id);
+            return res.json(clientWatchedFlat);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
 }
 
 const sendEmail = () => {

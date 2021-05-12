@@ -2,26 +2,21 @@ import React, {useState} from 'react';
 import {Col, Container, Dropdown, Nav, Row} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {CLIENT_LIKED_FLATS, CLIENT_QUICK_LOVE, OWNER_FLATS} from "../../../utils/consts";
-
-// quick love
-// favourite flats
-// personal page
-
+import {BADOO_FLAT, CLIENT_LIKED_FLATS, CLIENT_QUICK_LOVE, OWNER_FLATS} from "../../../utils/consts";
 
 const ClientMenu = () => {
-    const [mes, setMessage] = useState('режим');
     const {t} = useTranslation();
+
     return (
         <Row className="menu">
             <Nav>
                 <Link to={CLIENT_LIKED_FLATS}>
-                    {t("menu.client.liked")}
+                    <h4>{t("menu.client.liked")}</h4>
                 </Link>
             </Nav>
             <Nav>
-                <Link to={CLIENT_QUICK_LOVE}>
-                    {t("menu.client.quick_love")}
+                <Link to={BADOO_FLAT}>
+                    <h4>{t("menu.client.quick_love")}</h4>
                 </Link>
             </Nav>
         </Row>

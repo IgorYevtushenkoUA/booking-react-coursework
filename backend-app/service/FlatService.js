@@ -12,8 +12,6 @@ const {
     HouseNearMetroStation,
     BathroomType,
     Flat,
-    RentType,
-    FlatHasRentType,
     HouseholdAppliances,
     FlatHasHouseholdAppliances,
     Multimedia,

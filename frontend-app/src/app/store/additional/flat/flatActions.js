@@ -121,7 +121,6 @@ export const loadFlatHasImageUrl = (address, type, flatId) => {
                 let address = 'images/' + flatId + '/' + flatsImage[i].name;
                 debugger
                 await firebase.storage().ref().child(address).getDownloadURL().then((url) => {
-                    console.log("url :" + url);
                     imagesURL.push({
                         id: i,
                         url: url

@@ -1,25 +1,22 @@
 import {
     LOGIN,
     SIGN_OUT,
-    LOAD_ALL_FLATS,
-    LOAD_FLAT,
-    ADD_FLAT,
-    UPDATE_FLAT,
-    DELETE_FLAT,
-    UPDATE_CLIENT,
-    DELETE_CLIENT,
-    ADD_OWNER,
-    UPDATE_OWNER,
-    DELETE_OWNER,
-    LIKE_FLAT,
-    WATCH_FLAT,
-    DELETE_LIKED_FLAT, REGISTER_ACCOUNT
+    REGISTER_ACCOUNT,
+    LOAD_OWNER_HAS_FLATS,
+    LOAD_CLIENT_LIKED_FLAT,
+    LOAD_CLIENT_WATCHED_FLAT,
+    ADD_OWNER_HAS_FLATS,
+    ADD_CLIENT_LIKED_FLAT, ADD_CLIENT_WATCHED_FLAT
 } from "./userActions"
 
 const initState = {
     userCredentials: null,
-
+    ownerHasFlat: [],
+    clientWatchedFlat: [],
+    clientLikedFlat: [],
+    randomFlatId: null,
 }
+
 export const userReducer = (state = initState, action) => {
     switch (action.type) {
         case SIGN_OUT:
@@ -27,8 +24,22 @@ export const userReducer = (state = initState, action) => {
         case LOGIN:
             return {...state, userCredentials: action.payload}
         case REGISTER_ACCOUNT:
-            console.log("we are in useReducer : register")
             return {...state, userCredentials: action.payload}
+        case LOAD_OWNER_HAS_FLATS:
+            return {...state, ownerHasFlat: action.payload}
+        case LOAD_CLIENT_LIKED_FLAT:
+            return {...state, clientWatchedFlat: action.payload}
+        case LOAD_CLIENT_WATCHED_FLAT:
+            return {...state, clientLikedFlat: action.payload}
+
+        case ADD_OWNER_HAS_FLATS:
+            return {...state, ownerHasFlat: []}
+        case ADD_CLIENT_LIKED_FLAT:
+            return {...state, clientLikedFlat: []}
+        case ADD_CLIENT_WATCHED_FLAT:
+            debugger
+            console.log("userReducer ADD_CLIENT_WATCHED_FLAT")
+            return {...state, clientWatchedFlat: [action.payload.accountId]}//
         default:
             return state;
     }
