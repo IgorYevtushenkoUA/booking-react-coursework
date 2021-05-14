@@ -95,7 +95,7 @@ const CreateFlatPage = () => {
             if (rulesArr.includes(id))
                 rulesArr = rulesArr.filter(w => w != id);
             else rulesArr.push(id);
-        } else if (type = 'householdAppliance') {
+        } else if (type == 'householdAppliance') {
             if (householdApplianceArr.includes(id))
                 householdApplianceArr = householdApplianceArr.filter(w => w != id);
             else householdApplianceArr.push(id);
@@ -113,9 +113,9 @@ const CreateFlatPage = () => {
             wallTypeId = id;
         } else if (type == 'heating') {
             heatingId = id;
-        } else if (type = 'metro') {
+        } else if (type == 'metro') {
             metro = id
-        } else if (type = 'bathroomType') {
+        } else if (type == 'bathroomType') {
             bathroomTypeId = id
         } else {
             console.log("else setData")
@@ -125,21 +125,21 @@ const CreateFlatPage = () => {
     const setFormData = (type, value) => {
         if (type == 'houseNum') {
             houseNum = value;
-        } else if (type = 'houseYear') {
+        } else if (type == 'houseYear') {
             houseYear = value;
-        } else if (type = 'numOfFloors') {
+        } else if (type == 'numOfFloors') {
             numOfFloors = value;
-        } else if (type = 'flatFloor') {
+        } else if (type == 'flatFloor') {
             flatFloor = value;
-        } else if (type = 'allSquare') {
+        } else if (type == 'allSquare') {
             allSquare = value;
-        } else if (type = 'livingSquare') {
+        } else if (type == 'livingSquare') {
             livingSquare = value;
-        } else if (type = 'priceMonth') {
+        } else if (type == 'priceMonth') {
             priceMonth = value;
-        } else if (type = 'pledge') {
+        } else if (type == 'pledge') {
             pledge = value;
-        } else if (type = 'balconiesNum') {
+        } else if (type == 'balconiesNum') {
             balconiesNum = value;
         } else if (type == 'roomsNum') {
             roomsNum = value;
@@ -155,6 +155,7 @@ const CreateFlatPage = () => {
 
     const setTextArea = (type, value) => {
         if (type == 'short_description') {
+            debugger
             short_description = value;
         } else if (type == 'main_description') {
             main_description = value;
@@ -166,7 +167,6 @@ const CreateFlatPage = () => {
     const handlerClick = async () => {
         try {
 
-            const house_num_test = 33;
             const house_year_test = 1;
             const floors_num_test = 1;
             const streetId_test = 7;
@@ -190,31 +190,33 @@ const CreateFlatPage = () => {
             const pledge_test = 1;
             const bathroomTypeId_test = 1;
 
+            debugger
+
             dispatch(createFlat(
-                house_num_test,
-                house_year_test,
-                floors_num_test,
-                streetId_test,
-                wallTypeId_test,
-                heatingId_test,
-                metroStationId_test,
+                houseNum,
+                houseYear,
+                numOfFloors,
+                streetId,
+                wallTypeId,
+                heatingId,
+                metro,
                 imagesArr,
-                comforts_test,
-                infrastructures_test,
-                peopleType_test,
-                multimedias_test,
-                rules_test,
-                householdAppliances,
-                flat_floor_test,
-                square_all_test,
-                square_living_test,
-                price_month_test,
-                rooms_num_test,
-                balconies_num_test,
-                short_description_test,
-                main_description_test,
-                pledge_test,
-                bathroomTypeId_test
+                comfortsArr,
+                infrastructuresArr,
+                peopleTypesArr,
+                multimediasArr,
+                rulesArr,
+                householdApplianceArr,
+                flatFloor,
+                allSquare,
+                livingSquare,
+                priceMonth,
+                roomsNum,
+                balconiesNum,
+                short_description,
+                main_description,
+                pledge,
+                bathroomTypeId
             ))
         } catch (e) {
             alert("e.response.data.message : handlerClick")

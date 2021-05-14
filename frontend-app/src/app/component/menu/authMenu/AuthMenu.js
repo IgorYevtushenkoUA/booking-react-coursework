@@ -8,12 +8,12 @@ const AuthMenu = (props) => {
     const {t} = useTranslation();
 
     let account = props.account;
-    const role = localStorage.getItem("role");
+    const role = localStorage.getItem("roleId");
 
     const history = useHistory();
 
     const signOut = () => {
-        localStorage.setItem("role", -1);
+        localStorage.setItem("roleId", -1);
         history.push(MAIN_ROUTE);
         window.location.reload();
     }

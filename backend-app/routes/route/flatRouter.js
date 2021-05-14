@@ -56,7 +56,9 @@ router.get("/flat_has_multimedia/:id", flatController.getFlatMultimedia)
 router.get("/flat_has_people_type/:id", flatController.getFlatPeopleType)
 router.get("/flat_has_rule/:id", flatController.getFlatRule)
 router.get("/flat_has_image/:id", flatController.getFlatImage)
-// router.get("/flat_has_image_url/:id", flatController.getFlatImageUrl)
+
+router.get("/owner_has_flat_data/:accountId", flatController.getOwnerHasFlatData)
+router.get("/owner_has_flat_image_url/:accountId", flatController.getOwnerHasFlatImageUrl)
 
 
 router.post('/image', flatController.createImage);

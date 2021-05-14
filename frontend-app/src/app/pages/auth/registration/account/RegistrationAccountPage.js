@@ -170,7 +170,7 @@ const RegistrationAccountPage = (props) => {
             }
             dispatch(register(account));
             debugger
-            localStorage.setItem("role", props.role);
+            localStorage.setItem("roleId", props.role);
             debugger
             history.push(MAIN_ROUTE);
         } catch (e) {

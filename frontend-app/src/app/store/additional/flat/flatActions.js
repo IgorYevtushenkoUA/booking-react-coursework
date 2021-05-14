@@ -64,6 +64,9 @@ export const LOAD_FLAT_DATA_BY_ID = 'LOAD_FLAT_DATA_BY_ID';
 
 export const CREATE_IMAGE = 'CREATE_IMAGE';
 export const LOAD_FLAT_HAS_IMAGE_URL = 'LOAD_FLAT_HAS_IMAGE_URL';
+export const LOAD_OWNER_HAS_FLATS_DATA = 'LOAD_OWNER_HAS_FLATS_DATA';
+export const LOAD_OWNER_HAS_FLATS_IMAGES_URL = 'LOAD_OWNER_HAS_FLATS_IMAGES_URL';
+export const LOAD_OWNER_HAS_FLATS_IMAGES = 'LOAD_OWNER_HAS_FLATS_IMAGES';
 
 
 export const loadData = (url, type) => {
@@ -119,7 +122,6 @@ export const loadFlatHasImageUrl = (address, type, flatId) => {
             let imagesURL = [];
             for (let i = 0; i < flatsImage.length; i++) {
                 let address = 'images/' + flatId + '/' + flatsImage[i].name;
-                debugger
                 await firebase.storage().ref().child(address).getDownloadURL().then((url) => {
                     imagesURL.push({
                         id: i,
@@ -129,6 +131,38 @@ export const loadFlatHasImageUrl = (address, type, flatId) => {
                 });
             }
             debugger
+            dispatch({
+                type: type,
+                payload: imagesURL
+            })
+        } catch
+            (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadOwnerHasFlatImageURL = (address, type, accountId) => {
+    return async dispatch => {
+        try {
+            const resFlatId = await $host.get(`api/flats/owner_has_flat_data/${accountId}`);
+            const flatsId = await resFlatId.data.map(i => i.flat_id);
+            const resImagesData = await $host.get(`api/flats/owner_has_flat_image_url/${accountId}`);
+            const imagesData = resImagesData.data;
+            debugger
+            let imagesURL = [];
+            for (let i = 0; i < imagesData.length; i++) {
+                let address = 'images/' + imagesData[i].flatId + '/' + imagesData[i].imageName;
+                await firebase.storage().ref().child(address).getDownloadURL().then((url) => {
+                    imagesURL.push({
+                        id: i,
+                        url: url
+                    });
+                    debugger;
+                });
+            }
+            debugger;
+
             dispatch({
                 type: type,
                 payload: imagesURL

@@ -17,6 +17,8 @@ const LikedFlatItem = (props) => {
     load image
     load all data what you need
      */
+
+    debugger
     let arr = props.clientHasLikedFlat;
 
     usePreloadPRO3(loadFlatHasImageUrl, `api/flats/flat_has_image/${props.clientHasLikedFlat.flatId}`, LOAD_FLAT_HAS_IMAGE_URL, props.clientHasLikedFlat.flatId);

@@ -367,6 +367,62 @@ class FlatService {
         return await query(sql);
     }
 
+    async getOwnerHasFlatData(accountId) {
+        let sql = "select f.id                as flat_id,\n" +
+            "       f.flat_floor        as flat_floor,\n" +
+            "       f.square_all        as square_all,\n" +
+            "       f.square_living     as square_living,\n" +
+            "       f.price_month       as price_month,\n" +
+            "       f.rooms_num         as rooms_num,\n" +
+            "       f.balconies_num     as balconies_num,\n" +
+            "       f.short_description as short_description,\n" +
+            "       f.main_description  as main_description,\n" +
+            "       f.updatedAt         as updatedAt,\n" +
+            "       f.createdAt         as createdAt,\n" +
+            "       h.id                as house_id,\n" +
+            "       f.flat_floor        as flat_floor,\n" +
+            "       h.house_year        as house_year,\n" +
+            "       h.floors_num        as floors_num,\n" +
+            "       h.house_num         as house_num,\n" +
+            "       h2.name             as heating_name,\n" +
+            "       s.name              as street_name,\n" +
+            "       a.name              as area_name,\n" +
+            "       r.name              as region_name,\n" +
+            "       c.name              as city_name,\n" +
+            "       bt.name             as bathroom_type_name,\n" +
+            "       ms.name             as metro_station_name,\n" +
+            "       ms.line_color       as line_color\n" +
+            "from flats f\n" +
+            "         inner join houses h on h.id = f.houseId\n" +
+            "         inner join heatings h2 on h.heatingId = h2.id\n" +
+            "         inner join streets s on h.streetId = s.id\n" +
+            "         inner join areas a on s.areaId = a.id\n" +
+            "         inner join regions r on a.regionId = r.id\n" +
+            "         inner join cities c on r.cityId = c.id\n" +
+            "         inner join owner_has_flats ohf on f.id = ohf.flatId\n" +
+            "         inner join accounts account on ohf.accountId = account.id\n" +
+            "         inner join bathroom_types bt on f.bathroomTypeId = bt.id\n" +
+            "         inner join house_near_metro_stations hnms on h.id = hnms.houseId\n" +
+            "         inner join metro_stations ms on hnms.metroStationId = ms.id\n" +
+            "where account.id=" + accountId;
+        return await query(sql);
+    }
+
+    async getOwnerHasFlatImageUrl(accountId) {
+        let sql = "select f.id   as flatId,\n" +
+            "       i.id   as imageId,\n" +
+            "       i.name as imageName\n" +
+            "from accounts a\n" +
+            "         inner join owner_has_flats ohf on a.id = ohf.accountId\n" +
+            "         inner join flats f on ohf.flatId = f.id\n" +
+            "         inner join flat_has_images fhi on f.id = fhi.flatId\n" +
+            "         inner join images i on fhi.imageId = i.id\n" +
+            "where a.id = " + accountId + "\n" +
+            "group by f.id"
+        return await query(sql);
+    }
+
+
     async getStreetById(id) {
         if (!id) {
             throw new Error('е указан ID')

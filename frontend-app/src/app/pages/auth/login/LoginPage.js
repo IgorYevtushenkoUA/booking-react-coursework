@@ -13,7 +13,8 @@ import {login} from "../../../store/additional/user/userActions";
 
 const LoginPage = () => {
     const {t} = useTranslation();
-    const [email, setEmail] = useState('owner@gmail.com');
+    // const [email, setEmail] = useState('owner@gmail.com');
+    const [email, setEmail] = useState('testing6@gail.com');
     const [password, setPassword] = useState('password');
     const [emailDirty, setEmailDirty] = useState(false)
     const [passwordDirty, setPasswordDirty] = useState(false)

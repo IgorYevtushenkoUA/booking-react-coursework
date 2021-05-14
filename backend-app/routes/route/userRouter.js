@@ -10,6 +10,7 @@ router.get("/client_watched_flat/:id", userController.getClientWatchedFlat)
 
 
 router.post("/register", userController.register)
+router.post("/check_token", userController.checkToken)
 
 router.post("/owner_has_flat", userController.ownerAddFlat)
 router.post("/client_liked_flat", userController.clientLikedFlat)

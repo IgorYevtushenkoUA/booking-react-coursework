@@ -1,5 +1,4 @@
 import {$host} from "../../../axios/axios";
-import {LOAD_FLAT_HAS_COMFORT} from "../flat/flatActions";
 
 export const REGISTER_ACCOUNT = 'REGISTER_ACCOUNT';
 export const REGISTER_OWNER = 'REGISTER_OWNER';
@@ -13,6 +12,7 @@ export const LOAD_CLIENT_WATCHED_FLAT = 'LOAD_CLIENT_WATCHED_FLAT';
 export const ADD_CLIENT_WATCHED_FLAT = 'ADD_CLIENT_WATCHED_FLAT';
 export const LOAD_CLIENT_LIKED_FLAT = 'LOAD_CLIENT_LIKED_FLAT';
 export const ADD_CLIENT_LIKED_FLAT = 'ADD_CLIENT_LIKED_FLAT';
+const jwt = require('jsonwebtoken');
 
 export const register = (account) => {
     return async dispatch => {
@@ -41,7 +41,11 @@ export const register = (account) => {
                 last_name,
                 roleRoleId
             });
-            localStorage.setItem("accountId", account.id);
+            debugger
+            const decoded = jwt.verify(res, process.env.SECRET_KEY);
+            debugger
+            localStorage.setItem("accountId", decoded.id);
+            localStorage.setItem("accountId", decoded.roleId);
 
             dispatch({
                 type: REGISTER_ACCOUNT,
@@ -57,14 +61,13 @@ export const login = (email, password) => {
     return async dispatch => {
         try {
             const res = await $host.post("/api/user/login", {email, password});
-            const data = await res.data;
-            let account = data[0];
-            localStorage.setItem("role", account.roleId);
-            localStorage.setItem("accountId", account.id);
-            debugger
+            const token = await res.data.token;
+            const decodedToken = await $host.post("/api/user/check_token", {token});
+            localStorage.setItem("accountId", decodedToken.data.id);
+            localStorage.setItem("roleId", decodedToken.data.roleId);
             dispatch({
                 type: LOGIN,
-                payload: account
+                payload: decodedToken.data
             });
         } catch (e) {
             alert("Something went wrong : login [User not found]");
@@ -121,7 +124,7 @@ export const loadClientLikedFlat = (url, type) => {
                 payload: data
             })
         } catch (e) {
-            alert("Something went wrong : LOAD_CLIENT_LIKED_FLAT")
+            alert("Something went wrong : " + type)
         }
     }
 }

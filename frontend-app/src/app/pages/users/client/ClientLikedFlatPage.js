@@ -12,8 +12,10 @@ const ClientLikedFlatPage = () => {
     let flats = useSelector(store => store.user.clientLikedFlat);
 
     if (flats.length === 0) {
+        debugger
         return (<div>Loading</div>);
     } else {
+        debugger
         return (
             <LikedFlatList flats={flats}/>
         );

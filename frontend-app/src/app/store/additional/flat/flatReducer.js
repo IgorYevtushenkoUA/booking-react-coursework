@@ -46,7 +46,7 @@ import {
     LOAD_MIN_HOUSE_YEAR,
     LOAD_MIN_MONTH_PRICE,
     LOAD_MIN_SQUARE_ALL,
-    LOAD_MIN_SQUARE_LIVING,
+    LOAD_MIN_SQUARE_LIVING, LOAD_OWNER_HAS_FLATS_DATA, LOAD_OWNER_HAS_FLATS_IMAGES, LOAD_OWNER_HAS_FLATS_IMAGES_URL,
     LOAD_STREET
 } from "./flatActions";
 import {LOAD_ALL_FLATS, LOAD_FLAT} from "../user/userActions";
@@ -109,7 +109,10 @@ const initState = {
     flatHasRule: [],
     flatHasImage: [],
     flatHasImageURL: [],
-    flatDataById: null
+    flatDataById: null,
+    ownerHasFlatData: [],
+    ownerHasFlatImages: [],
+    ownerHasFlatImagesURL: [],
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -222,7 +225,12 @@ export const flatReducer = (state = initState, action) => {
             return {...state, flatDataById: action.payload}
         case LOAD_FLAT_HAS_IMAGE_URL:
             return {...state, flatHasImageURL: action.payload}
-
+        case LOAD_OWNER_HAS_FLATS_DATA:
+            return {...state, ownerHasFlatData: action.payload}
+        case LOAD_OWNER_HAS_FLATS_IMAGES:
+            return {...state, ownerHasFlatImages: action.payload}
+        case LOAD_OWNER_HAS_FLATS_IMAGES_URL:
+            return {...state, ownerHasFlatImagesURL: action.payload}
 
         default:
             return state;

@@ -139,6 +139,24 @@ class FlatController {
         }
     }
 
+    async getOwnerHasFlatData(req, res) {
+        try {
+            const ownerHasFlatData = await flatService.getOwnerHasFlatData(req.params.accountId);
+            return res.json(ownerHasFlatData);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getOwnerHasFlatImageUrl(req, res) {
+        try {
+            const ownerHasFlatImageUrl = await flatService.getOwnerHasFlatImageUrl(req.params.accountId);
+            return res.json(ownerHasFlatImageUrl);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
     async getFlatImage(req, res) {
         try {
             const flatImage = await flatService.getFlatImage(req.params.id);

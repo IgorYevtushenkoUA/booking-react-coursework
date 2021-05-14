@@ -5,6 +5,8 @@ import {Col} from "react-bootstrap";
 
 const LikedFlatList = (props) => {
 
+    debugger
+
     return (
         <div>
             {props.flats.map(flat =>
