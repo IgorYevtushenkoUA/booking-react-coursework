@@ -1,22 +1,14 @@
 import React from 'react';
-import {usePreloadPRO, usePreloadPRO3} from "../../../../../hooks/usePreload";
-import {
-    LOAD_FLAT_DATA_BY_ID,
-    LOAD_FLAT_HAS_IMAGE_URL,
-    loadData,
-    loadFlatHasImageUrl
-} from "../../../../../store/additional/flat/flatActions";
-import {useHistory} from "react-router-dom";
-import {useSelector} from "react-redux";
-import {RENT_FLATS_ROUTE} from "../../../../../utils/consts";
-import {Card, Col, Row} from "react-bootstrap";
 
-const ClientLikedFlattem = (props) => {
+import {useHistory} from "react-router-dom";
+import {Card, Col, Row} from "react-bootstrap";
+import {RENT_FLATS_ROUTE} from "../../../../../../utils/consts";
+
+const ClientLikedFlatItem = (props) => {
 
     debugger
     const history = useHistory();
-    let imagesURL = useSelector(store => store.flat.flatHasImageURL),
-        flat = props.flat
+    let flat = props.flat;
 
     const click = () => {
         history.push(RENT_FLATS_ROUTE + '/' + flat.flat_id)
@@ -83,4 +75,4 @@ const ClientLikedFlattem = (props) => {
     );
 };
 
-export default ClientLikedFlattem;
+export default ClientLikedFlatItem;

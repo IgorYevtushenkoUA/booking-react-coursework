@@ -19,7 +19,7 @@ import {
     LOAD_ALL_STREETS,
     LOAD_ALL_WALL_TYPES,
     LOAD_AREA,
-    LOAD_CITY,
+    LOAD_CITY, LOAD_CLIENT_LIKED_FLATS_DATA, LOAD_CLIENT_LIKED_FLATS_IMAGES, LOAD_CLIENT_LIKED_FLATS_IMAGES_URL,
     LOAD_FLAT_DATA,
     LOAD_FLAT_DATA_BY_ID,
     LOAD_FLAT_HAS_COMFORT,
@@ -113,6 +113,10 @@ const initState = {
     ownerHasFlatData: [],
     ownerHasFlatImages: [],
     ownerHasFlatImagesURL: [],
+
+    clientLikedFlatData: [],
+    clientLikedFlatImages: [],
+    clientLikedFlatImagesURL: [],
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -231,6 +235,13 @@ export const flatReducer = (state = initState, action) => {
             return {...state, ownerHasFlatImages: action.payload}
         case LOAD_OWNER_HAS_FLATS_IMAGES_URL:
             return {...state, ownerHasFlatImagesURL: action.payload}
+
+        case LOAD_CLIENT_LIKED_FLATS_DATA:
+            return {...state, clientLikedFlatData: action.payload}
+        case LOAD_CLIENT_LIKED_FLATS_IMAGES:
+            return {...state, clientLikedFlatImages: action.payload}
+        case LOAD_CLIENT_LIKED_FLATS_IMAGES_URL:
+            return {...state, clientLikedFlatImagesURL: action.payload}
 
         default:
             return state;

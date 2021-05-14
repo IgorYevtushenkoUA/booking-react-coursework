@@ -20,8 +20,8 @@ import OwnerPage from "./pages/users/owner/OwnerPage";
 import ClientPage from "./pages/users/client/clientPage";
 import CreateFlatPage from "./pages/flats/createFlat/CreateFlatPage";
 import BadooPage from "./pages/badoo/BadooPage";
-import ClientLikedFlatPage from "./pages/users/client/ClientLikedFlatPage";
 import OwnerFlatPage from "./pages/users/owner/OwnerFlatPage";
+import ClientLikedFlatPage from "./pages/users/client/like/ClientLikedFlatPage";
 
 export const authRoutes = [
     {

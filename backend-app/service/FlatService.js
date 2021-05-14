@@ -422,6 +422,19 @@ class FlatService {
         return await query(sql);
     }
 
+    async getClientLikedFlatImageUrl(accountId) {
+        let sql = "select f.id   as flatId,\n" +
+            "       i.id   as imageId,\n" +
+            "       i.name as imageName\n" +
+            "from accounts a\n" +
+            "         inner join client_liked_flats clf on a.id = clf.accountId\n" +
+            "         inner join flats f on clf.flatId = f.id\n" +
+            "         inner join flat_has_images fhi on f.id = fhi.flatId\n" +
+            "         inner join images i on fhi.imageId = i.id" +
+            "where a.id = " + accountId + "\n" +
+            "group by f.id"
+        return await query(sql);
+    }
 
     async getStreetById(id) {
         if (!id) {

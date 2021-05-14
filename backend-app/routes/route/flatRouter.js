@@ -59,7 +59,8 @@ router.get("/flat_has_image/:id", flatController.getFlatImage)
 
 router.get("/owner_has_flat_data/:accountId", flatController.getOwnerHasFlatData)
 router.get("/owner_has_flat_image_url/:accountId", flatController.getOwnerHasFlatImageUrl)
-
+router.get("/client_liked_flat_data/:accountId", flatController.getClientLikedFlatData)
+router.get("/client_liked_flat_image_url/:accountId", flatController.getClientLikedFlatImageUrl)
 
 router.post('/image', flatController.createImage);
 router.post('/house', flatController.createHouse);

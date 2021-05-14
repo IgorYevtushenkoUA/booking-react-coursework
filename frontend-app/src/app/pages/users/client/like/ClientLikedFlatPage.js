@@ -1,6 +1,6 @@
 import React from 'react';
-import {usePreloadPRO} from "../../../hooks/usePreload";
-import {LOAD_CLIENT_LIKED_FLAT, loadClientLikedFlat} from "../../../store/additional/user/userActions";
+import {usePreloadPRO} from "../../../../hooks/usePreload";
+import {LOAD_CLIENT_LIKED_FLAT, loadClientLikedFlat} from "../../../../store/additional/user/userActions";
 import {useSelector} from "react-redux";
 import ClientLikedFlatList from "./list/ClientLikedFlatList";
 
