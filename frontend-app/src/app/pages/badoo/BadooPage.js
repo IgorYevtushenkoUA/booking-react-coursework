@@ -48,6 +48,7 @@ const BadooPage = () => {
 
 
     const like = (flatId) => {
+        debugger
         dispatch(userAddData(`api/user/client_watched_flat`, accountId, flatId, ADD_CLIENT_WATCHED_FLAT));
         dispatch(userAddData("api/user/client_liked_flat", accountId, flatId, ADD_CLIENT_LIKED_FLAT));
         window.location.reload();
@@ -60,15 +61,19 @@ const BadooPage = () => {
 
     }
 
+
     if (randomId == 0) {
+        debugger
         return (
             <div>Loading</div>
         );
     } else if (randomId == -1) {
+        debugger
         return (
             <div>All Flat you have seen</div>
         );
     } else {
+        debugger
         return (
             <BadooItem
                 randomId={randomId}

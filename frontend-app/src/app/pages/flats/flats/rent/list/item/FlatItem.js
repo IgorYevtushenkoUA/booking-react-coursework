@@ -13,7 +13,7 @@ import {
 } from "../../../../../../store/additional/flat/flatActions";
 import {usePreloadPRO, usePreloadPRO3} from "../../../../../../hooks/usePreload";
 
-const FlatItem = ({flat, image}) => {
+const FlatItem = ({flat, imageURL}) => {
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -29,9 +29,6 @@ const FlatItem = ({flat, image}) => {
     usePreloadPRO3(loadFlatHasImageUrl, `api/flats/flat_has_image/${flat.flat_id}`, LOAD_FLAT_HAS_IMAGE_URL, flat.flat_id);
     let imagesURL = useSelector(store => store.flat.flatHasImageURL);
 
-    if (imagesURL.length == 0) {
-        return (<div>Loading</div>)
-    } else {
 
         return (
             <div className="mt-3">
@@ -42,7 +39,7 @@ const FlatItem = ({flat, image}) => {
                                 <div className="imageBlock">
                                     <Card.Img
                                         // src='https://www.apartments.com/images/default-source/2020-blogimages/apartments493227be-286f-4141-aceb-d874f43b13cd.tmb-featuredim.jpg?sfvrsn=42e4b1d3_1'/>
-                                        src={imagesURL[0].url}/>
+                                        src={imageURL}/>
                                 </div>
                             </Col>
                             <Col>
@@ -83,7 +80,7 @@ const FlatItem = ({flat, image}) => {
                 </Card>
             </div>
         );
-    }
+
 };
 
 export default FlatItem;

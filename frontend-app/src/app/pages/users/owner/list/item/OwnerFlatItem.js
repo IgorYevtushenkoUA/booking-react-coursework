@@ -13,7 +13,7 @@ import {Card, Col, Row} from "react-bootstrap";
 
 const OwnerFlatItem = (props) => {
 
-    debugger
+
     const history = useHistory();
     let imagesURL = useSelector(store => store.flat.flatHasImageURL),
         flat = props.flat
@@ -22,7 +22,7 @@ const OwnerFlatItem = (props) => {
         history.push(RENT_FLATS_ROUTE + '/' + flat.flat_id)
     }
 
-    debugger
+
     const updated = flat.updatedAt.toString().replace("T", " ").replace(".000Z", "");
     const created = flat.createdAt.toString().replace("T", " ").replace(".000Z", "");
 

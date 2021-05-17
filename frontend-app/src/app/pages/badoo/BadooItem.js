@@ -22,21 +22,23 @@ const BadooItem = (props) => {
         props.like(flat.flat_id);
     }
     const dislike = () => {
-        debugger
+
         props.dislike(flat.flat_id);
     }
 
-    if (flat == null || imagesURL.length === 0) {
+    if (imagesURL.length === 0) {
         return (
             <div>Loading</div>
         );
     } else {
+
+        debugger
+
         flat = flat[0];
         const updated = flat.updatedAt.toString().replace("T", " ").replace(".000Z", "");
         const created = flat.createdAt.toString().replace("T", " ").replace(".000Z", "");
 
 
-        debugger
         return (
             <div className={"badoo"}>
                 <div className="badoo_item">

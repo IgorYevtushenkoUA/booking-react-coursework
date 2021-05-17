@@ -1,6 +1,5 @@
 import {$host} from "../../../axios/axios";
 import firebase from "firebase";
-import {useParams} from "react-router";
 
 export const LOAD_ALL_STREETS = 'LOAD_ALL_STREETS';
 export const LOAD_ALL_AREAS = 'LOAD_ALL_AREAS';
@@ -68,9 +67,11 @@ export const LOAD_OWNER_HAS_FLATS_DATA = 'LOAD_OWNER_HAS_FLATS_DATA';
 export const LOAD_OWNER_HAS_FLATS_IMAGES_URL = 'LOAD_OWNER_HAS_FLATS_IMAGES_URL';
 export const LOAD_OWNER_HAS_FLATS_IMAGES = 'LOAD_OWNER_HAS_FLATS_IMAGES';
 
-export const LOAD_CLIENT_LIKED_FLATS_DATA = 'LOAD_OWNER_HAS_FLATS_DATA';
-export const LOAD_CLIENT_LIKED_FLATS_IMAGES_URL = 'LOAD_OWNER_HAS_FLATS_IMAGES_URL';
-export const LOAD_CLIENT_LIKED_FLATS_IMAGES = 'LOAD_OWNER_HAS_FLATS_IMAGES';
+export const LOAD_CLIENT_LIKED_FLATS_DATA = 'LOAD_CLIENT_LIKED_FLATS_DATA';
+export const LOAD_CLIENT_LIKED_FLATS_IMAGES_URL = 'LOAD_CLIENT_LIKED_FLATS_IMAGES_URL';
+export const LOAD_CLIENT_LIKED_FLATS_IMAGES = 'LOAD_CLIENT_LIKED_FLATS_IMAGES';
+
+export const FLATS_FIRST_IMAGE = 'FLATS_FIRST_IMAGE';
 
 
 export const loadData = (url, type) => {
@@ -92,6 +93,7 @@ export const loadFlatData = () => {
         try {
             const res = await $host.get("api/flats/flat_data");
             const data = await res.data;
+            debugger
             dispatch({
                 type: LOAD_FLAT_DATA,
                 payload: data
@@ -122,7 +124,7 @@ export const loadFlatHasImageUrl = (address, type, flatId) => {
         try {
             const res = await $host.get(address);
             const flatsImage = await res.data;
-            debugger
+
             let imagesURL = [];
             for (let i = 0; i < flatsImage.length; i++) {
                 let address = 'images/' + flatId + '/' + flatsImage[i].name;
@@ -131,10 +133,10 @@ export const loadFlatHasImageUrl = (address, type, flatId) => {
                         id: i,
                         url: url
                     });
-                    debugger;
+                    ;
                 });
             }
-            debugger
+
             dispatch({
                 type: type,
                 payload: imagesURL
@@ -153,7 +155,7 @@ export const loadOwnerHasFlatImageURL = (address, type, accountId) => {
             const flatsId = await resFlatId.data.map(i => i.flat_id);
             const resImagesData = await $host.get(`api/flats/owner_has_flat_image_url/${accountId}`);
             const imagesData = resImagesData.data;
-            debugger
+
             let imagesURL = [];
             for (let i = 0; i < imagesData.length; i++) {
                 let address = 'images/' + imagesData[i].flatId + '/' + imagesData[i].imageName;
@@ -162,10 +164,10 @@ export const loadOwnerHasFlatImageURL = (address, type, accountId) => {
                         id: i,
                         url: url
                     });
-                    debugger;
+                    ;
                 });
             }
-            debugger;
+            ;
 
             dispatch({
                 type: type,
@@ -177,6 +179,69 @@ export const loadOwnerHasFlatImageURL = (address, type, accountId) => {
         }
     }
 }
+
+export const loadClientLikedFlatImageURL = (address, type, accountId) => {
+    return async dispatch => {
+        try {
+            const resFlatId = await $host.get(`api/flats/client_liked_flat_data/${accountId}`);
+            const flatsId = await resFlatId.data.map(i => i.flat_id);
+            const resImagesData = await $host.get(`api/flats/client_liked_flat_image_url/${accountId}`);
+            const imagesData = resImagesData.data;
+
+            let imagesURL = [];
+            for (let i = 0; i < imagesData.length; i++) {
+                let address = 'images/' + imagesData[i].flatId + '/' + imagesData[i].imageName;
+                await firebase.storage().ref().child(address).getDownloadURL().then((url) => {
+                    imagesURL.push({
+                        id: i,
+                        url: url
+                    });
+                    ;
+                });
+            }
+            ;
+            dispatch({
+                type: type,
+                payload: imagesURL
+            })
+
+        } catch
+            (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
+export const loadFlatsFirstImageURL = (api, type) => {
+    return async dispatch => {
+        try {
+            const resImagesData = await $host.get(api);
+            const imagesData = resImagesData.data;
+
+            let imagesURL = [];
+            for (let i = 0; i < imagesData.length; i++) {
+                let address = 'images/' + imagesData[i].flatId + '/' + imagesData[i].imageName;
+                await firebase.storage().ref().child(address).getDownloadURL().then((url) => {
+                    imagesURL.push({
+                        id: i,
+                        url: url
+                    });
+                    ;
+                });
+            }
+            ;
+            dispatch({
+                type: type,
+                payload: imagesURL
+            })
+
+        } catch
+            (e) {
+            alert("Something went wrong : ")
+        }
+    }
+}
+
 
 export const createImage = (image) => {
     return async dispatch => {
@@ -857,8 +922,10 @@ export const loadFlatsByFilter = (
                 }
             });
             const data = await res.data;
+            debugger
             dispatch({
-                type: LOAD_ALL_FLATS,
+                // type: LOAD_ALL_FLATS,
+                type: LOAD_FLAT_DATA,
                 payload: data
             })
         } catch (e) {

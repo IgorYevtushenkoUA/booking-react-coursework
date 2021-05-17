@@ -2,11 +2,11 @@ import React from 'react';
 
 import {useHistory} from "react-router-dom";
 import {Card, Col, Row} from "react-bootstrap";
-import {RENT_FLATS_ROUTE} from "../../../../../../utils/consts";
+import {RENT_FLATS_ROUTE} from "../../../../../utils/consts";
 
 const ClientLikedFlatItem = (props) => {
 
-    debugger
+
     const history = useHistory();
     let flat = props.flat;
 
@@ -14,7 +14,7 @@ const ClientLikedFlatItem = (props) => {
         history.push(RENT_FLATS_ROUTE + '/' + flat.flat_id)
     }
 
-    debugger
+
     const updated = flat.updatedAt.toString().replace("T", " ").replace(".000Z", "");
     const created = flat.createdAt.toString().replace("T", " ").replace(".000Z", "");
 

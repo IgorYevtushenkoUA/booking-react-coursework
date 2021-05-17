@@ -169,9 +169,9 @@ const RegistrationAccountPage = (props) => {
                 roleRoleId: props.role
             }
             dispatch(register(account));
-            debugger
+
             localStorage.setItem("roleId", props.role);
-            debugger
+
             history.push(MAIN_ROUTE);
         } catch (e) {
             alert(e.response.data.message)
@@ -186,7 +186,7 @@ const RegistrationAccountPage = (props) => {
         >
             <Card style={{width: 600}} className="p-4">
                 {/*<h2 className="m-auth">{t("register.title")}</h2>*/}
-                <h2 className="m-auth">Gender</h2>
+                <h2 className="m-auth">Registration</h2>
                 <Form className="d-flex flex-column">
                     <div className="d-flex flex-row">
                         <Form.Control
@@ -195,7 +195,7 @@ const RegistrationAccountPage = (props) => {
                             value={name}
                             onChange={e => nameHandler(e, 'name')}
                             name='name'
-                            onBlur={e => bluerHandler(e)}
+                            onBlur={e => bluerHandler(e)}q
                         />
                         <Form.Control
                             className="mt-3 ml-1"

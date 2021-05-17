@@ -12,7 +12,7 @@ import {
 const FlatsList = (props) => {
 
     const flats = props.flats;
-    const image = "image";
+    let counter = 0;
 
     return (
         <Row className="d-flex flex-column">
@@ -21,7 +21,7 @@ const FlatsList = (props) => {
                     <FlatItem
                         key={flat.flat_id}
                         flat={flat}
-                        image={image}/>
+                        imageURL={props.imageURL[counter++].url}/>
                 )}
             </Col>
         </Row>

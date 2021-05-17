@@ -187,7 +187,7 @@ const Filter = () => {
     const changeInput = (type, value) => {
         switch (type) {
             case "priceFrom" : {
-                debugger
+
                 priceFrom = value;
                 break;
             }
@@ -242,6 +242,8 @@ const Filter = () => {
         squareAllTo = squareAllTo === 0 ? maxSquareAll[0].max : squareAllTo;
         squareLivingFrom = squareLivingFrom === 0 ? minSquareLiving[0].min : squareLivingFrom;
         squareLivingTo = squareLivingTo === 0 ? maxSquareLiving[0].max : squareLivingTo;
+
+
 
         dispatch(loadFlatsByFilter(
             areasArr,

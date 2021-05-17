@@ -41,9 +41,9 @@ export const register = (account) => {
                 last_name,
                 roleRoleId
             });
-            debugger
+
             const decoded = jwt.verify(res, process.env.SECRET_KEY);
-            debugger
+
             localStorage.setItem("accountId", decoded.id);
             localStorage.setItem("accountId", decoded.roleId);
 
@@ -118,7 +118,7 @@ export const loadClientLikedFlat = (url, type) => {
         try {
             const res = await $host.get(url);
             const data = await res.data;
-            debugger
+
             dispatch({
                 type: type,
                 payload: data
@@ -132,8 +132,10 @@ export const loadClientLikedFlat = (url, type) => {
 export const loadClientWatchedFlat = (url, type) => {
     return async dispatch => {
         try {
+            debugger
             const res = await $host.get(url);
             const data = await res.data;
+            debugger
             dispatch({
                 type: type,
                 payload: data

@@ -13,6 +13,7 @@ import TextAreaCard from "../../../component/textarea/TextAreaCard";
 import CheckBoxCard from "../../../component/checkbox/CheckBoxCard";
 import DropDownList from "../../../component/dropdown/DropDownList";
 import AttributeForm from "../../../component/form/AttributeForm";
+import {useTranslation} from "react-i18next";
 
 const CreateFlatPage = () => {
 
@@ -56,6 +57,7 @@ const CreateFlatPage = () => {
         short_description = "",
         main_description = "";
 
+    const {t} = useTranslation();
     const [drag, setDrag] = useState(false);
 
     const streets = useSelector(store => store.flat.streets);
@@ -155,7 +157,7 @@ const CreateFlatPage = () => {
 
     const setTextArea = (type, value) => {
         if (type == 'short_description') {
-            debugger
+
             short_description = value;
         } else if (type == 'main_description') {
             main_description = value;
@@ -190,7 +192,7 @@ const CreateFlatPage = () => {
             const pledge_test = 1;
             const bathroomTypeId_test = 1;
 
-            debugger
+
 
             dispatch(createFlat(
                 houseNum,
@@ -238,17 +240,16 @@ const CreateFlatPage = () => {
 
     return (
         <Container>
-
             <div style={style3}>
                 <DropDownList
-                    title="Оберіть вулицю"
+                    title={t("create_flat.street")}
                     data={streets}
                     setData={setData}
                     type="street"
                 />
 
                 <DropDownList
-                    title="Оберіть Район"
+                    title={t("create_flat.area")}
                     data={areas}
                     setData={setData}
                     type="area"
@@ -256,8 +257,8 @@ const CreateFlatPage = () => {
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"houseNum"}
-                    placeholder={"houseNum"}
+                    title={t("create_flat.house_num")}
+                    placeholder={t("create_flat.house_num")}
                     type={"houseNum"}
                 />
             </div>
@@ -265,20 +266,20 @@ const CreateFlatPage = () => {
             <div style={style3}>
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"houseYear"}
-                    placeholder={"houseYear"}
+                    title={t("create_flat.house_year")}
+                    placeholder={t("create_flat.house_year")}
                     type={"houseYear"}
                 />
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"numOfFloors"}
-                    placeholder={"numOfFloors"}
+                    title={t("create_flat.num_of_floors")}
+                    placeholder={t("create_flat.num_of_floors")}
                     type={"numOfFloors"}
                 />
 
                 <DropDownList
-                    title="Тип опалення"
+                    title={t("create_flat.heating")}
                     data={heatings}
                     setData={setData}
                     type="heating"
@@ -288,7 +289,7 @@ const CreateFlatPage = () => {
 
             <div style={{marginTop:'20px'}}>
                 <DropDownList
-                    title="Оберіть найближчу станцію метро"
+                    title={t("create_flat.metro_station")}
                     data={metroStations}
                     setData={setData}
                     type="metro"
@@ -299,22 +300,22 @@ const CreateFlatPage = () => {
             <div style={style3}>
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"flatFloor"}
-                    placeholder={"flatFloor"}
+                    title={t("create_flat.flat_floor")}
+                    placeholder={t("create_flat.flat_floor")}
                     type={"flatFloor"}
                 />
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"flat Rooms"}
-                    placeholder={"roomsNum"}
+                    title={t("create_flat.flat_room")}
+                    placeholder={t("create_flat.flat_room")}
                     type={"roomsNum"}
                 />
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"balconiesNum"}
-                    placeholder={"balconiesNum"}
+                    title={t("create_flat.balconies_num")}
+                    placeholder={t("create_flat.balconies_num")}
                     type={"balconiesNum"}
                 />
             </div>
@@ -324,20 +325,20 @@ const CreateFlatPage = () => {
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"allSquare"}
-                    placeholder={"allSquare"}
+                    title={t("create_flat.all_square")}
+                    placeholder={t("create_flat.all_square")}
                     type={"allSquare"}
                 />
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"livingSquare"}
-                    placeholder={"livingSquare"}
+                    title={t("create_flat.living")}
+                    placeholder={t("create_flat.living")}
                     type={"livingSquare"}
                 />
 
                 <DropDownList
-                    title="Оберіть тип ванної кімнати"
+                    title={t("create_flat.bathroom_type")}
                     data={bathroomTypes}
                     setData={setData}
                     type="bathroomType"
@@ -349,20 +350,20 @@ const CreateFlatPage = () => {
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"priceMonth"}
-                    placeholder={"priceMonth"}
+                    title={t("create_flat.price_month")}
+                    placeholder={t("create_flat.price_month")}
                     type={"priceMonth"}
                 />
 
                 <AttributeForm
                     setFormData={setFormData}
-                    title={"pledge"}
-                    placeholder={"pledge"}
+                    title={t("create_flat.pledge")}
+                    placeholder={t("create_flat.pledge")}
                     type={"pledge"}
                 />
 
                 <DropDownList
-                    title="Оберіть Тип стін у будинку"
+                    title={t("create_flat.wall_type")}
                     data={wallTypes}
                     setData={setData}
                     type="wallType"
@@ -386,46 +387,46 @@ const CreateFlatPage = () => {
             <CheckBoxCard
                 type={"comfort"}
                 elem={comforts}
-                title={"Виберіть комфорт"}
+                title={t("create_flat.comfort")}
                 changeData={changeData}
             />
 
             <CheckBoxCard
                 type={"infrastructure"}
                 elem={infrastructures}
-                title={"Виберіть Інфраструктуру"}
+                title={t("create_flat.infrastructure")}
                 changeData={changeData}
             />
 
             <CheckBoxCard
                 type={"peopleType"}
                 elem={peopleTypes}
-                title={"Виберіть тип мешканців"}
+                title={t("create_flat.people_type")}
                 changeData={changeData}
             />
 
             <CheckBoxCard
                 type={"multimedia"}
                 elem={multimedias}
-                title={"Виберіть Мультимудію в квартирі"}
+                title={t("create_flat.multimedia")}
                 changeData={changeData}
             />
 
             <CheckBoxCard
                 type={"rule"}
                 elem={rules}
-                title={"Виберіть Правила проживання"}
+                title={t("create_flat.rules")}
                 changeData={changeData}
             />
 
             <CheckBoxCard
                 type={"householdAppliance"}
                 elem={householdAppliances}
-                title={"Виберіть Побутову техніку"}
+                title={t("create_flat.household")}
                 changeData={changeData}
             />
             <div style={styleBtn}>
-                <Button onClick={handlerClick}>Створити квартиру</Button>
+                <Button onClick={handlerClick}>{t("create_flat.btn")}</Button>
             </div>
         </Container>
     );

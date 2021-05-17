@@ -1,4 +1,5 @@
 import {
+    FLATS_FIRST_IMAGE,
     LOAD_ALL_AREAS,
     LOAD_ALL_BATHROOM_TYPE,
     LOAD_ALL_CITIES,
@@ -117,6 +118,8 @@ const initState = {
     clientLikedFlatData: [],
     clientLikedFlatImages: [],
     clientLikedFlatImagesURL: [],
+
+    flatsFirstImage: [],
 }
 
 export const flatReducer = (state = initState, action) => {
@@ -241,7 +244,10 @@ export const flatReducer = (state = initState, action) => {
         case LOAD_CLIENT_LIKED_FLATS_IMAGES:
             return {...state, clientLikedFlatImages: action.payload}
         case LOAD_CLIENT_LIKED_FLATS_IMAGES_URL:
+            console.log("action.payload:" + action.payload)
             return {...state, clientLikedFlatImagesURL: action.payload}
+        case FLATS_FIRST_IMAGE:
+            return {...state, flatsFirstImage: action.payload}
 
         default:
             return state;

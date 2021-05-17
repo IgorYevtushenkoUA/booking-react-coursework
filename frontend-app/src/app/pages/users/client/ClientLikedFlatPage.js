@@ -1,8 +1,8 @@
 import React from 'react';
-import {usePreloadPRO, usePreloadPRO3} from "../../../hooks/usePreload";
+import {usePreloadPRO} from "../../../hooks/usePreload";
 import {LOAD_CLIENT_LIKED_FLAT, loadClientLikedFlat} from "../../../store/additional/user/userActions";
 import {useSelector} from "react-redux";
-import LikedFlatList from "./list/LikedFlatList";
+import ClientLikedFlatList from "./list/ClientLikedFlatList";
 
 const ClientLikedFlatPage = () => {
 
@@ -12,12 +12,15 @@ const ClientLikedFlatPage = () => {
     let flats = useSelector(store => store.user.clientLikedFlat);
 
     if (flats.length === 0) {
-        debugger
-        return (<div>Loading</div>);
+        return (<div>Квартир немає</div>);
     } else {
-        debugger
+
+
+
         return (
-            <LikedFlatList flats={flats}/>
+            <ClientLikedFlatList
+                accountId={flats[0].accountId}
+                flatId={flats.map(a => a.flatId)}/>
         );
     }
 };

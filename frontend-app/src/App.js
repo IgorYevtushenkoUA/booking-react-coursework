@@ -32,7 +32,7 @@ const App = () => {
 //             files: files
 //         })
 //         console.log(files)
-//         debugger
+//
 //     }
 //
 //     handleSave = () => {
@@ -55,10 +55,10 @@ const App = () => {
 //         for (let i = 0; i < this.state.files.length; i++) {
 //             let address = 'images/21/' + this.state.files[i].name;
 //             console.log("address :" + address)
-//             debugger
+//
 //             storageRef.child(address).getDownloadURL().then((url) => {
 //                 console.log("url :" + url);
-//                 debugger
+//
 //                 // document.getElementById('new-img').src = url
 //             });
 //         }

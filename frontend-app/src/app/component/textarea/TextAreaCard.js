@@ -14,7 +14,7 @@ const TextAreaCard = (props) => {
     }
 
     const setTextArea = (value) => {
-        debugger
+
         props.setTextArea(props.type, value);
     }
 

@@ -4,13 +4,16 @@ import {usePreload, usePreloadPRO} from "../../../../hooks/usePreload";
 import {Col, Container, Row} from "react-bootstrap";
 import Filter from "./filter/Filter";
 import FlatsList from "./list/FlatsList";
-import FlatGeolocation from "./geolocation/FlatGeolocation";
-import {loadFlatData} from "../../../../store/additional/flat/flatActions";
+import {FLATS_FIRST_IMAGE, loadFlatData, loadFlatsFirstImageURL} from "../../../../store/additional/flat/flatActions";
 
 const FlatsRentPage = () => {
 
     usePreload(loadFlatData);
+    usePreloadPRO(loadFlatsFirstImageURL, `api/flats/flats_first_image`, FLATS_FIRST_IMAGE);
+
     const flats = useSelector(store => store.flat.flatData);
+    const imageURL = useSelector(store => store.flat.flatsFirstImage);
+
     const [showFlat, setShowFlat] = useState(false);
 
     const styleFilterDiv = {
@@ -23,13 +26,16 @@ const FlatsRentPage = () => {
         width: '100%',
     }
 
-    if (!flats) {
+    if (imageURL.length == 0) {
         return (
             <div>
-                RentFlatsPage
+                LOADING ....
             </div>
         );
     } else {
+
+        debugger
+
         return (
             <Container>
                 <div style={styleFilterDiv}>
@@ -44,7 +50,9 @@ const FlatsRentPage = () => {
 
                 <Row>
                     <Col>
-                        <FlatsList flats={flats}/>
+                        <FlatsList
+                            flats={flats}
+                            imageURL={imageURL}/>
                     </Col>
                 </Row>
             </Container>

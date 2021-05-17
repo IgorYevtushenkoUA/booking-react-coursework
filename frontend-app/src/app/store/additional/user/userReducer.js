@@ -37,7 +37,7 @@ export const userReducer = (state = initState, action) => {
         case ADD_CLIENT_LIKED_FLAT:
             return {...state, clientLikedFlat: []}
         case ADD_CLIENT_WATCHED_FLAT:
-            debugger
+
             console.log("userReducer ADD_CLIENT_WATCHED_FLAT")
             return {...state, clientWatchedFlat: [action.payload.accountId]}//
         default:

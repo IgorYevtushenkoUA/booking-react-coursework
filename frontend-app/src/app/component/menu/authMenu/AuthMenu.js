@@ -25,6 +25,10 @@ const AuthMenu = (props) => {
                     <button className="btn"
                     >{t("navbar.owner")}</button>
                 </Link>
+                <Link to={REGISTRATION_CLIENT_ROUTE}>
+                    <button className="btn"
+                    >{t("navbar.client")}</button>
+                </Link>
                 <Link to={LOGIN_ROUTE}>
                     <button className="btn"
                     >{t("navbar.sign_in")}</button>

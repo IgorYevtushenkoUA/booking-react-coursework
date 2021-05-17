@@ -61,13 +61,15 @@ const FlatPage = () => {
         padding: '5px'
     }
 
-    let role = 2;
+    let role = localStorage.getItem("roleId");
 
     if (flatData == null) {
+
         return (
             <div> Loading</div>
         )
     } else {
+
         return (
             <Container style={{height: window.innerHeight - 54}}
                        className="flat_page">
@@ -111,13 +113,14 @@ const FlatPage = () => {
                     <InfoBlock elem={flatHasPeopleType} name={"PeopleType :"}/>
                     <InfoBlock elem={flatHasRule} name={"Rule :"}/>
 
-                    {role == 1 &&
+                    {(role == 1 || role == 2) &&
                     <Button onClick={() => {
                         console.log("delete by ID")
                         // deleteFlatByPk(flat.flat_id);
                         history.push(RENT_FLATS_ROUTE);
                     }}>delete
                     </Button>}
+
                 </Card>
             </Container>
         );

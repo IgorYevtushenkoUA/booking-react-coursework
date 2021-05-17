@@ -29,7 +29,7 @@ const LoginPage = () => {
         console.log("click")
         try {
             dispatch(login(email, password));
-            debugger
+
 
             history.push(MAIN_ROUTE)
         } catch (e) {

@@ -17,11 +17,11 @@ import FlatsRentPage from "./pages/flats/flats/rent/FlatsRentPage";
 import FlatsSellPage from "./pages/flats/flats/sell/FlatsSellPage";
 import FlatPage from "./pages/flat/FlatPage";
 import OwnerPage from "./pages/users/owner/OwnerPage";
-import ClientPage from "./pages/users/client/clientPage";
 import CreateFlatPage from "./pages/flats/createFlat/CreateFlatPage";
 import BadooPage from "./pages/badoo/BadooPage";
 import OwnerFlatPage from "./pages/users/owner/OwnerFlatPage";
-import ClientLikedFlatPage from "./pages/users/client/like/ClientLikedFlatPage";
+import ClientLikedFlatPage from "./pages/users/client/ClientLikedFlatPage";
+import ClientPage from "./pages/users/client/clientPage";
 
 export const authRoutes = [
     {

@@ -159,7 +159,7 @@ class FlatController {
 
     async getClientLikedFlatData(req, res) {
         try {
-            const clientLikedFlatData = await flatService.getOwnerHasFlatData(req.params.accountId);
+            const clientLikedFlatData = await flatService.getClientLikedFlatData(req.params.accountId);
             return res.json(clientLikedFlatData);
         } catch (e) {
             res.status(500).json(e);
@@ -187,6 +187,15 @@ class FlatController {
     async getFlatData(req, res) {
         try {
             const flatData = await flatService.getFlatData();
+            return res.json(flatData);
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    }
+
+    async getFlatsFirstImage(req, res) {
+        try {
+            const flatData = await flatService.getFlatsFirstImage();
             return res.json(flatData);
         } catch (e) {
             res.status(500).json(e);

@@ -10,11 +10,16 @@ const MainPage = () => {
     return (
         <div className="main-page">
             <div className="rent block">
-                <VariantBlock title={t("main.rent")} border="btn_rent"  block="block1" link={RENT_FLATS_ROUTE}/>
+                <VariantBlock title={t("main.rent")} border="btn_rent"  block="block1" link={RENT_FLATS_ROUTE} btn={t("main.open")}/>
             </div>
-            <div className="sell block">
-                <VariantBlock title={t("main.sell")} border="btn_sell" block="block2" link={SELL_FLATS_ROUTE}/>
-            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            {/*<div className="sell block">*/}
+            {/*    <VariantBlock title={t("main.sell")} border="btn_sell" block="block2" link={SELL_FLATS_ROUTE} btn={t("main.open")}/>*/}
+            {/*</div>*/}
         </div>
     );
 };

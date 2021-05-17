@@ -32,17 +32,17 @@ const OwnerFlatList = (props) => {
     Зробити масив із лінками на фотографії
      */
     console.log(ownerHasFlatImagesURL);
-    debugger
+
 
     let counter = 0;
 
     if (ownerHasFlatImagesURL.length == 0) {
-        debugger
+
         return (
             <div>Loading</div>
         );
     } else {
-        debugger
+
         return (
             <div>
                 {ownerHasFlatData.map(flat =>

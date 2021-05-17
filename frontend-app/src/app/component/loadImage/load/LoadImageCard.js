@@ -16,13 +16,13 @@ const LoadImageCard = (props) => {
         //
         //
         //     console.log("filesArray: ", filesArray);
-        //     debugger
+        //
         //     setSelectedFiles((prevImages) => prevImages.concat(filesArray));
         //
         //     Array.from(e.target.files).map(
         //         (file) => URL.revokeObjectURL(file)
         //     );
-        //     debugger
+        //
         // }
     };
 

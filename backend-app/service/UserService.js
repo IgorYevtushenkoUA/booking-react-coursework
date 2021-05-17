@@ -14,27 +14,30 @@ class UserService {
     }
 
 
-    async getOwnerFlat() {
+    async getOwnerFlat(id) {
         let sql = "select a.id as accountId, f.id as flatId\n" +
             "from accounts a\n" +
             "         inner join owner_has_flats o on a.id = o.accountId\n" +
-            "         inner join flats f on o.flatId = f.id";
+            "         inner join flats f on o.flatId = f.id\n" +
+            "where a.id =" + id;
         return await query(sql);
     }
 
-    async getClientLikedFlat() {
+    async getClientLikedFlat(id) {
         let sql = "select a.id as accountId, f.id as flatId\n" +
             "from accounts a\n" +
             "         inner join client_liked_flats o on a.id = o.accountId\n" +
-            "         inner join flats f on o.flatId = f.id";
+            "         inner join flats f on o.flatId = f.id\n" +
+            "where a.id =" + id;
         return await query(sql);
     }
 
-    async getClientWatchedFlat() {
+    async getClientWatchedFlat(id) {
         let sql = "select a.id as accountId, f.id as flatId\n" +
             "from accounts a\n" +
             "         inner join client_has_seen_flats o on a.id = o.accountId\n" +
-            "         inner join flats f on o.flatId = f.id";
+            "         inner join flats f on o.flatId = f.id\n" +
+            "where a.id =" + id;
         return await query(sql);
     }
 

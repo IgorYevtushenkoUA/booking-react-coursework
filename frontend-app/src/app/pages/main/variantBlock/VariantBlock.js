@@ -9,7 +9,7 @@ const VariantBlock = (props) => {
             <h2 style={{fontSize: "3em", fontFamily: "Century Gothic", color: "black"}}>{props.title}</h2>
             <Link to={props.link}>
                 <button className={`btn ${props.border}`}>
-                    Перейти
+                    {props.btn}
                 </button>
             </Link>
         </div>

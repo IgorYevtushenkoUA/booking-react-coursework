@@ -26,7 +26,7 @@ const ImageList = (props) => {
     }
 
     console.log(props.images)
-    debugger
+
     return (
         <section className=''>
             <div className='block_center'>

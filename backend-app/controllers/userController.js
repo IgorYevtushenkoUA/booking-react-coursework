@@ -32,7 +32,7 @@ class UserController {
                 return next("password incorrect")
             }
             const token = generateJwt(user.id, user.roleId);
-            console.log("token" + token)
+            console.log("token :" + token)
             return res.json({token});
         } catch (e) {
             res.status(500).json(e);
