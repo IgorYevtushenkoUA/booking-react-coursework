@@ -5,7 +5,8 @@
     "create": "Create",
     "sign_in": "Sign in",
     "sign_out": "Sign out",
-    "owner":  "Became owner"
+    "owner":  "Became owner",
+    "client":  "Became renter"
   },
   "menu": {
     "admin": {
@@ -16,7 +17,7 @@
       "create": "Add new Flat"
     },
     "client": {
-      "quick_love": "Quick Love",
+      "quick_love": "Badoo Search",
       "liked": "Liked Flats"
     }
   },
@@ -47,11 +48,48 @@
     "enter_surname": "Enter your surname",
     "enter_father_name": "Enter your father name",
     "enter_email": "Enter your email",
-    "enter_phone": "Enter your email",
+    "enter_phone": "Enter your phone",
     "enter_password": "Enter your password",
     "enter_confirmed_password": "Confirmed your password",
     "account": "Have account ? ",
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "gender": "Gender",
+    "gender-woman": "Woman",
+    "gender-man": "Man"
+  },
+  "create_flat": {
+    "street": "Street",
+    "area": "Area",
+    "house_num": "House №",
+    "house_year": "House year",
+    "num_of_floors": "House floors number",
+    "heating": "Heating",
+    "metro_station": "Nearest metro station",
+    "flat_floor": "Flat floor",
+    "flat_room": "Rooms number",
+    "balconies_num": "Balconies number",
+    "all_square": "Total square",
+    "living_square": "Living square",
+    "bathroom_type": "Bathroom type",
+    "price_month": "Month price",
+    "pledge": "Pledge",
+    "wall_type": "Wall type",
+    "image": "Input images",
+    "short_description": "Short flat description",
+    "main_description": "main flat description",
+    "comfort": "What comfort is available in the apartment",
+    "infrastructure": "Infrastructure within a radius of 1 km",
+    "people_type": "Who can rent this apartment",
+    "multimedia": "Available multimedia",
+    "rules": "Flat rules",
+    "household": "Available household appliances",
+    "btn": "Create Flat"
+  },
+  "sell_flat": {
+    "not_work": "This page will working soon"
+  },
+  "rent_flat": {
+
   }
 }

@@ -2,50 +2,53 @@ const sequelize = require("../database")
 const {DataTypes} = require("sequelize")
 
 const City = sequelize.define('cities', {
-    city_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Region = sequelize.define('regions', {
-    region_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Area = sequelize.define('areas', {
-    area_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     crime: {type: DataTypes.INTEGER, allowNull: false},
     pollution: {type: DataTypes.INTEGER, allowNull: false},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const Street = sequelize.define('streets', {
-    street_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const HouseType = sequelize.define('house_types', {
-    house_type_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+const WallType = sequelize.define('wall_types', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+})
+
+const Heating = sequelize.define('heating', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
 const House = sequelize.define('houses', {
-    house_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
-    house_num: {type: DataTypes.STRING, allowNull:false},
-    house_year: {type: DataTypes.INTEGER, allowNull:false},
-    floors_num: {type: DataTypes.INTEGER, allowNull:false}
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    house_num: {type: DataTypes.STRING, allowNull: false},
+    house_year: {type: DataTypes.INTEGER, allowNull: false},
+    floors_num: {type: DataTypes.INTEGER, allowNull: false}
 })
-
-const Advantage = sequelize.define('advantages', {
-    advantage_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+// infrastructure
+const Infrastructure = sequelize.define('infrastructure', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const HouseHasAdvantage = sequelize.define('house_has_advantages', {
-
-})
+const HouseHasInfrastructure = sequelize.define('house_has_infrastructure', {})
 
 const MetroStation = sequelize.define('metro_stations', {
-    metro_station_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false},
     line_color: {type: DataTypes.STRING, allowNull: false}
 })
@@ -54,8 +57,14 @@ const HouseNearMetroStation = sequelize.define('house_near_metro_stations', {
     distance: {type: DataTypes.DOUBLE, allowNull: false}
 })
 
+// bathroom_types
+const BathroomType = sequelize.define('bathroom_types', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+})
+
 const Flat = sequelize.define('flats', {
-    flat_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     flat_floor: {type: DataTypes.INTEGER, allowNull: false},
     square_all: {type: DataTypes.INTEGER, allowNull: false},
     square_living: {type: DataTypes.INTEGER, allowNull: false},
@@ -68,40 +77,68 @@ const Flat = sequelize.define('flats', {
 })
 
 const RentType = sequelize.define('rent_types', {
-    rent_type_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const FlatHasRentType = sequelize.define('flat_has_rent_types', {
+const FlatHasRentType = sequelize.define('flat_has_rent_types', {})
 
+
+// household_appliances
+const HouseholdAppliances = sequelize.define('household_appliances', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
 })
+const FlatHasHouseholdAppliances = sequelize.define('flat_has_household_appliances', {})
 
-const FlatElements = sequelize.define('flat_elements', {
-    flat_element_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+
+// multimedias
+const Multimedia = sequelize.define('multimedias', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const FlatHasElement = sequelize.define('flat_has_elements', {
+const FlatHasMultimedia = sequelize.define('flat_has_multimedias', {})
 
+
+// comforts
+const Comfort = sequelize.define('comforts', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
 })
+const FlatHasComfort = sequelize.define('flat_has_comforts', {})
+
+
+// people_types
+const PeopleType = sequelize.define('people_types', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+})
+const FlatHasPeopleType = sequelize.define('flat_has_people_types', {})
+
+
+// rules
+const Rule = sequelize.define('rules', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
+})
+const FlatHasRule = sequelize.define('flat_has_rules', {})
 
 // change type for image
-const FlatImage = sequelize.define('flat_images', {
-    image_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
-    image: {type: DataTypes.STRING, allowNull: false}
+const Image = sequelize.define('images', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const FlatHasImage = sequelize.define('flat_has_images', {
-
-})
+const FlatHasImage = sequelize.define('flat_has_images', {})
 
 const Role = sequelize.define('roles', {
-    role_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
-    name: {type: DataTypes.STRING,unique: true, allowNull: false}
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
+    name: {type: DataTypes.STRING, unique: true, allowNull: false}
 })
 
-const User = sequelize.define('users', {
-    user_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+const Account = sequelize.define('accounts', {
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     first_name: {type: DataTypes.STRING, allowNull: false},
     second_name: {type: DataTypes.STRING, allowNull: false},
     birth: {type: DataTypes.DATE, allowNull: false},
@@ -111,35 +148,21 @@ const User = sequelize.define('users', {
     phone_num1: {type: DataTypes.STRING, allowNull: false},
     phone_num2: {type: DataTypes.STRING, allowNull: true},
     phone_num3: {type: DataTypes.STRING, allowNull: true},
-    passport_ID: {type: DataTypes.STRING, allowNull: false},
     last_name: {type: DataTypes.STRING, allowNull: false},
 })
 
-const Admin = sequelize.define('admins', {
-})
-
-const Client = sequelize.define('clients', {
-})
-
-const Owner = sequelize.define('owners', {
-})
-
 const BadHabit = sequelize.define('bad_habits', {
-    bad_habit_id: {type: DataTypes.INTEGER, primaryKey:true, autoIncrement:true},
+    id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     name: {type: DataTypes.STRING, allowNull: false}
 })
 
-const ClientHasBadHabit = sequelize.define('client_has_bad_habits', {
+const ClientHasBadHabit = sequelize.define('client_has_bad_habits', {})
 
-})
+const ClientLikedFlat = sequelize.define('client_liked_flats', {})
 
-const ClientLikedFlat = sequelize.define('client_liked_flats', {
+const ClientWatchedFlat = sequelize.define('client_has_seen_flat', {})
 
-})
-
-const OwnerHasFlat = sequelize.define('owner_has_flats', {
-
-})
+const OwnerHasFlat = sequelize.define('owner_has_flats', {})
 
 // city - metro_station
 City.hasMany(MetroStation);
@@ -162,12 +185,16 @@ Street.hasMany(House);
 House.belongsTo(Street);
 
 // house -> {house_advantage} <- advantage
-House.belongsToMany(Advantage, {through: HouseHasAdvantage})
-Advantage.belongsToMany(House, {through: HouseHasAdvantage})
+House.belongsToMany(Infrastructure, {through: HouseHasInfrastructure})
+Infrastructure.belongsToMany(House, {through: HouseHasInfrastructure})
 
-// house - type
-HouseType.hasMany(House);
-House.belongsTo(HouseType);
+// house - wall_type
+WallType.hasMany(House);
+House.belongsTo(WallType);
+
+// house - heating
+Heating.hasMany(House);
+House.belongsTo(Heating);
 
 // house -> {house_near_metro_station} <- metro_station
 House.belongsToMany(MetroStation, {through: HouseNearMetroStation}); // belongsTo
@@ -177,71 +204,91 @@ MetroStation.belongsToMany(House, {through: HouseNearMetroStation});
 House.hasMany(Flat);
 Flat.belongsTo(House);
 
+// bathroom_type - flat
+BathroomType.hasMany(Flat);
+Flat.belongsTo(BathroomType);
+
 // Flat -> {flat_has_rent_type} <- RentType
 Flat.belongsToMany(RentType, {through: FlatHasRentType});
 RentType.belongsToMany(Flat, {through: FlatHasRentType});
 
-// flat -> {flat_has_elements} <- elements
-Flat.belongsToMany(FlatElements, {through: FlatHasElement});
-FlatElements.belongsToMany(Flat, {through: FlatHasElement});
+// Flat -> {flat_has_rent_type} <- HouseholdAppliances
+Flat.belongsToMany(HouseholdAppliances, {through: FlatHasHouseholdAppliances});
+HouseholdAppliances.belongsToMany(Flat, {through: FlatHasHouseholdAppliances});
+
+// Flat -> {flat_has_rent_type} <- Multimedia
+Flat.belongsToMany(Multimedia, {through: FlatHasMultimedia});
+Multimedia.belongsToMany(Flat, {through: FlatHasMultimedia});
+
+// Flat -> {flat_has_rent_type} <- Comfort
+Flat.belongsToMany(Comfort, {through: FlatHasComfort});
+Comfort.belongsToMany(Flat, {through: FlatHasComfort});
+
+// Flat -> {flat_has_rent_type} <- PeopleType
+Flat.belongsToMany(PeopleType, {through: FlatHasPeopleType});
+PeopleType.belongsToMany(Flat, {through: FlatHasPeopleType});
+
+// Flat -> {flat_has_rent_type} <- Rule
+Flat.belongsToMany(Rule, {through: FlatHasRule});
+Rule.belongsToMany(Flat, {through: FlatHasRule});
 
 // flat -> {flat_has_images} <- images
-Flat.belongsToMany(FlatImage, {through: FlatHasImage});
-FlatImage.belongsToMany(Flat, {through: FlatHasImage});
+Flat.belongsToMany(Image, {through: FlatHasImage});
+Image.belongsToMany(Flat, {through: FlatHasImage});
 
 // owner - flat
-Owner.belongsToMany(Flat, {through: OwnerHasFlat});
-Flat.belongsToMany(Owner, {through: OwnerHasFlat});
+Account.belongsToMany(Flat, {through: OwnerHasFlat});
+Flat.belongsToMany(Account, {through: OwnerHasFlat});
 
-// client liked flat
-Client.belongsToMany(Flat, {through: ClientLikedFlat});
-Flat.belongsToMany(Client, {through: ClientLikedFlat});
+// account liked flat
+Account.belongsToMany(Flat, {through: ClientLikedFlat});
+Flat.belongsToMany(Account, {through: ClientLikedFlat});
 
-// role - user
-Role.hasMany(User);
-User.belongsTo(Role);
+// account see flat
+Account.belongsToMany(Flat, {through: ClientWatchedFlat});
+Flat.belongsToMany(Account, {through: ClientWatchedFlat});
 
-// user - owner
-User.hasMany(Owner);
-Owner.belongsTo(User);
+// role - account
+Role.hasMany(Account);
+Account.belongsTo(Role);
 
-// user - admin
-User.hasMany(Admin);
-Admin.belongsTo(User);
-
-// user - client
-User.hasMany(Client);
-Client.belongsTo(User);
-
-// client -> {client_has_bad_habit} <- bad_habit
-Client.belongsToMany(BadHabit, {through: ClientHasBadHabit});
-BadHabit.belongsToMany(Client, {through: ClientHasBadHabit});
+// account -> {client_has_bad_habit} <- bad_habit
+Account.belongsToMany(BadHabit, {through: ClientHasBadHabit});
+BadHabit.belongsToMany(Account, {through: ClientHasBadHabit});
 
 module.exports = {
-    Admin,
-    Advantage,
-    Area,
-    BadHabit,
     City,
-    Client,
+    Region,
+    Area,
+    Street,
+    WallType,
+    Heating,
+    House,
+    Infrastructure,
+    HouseHasInfrastructure,
+    MetroStation,
+    HouseNearMetroStation,
+    BathroomType,
+    Flat,
+    RentType,
+    FlatHasRentType,
+    HouseholdAppliances,
+    FlatHasHouseholdAppliances,
+    Multimedia,
+    FlatHasMultimedia,
+    Comfort,
+    FlatHasComfort,
+    PeopleType,
+    FlatHasPeopleType,
+    Rule,
+    FlatHasRule,
+    Image,
+    FlatHasImage,
+    Role,
+    Account,
+    BadHabit,
     ClientHasBadHabit,
     ClientLikedFlat,
-    Flat,
-    FlatElements,
-    FlatHasElement,
-    FlatHasImage,
-    FlatHasRentType,
-    FlatImage,
-    House,
-    HouseHasAdvantage,
-    HouseNearMetroStation,
-    HouseType,
-    MetroStation,
-    Owner,
-    OwnerHasFlat,
-    Region,
-    RentType,
-    Role,
-    Street,
-    User
+    ClientWatchedFlat,
+    OwnerHasFlat
 }

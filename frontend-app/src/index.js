@@ -1,18 +1,15 @@
-import React, {createContext} from 'react';
+import React from 'react';
 import ReactDOM from "react-dom";
 import App from "./App";
-import UserStore from "./store/UserStore";
-import FlatsStore from "./store/FlatsStore";
 import "./i18n.js";
-
-export const Context = createContext(null)
+import {Provider} from "react-redux";
+import {store} from "./app/store/store";
 
 ReactDOM.render(
-    <Context.Provider value={{
-        user: new UserStore(),
-        flats: new FlatsStore(),
-    }}>
-        <App />
-    </Context.Provider>,
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
     document.getElementById('root')
 );

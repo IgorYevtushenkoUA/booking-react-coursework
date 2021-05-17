@@ -9,22 +9,23 @@ router.use('/flats', flatRouter);
 router.use('/user', userRouter);
 router.use('/type', typeRouter);
 
+
 module.exports = router;
 
 
-// route.use('/login')
-// route.use('/registration')
-// route.use('/flats')
-// route.use('/flats/:id')
-// route.use('/client/:id')
-// route.use('/client/:id/edit')
-// route.use('/client/:id/liked-flats')
+// router.use('/login')
+// router.use('/registration')
+// router.use('/flats')
+// router.use('/flats/:id')
+// router.use('/account/:id')
+// router.use('/account/:id/edit')
+// router.use('/account/:id/liked-flats')
 //
-// route.use('/admin/:id')
+// router.use('/admin/:id')
 //
-// route.use('/owner/:id')
-// route.use('/owner/:id/edit')
-// route.use('/owner/:id/flats')
-// route.use('/owner/:id/flats/:id')
-// route.use('/owner/:id/flats/:id/edit')
+// router.use('/owner/:id')
+// router.use('/owner/:id/edit')
+// router.use('/owner/:id/flats')
+// router.use('/owner/:id/flats/:id')
+// router.use('/owner/:id/flats/:id/edit')
 
